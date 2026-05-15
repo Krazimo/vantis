@@ -522,4 +522,17 @@ See data/certificates.json for certificate data.
    - /govern/projects/[id]: 8.77 MB → 11.2 kB (780× reduction)
    - Base64 chunks load on demand when Documents tab is clicked
 
+### Session 12 — Completed (2026-05-16): PDF/IMAGE OPEN BUG FIX
+1. ✅ lib/divya-villas-pdfs.ts — openPDF updated:
+   - key param: keyof typeof divyaVillasPDFs → string
+   - data access: cast to Record<string, string> for dynamic key lookup
+   - added try-catch with alert('Error opening PDF: ' + e)
+   - added alert('Document not found: ' + key) instead of silent return
+2. ✅ lib/divya-villas-images.ts — openImage updated:
+   - key param: keyof typeof divyaVillasImages → string
+   - data access: cast to Record<string, string> for dynamic key lookup
+   - added alert('Image not found: ' + key) instead of silent return
+   - string concatenation for img tag (avoids template literal encoding issues)
+3. ✅ npm run build — 37/37 routes, zero errors, /govern/projects/[id] still 11.2 kB
+
 ### DEMO STATUS: READY FOR DK SHIVAKUMAR MEETING
