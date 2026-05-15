@@ -746,7 +746,7 @@ export default function ProjectDetailContent({ params }: { params: { id: string 
           </span>
         </div>
 
-        <DocSection title="Registration Documents">
+<DocSection title="Registration Documents">
           <DocRow name="Project Application Form"                onView={() => openPDF('reraApplication', 'Divya_Villas_RERA_application.pdf')} />
           <DocRow name="Title Documents — Survey 83/2 and 84/2" onView={() => openPDF('ecMerged', 'EC_Divya_Villas_Merged.pdf')} />
           <DocRow name="CA Certificate — Project Cost"           onView={() => openPDF('caFundUtilisation', 'Form_Ex3_CA_Certificate.pdf')} />
