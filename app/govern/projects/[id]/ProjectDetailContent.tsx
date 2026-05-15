@@ -1,10 +1,8 @@
 ﻿'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { divyaVillasPDFs, openPDF } from '@/lib/divya-villas-pdfs'
-import { divyaVillasImages, openImage } from '@/lib/divya-villas-images'
 import {
   ArrowLeft, Building2, FileText, TrendingDown,
   Scale, AlertTriangle, Settings, CheckCircle,
@@ -151,6 +149,26 @@ export default function ProjectDetailContent({ params }: { params: { id: string 
   const [watchConfirm, setWatchConfirm] = useState(false)
   const [inspectionModal, setInspectionModal] = useState(false)
   const [rrcModal, setRrcModal] = useState(false)
+  const [docModules, setDocModules] = useState<{
+    openPDF: (key: string, filename: string) => void
+    openImage: (key: string, filename: string) => void
+    divyaVillasImages: Record<string, string>
+  } | null>(null)
+
+  useEffect(() => {
+    if (activeTab === 'documents' && !docModules) {
+      Promise.all([
+        import('@/lib/divya-villas-pdfs'),
+        import('@/lib/divya-villas-images'),
+      ]).then(([pdfs, images]) => {
+        setDocModules({
+          openPDF: pdfs.openPDF,
+          openImage: images.openImage,
+          divyaVillasImages: images.divyaVillasImages,
+        })
+      })
+    }
+  }, [activeTab, docModules])
 
   const projectMaybe = (projectsData as Project[]).find(p => p.id === params.id)
 
@@ -683,6 +701,12 @@ export default function ProjectDetailContent({ params }: { params: { id: string 
         </div>
       )
     }
+
+    if (!docModules) {
+      return <div className="text-gray text-sm p-4">Loading documents...</div>
+    }
+
+    const { openPDF, openImage, divyaVillasImages } = docModules
 
     function DocRow({ name, onView }: { name: string; onView: () => void }) {
       return (

@@ -513,4 +513,13 @@ See data/certificates.json for certificate data.
 4. ✅ npm run build — 37/37 routes, zero errors
    - /govern/projects/[id] bundle: 8.77 MB (expected — base64 PDFs + images embedded)
 
+### Session 11 — Completed (2026-05-16): DYNAMIC IMPORT BUNDLE FIX
+1. ✅ Converted divya-villas-pdfs and divya-villas-images from static to dynamic imports
+2. ✅ Static imports removed from top of ProjectDetailContent.tsx
+3. ✅ useState<docModules> + useEffect added — loads only when Documents tab is active
+4. ✅ renderDocuments destructures from docModules; shows "Loading documents..." while null
+5. ✅ npm run build — 37/37 routes, zero errors
+   - /govern/projects/[id]: 8.77 MB → 11.2 kB (780× reduction)
+   - Base64 chunks load on demand when Documents tab is clicked
+
 ### DEMO STATUS: READY FOR DK SHIVAKUMAR MEETING
