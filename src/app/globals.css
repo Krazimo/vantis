@@ -38,3 +38,28 @@ body {
 .typing-dot {
   animation: typing-bounce 1s ease-in-out infinite;
 }
+
+@layer base {
+  :root {
+    --background:             240 20% 5%;
+    --foreground:             45 21% 93%;
+    --card:                   240 22% 8%;
+    --card-foreground:        45 21% 93%;
+    --popover:                240 22% 8%;
+    --popover-foreground:     45 21% 93%;
+    --primary:                40 52% 55%;
+    --primary-foreground:     240 20% 5%;
+    --secondary:              240 17% 11%;
+    --secondary-foreground:   45 21% 93%;
+    --muted:                  240 17% 11%;
+    --muted-foreground:       245 13% 48%;
+    --accent:                 240 17% 11%;
+    --accent-foreground:      45 21% 93%;
+    --destructive:            4 76% 56%;
+    --destructive-foreground: 45 21% 93%;
+    --border:                 240 21% 15%;
+    --input:                  240 21% 15%;
+    --ring:                   40 52% 55%;
+    --radius:                 0.125rem;
+  }
+}
