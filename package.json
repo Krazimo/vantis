@@ -19,7 +19,7 @@
     "recharts": "^3.8.1"
   },
   "devDependencies": {
-    "@krazimo/next-standards": "https://github.com/Krazimo/next-standards/archive/refs/tags/v0.3.3.tar.gz",
+    "@krazimo/next-standards": "git+https://github.com/Krazimo/next-standards.git#v0.3.3",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
