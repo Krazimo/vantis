@@ -35,7 +35,18 @@ jobs:
           echo "Mission slug: $SLUG"
 
       - name: Install dependencies
+        env:
+          KRAZIMO_HARNESS_PAT: ${{ secrets.KRAZIMO_HARNESS_PAT }}
         run: |
+          # Configure git auth for private Krazimo GitHub deps fetched by
+          # npm/bun/pnpm (e.g. @krazimo/next-standards). actions/checkout
+          # scopes auth to the PR repo only, so we need to inject our own
+          # PAT-based auth for cross-repo git fetches inside npm install.
+          git config --global url."https://oauth2:${KRAZIMO_HARNESS_PAT}@github.com/".insteadOf "ssh://git@github.com/"
+          git config --global --add url."https://oauth2:${KRAZIMO_HARNESS_PAT}@github.com/".insteadOf "git@github.com:"
+          git config --global --add url."https://oauth2:${KRAZIMO_HARNESS_PAT}@github.com/".insteadOf "https://github.com/"
+          git config --global credential.helper ""
+
           if [ -f "bun.lockb" ] || [ -f "bun.lock" ]; then
             bun install
           elif [ -f "pnpm-lock.yaml" ]; then
