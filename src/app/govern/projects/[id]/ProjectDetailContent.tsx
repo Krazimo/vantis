@@ -4,141 +4,21 @@ import { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import {
-  ArrowLeft, Building2, FileText, TrendingDown,
-  Scale, AlertTriangle, Settings, CheckCircle,
-  ChevronRight, XCircle, FileX, FolderOpen, ExternalLink,
+  ArrowLeft, TrendingDown, CheckCircle, ChevronRight, XCircle, FileX, FileText, ExternalLink,
 } from 'lucide-react'
 import projectsData from '@/data/projects.json'
 import developersData from '@/data/developers.json'
 import qprData from '@/data/qpr.json'
 import litigationData from '@/data/litigation.json'
+import type { Project, Developer, LitigationItem, QPREntry } from './_data/project-detail.types'
+import {
+  getDueDate, daysLate, fmtDate, fmtCrore, fmtInr,
+  statusColor, statusDot, riskColor, riskBarColor,
+  qprRowClass, qprStatusEl, severityTextColor, severityDotBg,
+} from './_data/project-detail.utils'
+import { ESCROW, ESCROW_STATUS_CLASS as escrowStatusClass, TABS } from './_data/project-detail.data'
 
 const RiskTimeline = dynamic(() => import('@/components/govern/RiskTimeline'), { ssr: false })
-
-/* ---------- Types ---------- */
-interface Project {
-  id: string; name: string; rera: string; developer_id: string; developer_name: string
-  location: string; survey_numbers: string[]; type: string; total_units: number
-  units_sold: number; declared_cost_crore: number; completion_date: string
-  registration_date: string; registration_valid_until: string; extensions: number
-  status: string; risk_score: number; certificate_id: string | null
-  certificate_status: string; complaints_pending: number; complaints_resolved: number
-  litigation: Array<{ type: string; court: string; filed: string; status: string }>
-}
-interface Developer {
-  id: string; name: string; city: string; state: string; trust_score: number
-  total_projects: number; active_projects: number; completed_projects: number
-  years_active: number; contact_email: string; contact_phone: string; status: string
-}
-interface LitigationItem {
-  id: string; project_id: string; type: string; court: string; case_number: string
-  filed_date: string; plaintiff: string; cause: string; relief_sought_crore: number | null
-  status: string; next_hearing: string; severity: string
-}
-interface QPREntry { status: string; filed_date: string | null; completion_pct: number | null }
-
-/* ---------- Helpers ---------- */
-const TODAY = new Date('2026-05-13')
-
-function getDueDate(quarter: string): Date {
-  const [q, year] = quarter.split(' ')
-  const y = parseInt(year)
-  if (q === 'Q1') return new Date(`${y}-01-15`)
-  if (q === 'Q2') return new Date(`${y}-04-15`)
-  if (q === 'Q3') return new Date(`${y}-07-15`)
-  return new Date(`${y}-10-15`)
-}
-
-function daysLate(quarter: string, entry: QPREntry): number {
-  const due = getDueDate(quarter)
-  const ref  = entry.filed_date ? new Date(entry.filed_date) : TODAY
-  return Math.max(0, Math.floor((ref.getTime() - due.getTime()) / 86_400_000))
-}
-
-function fmtDate(d: string) {
-  return new Date(d).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })
-}
-
-function fmtCrore(n: number) {
-  return `₹${n.toLocaleString('en-IN')} Cr`
-}
-
-function fmtInr(n: number) {
-  if (n >= 1_00_00_000) return `₹${(n / 1_00_00_000).toFixed(2)} Cr`
-  if (n >= 1_00_000)    return `₹${(n / 1_00_000).toFixed(2)} L`
-  return `₹${n.toLocaleString('en-IN')}`
-}
-
-function statusColor(s: string) {
-  if (s === 'COMPLIANT') return 'text-green'
-  if (s === 'CAUTION')   return 'text-amber'
-  return 'text-red'
-}
-function statusDot(s: string) {
-  if (s === 'COMPLIANT') return 'bg-green'
-  if (s === 'CAUTION')   return 'bg-amber'
-  return 'bg-red'
-}
-
-function riskColor(score: number) {
-  if (score >= 70) return 'text-green'
-  if (score >= 40) return 'text-amber'
-  return 'text-red'
-}
-
-function riskBarColor(score: number) {
-  if (score >= 70) return 'bg-green'
-  if (score >= 40) return 'bg-amber'
-  return 'bg-red'
-}
-
-function qprRowClass(status: string) {
-  if (status === 'MISSED') return 'bg-red/5'
-  if (status === 'LATE')   return 'bg-amber/5'
-  return ''
-}
-
-function qprStatusEl(status: string) {
-  if (status === 'ON_TIME') return <span className="text-green font-medium text-xs">On Time</span>
-  if (status === 'LATE')    return <span className="text-amber font-medium text-xs">Late</span>
-  if (status === 'MISSED')  return <span className="text-red font-medium text-xs">Missed</span>
-  return <span className="text-gray text-xs">N/A</span>
-}
-
-function severityTextColor(s: string) {
-  if (s === 'CRITICAL' || s === 'HIGH') return 'text-red'
-  if (s === 'MEDIUM')                   return 'text-amber'
-  return 'text-gray'
-}
-function severityDotBg(s: string) {
-  if (s === 'CRITICAL' || s === 'HIGH') return 'bg-red'
-  if (s === 'MEDIUM')                   return 'bg-amber'
-  return 'bg-gray'
-}
-
-/* ---------- Hardcoded escrow intelligence ---------- */
-const ESCROW: Record<string, {
-  balance_crore: number; collected_crore: number; pct: number
-  status: 'HEALTHY' | 'CAUTION' | 'CRITICAL'; last_withdrawal: string; note: string
-}> = {
-  'ozone-urbana':       { balance_crore: 3.88, collected_crore: 48.5, pct: 8,  status: 'CRITICAL', last_withdrawal: '2022-09-14', note: 'Escrow nearly depleted. Last withdrawal Sep 2022. Construction halted.' },
-  'prestige-lakeside':  { balance_crore: 48.3, collected_crore: 210.0, pct: 23, status: 'HEALTHY',  last_withdrawal: '2026-03-20', note: 'Balance healthy. Withdrawals aligned with construction milestones.' },
-  'divya-villas':       { balance_crore: 0.98, collected_crore: 2.4,  pct: 41, status: 'HEALTHY',  last_withdrawal: '2026-02-15', note: 'Balance healthy. Project near completion.' },
-  'skylark-arcadia':    { balance_crore: 8.68, collected_crore: 62.0, pct: 14, status: 'CAUTION',  last_withdrawal: '2025-12-10', note: 'Below recommended 20% floor. Requires monitoring.' },
-}
-
-const escrowStatusClass = { HEALTHY: 'text-green bg-green/10 border-green/30', CAUTION: 'text-amber bg-amber/10 border-amber/30', CRITICAL: 'text-red bg-red/10 border-red/30' }
-
-/* ---------- Tabs ---------- */
-const TABS = [
-  { id: 'overview',   label: 'Overview',     icon: Building2 },
-  { id: 'qpr',        label: 'QPR History',  icon: FileText },
-  { id: 'financial',  label: 'Financial',    icon: TrendingDown },
-  { id: 'litigation', label: 'Litigation',   icon: Scale },
-  { id: 'timeline',   label: 'Risk Timeline',icon: AlertTriangle },
-  { id: 'actions',    label: 'Actions',      icon: Settings },
-  { id: 'documents',  label: 'Documents',    icon: FolderOpen },
-]
 
 /* ================================================================
    COMPONENT
