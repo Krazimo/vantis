@@ -42,9 +42,13 @@ jobs:
           # npm/bun/pnpm (e.g. @krazimo/next-standards). actions/checkout
           # scopes auth to the PR repo only, so we need to inject our own
           # PAT-based auth for cross-repo git fetches inside npm install.
-          git config --global url."https://oauth2:${KRAZIMO_HARNESS_PAT}@github.com/".insteadOf "ssh://git@github.com/"
-          git config --global --add url."https://oauth2:${KRAZIMO_HARNESS_PAT}@github.com/".insteadOf "git@github.com:"
-          git config --global --add url."https://oauth2:${KRAZIMO_HARNESS_PAT}@github.com/".insteadOf "https://github.com/"
+          # Reset any prior insteadOf settings (runner may have leftovers
+          # from previous jobs / interactive setup) before re-adding ours.
+          REWRITE_KEY="url.https://oauth2:${KRAZIMO_HARNESS_PAT}@github.com/.insteadof"
+          git config --global --unset-all "$REWRITE_KEY" 2>/dev/null || true
+          git config --global --add "$REWRITE_KEY" "ssh://git@github.com/"
+          git config --global --add "$REWRITE_KEY" "git@github.com:"
+          git config --global --add "$REWRITE_KEY" "https://github.com/"
           git config --global credential.helper ""
 
           if [ -f "bun.lockb" ] || [ -f "bun.lock" ]; then
