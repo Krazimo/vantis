@@ -23,13 +23,13 @@ export default function Settings() {
         setOfficer({ email: parsed.email, role: parsed.role, name: NAME_MAP[parsed.email] ?? parsed.email })
       }
       if (localStorage.getItem('vantis_demo_mode') === 'true') setDemoMode(true)
-    } catch { /* ignore */ }
+    } catch (error) { console.warn('vantis localStorage read unavailable:', error) }
   }, [])
 
   function toggleDemoMode() {
     const next = !demoMode
     setDemoMode(next)
-    try { localStorage.setItem('vantis_demo_mode', String(next)) } catch { /* ignore */ }
+    try { localStorage.setItem('vantis_demo_mode', String(next)) } catch (error) { console.warn('vantis_demo_mode localStorage write unavailable:', error) }
   }
 
   if (!mounted) return <div className="min-h-screen bg-background" />

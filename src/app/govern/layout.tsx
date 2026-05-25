@@ -18,14 +18,14 @@ export default function GovernLayout({ children }: { children: React.ReactNode }
       const stored = localStorage.getItem('vantis_officer')
       if (stored) setOfficer(JSON.parse(stored))
       if (localStorage.getItem('vantis_demo_mode') === 'true') setDemoMode(true)
-    } catch { /* ignore */ }
+    } catch (error) { console.warn('vantis localStorage read unavailable:', error) }
 
     function handleKey(e: KeyboardEvent) {
       if (e.ctrlKey && e.shiftKey && e.key === 'D') {
         e.preventDefault()
         setDemoMode(prev => {
           const next = !prev
-          try { localStorage.setItem('vantis_demo_mode', String(next)) } catch { /* ignore */ }
+          try { localStorage.setItem('vantis_demo_mode', String(next)) } catch (error) { console.warn('vantis_demo_mode localStorage write unavailable:', error) }
           return next
         })
       }
