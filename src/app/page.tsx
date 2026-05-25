@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react'
 import { Shield, ArrowRight } from 'lucide-react'
 import projects from '@/data/projects.json'
-import { TRANSLATIONS, filterKeys, type FilterType, type Language, type Project } from './_data/portal.data'
+import { TRANSLATIONS, type FilterType, type Language, type Project } from './_data/portal.data'
 import SearchDropdown from './_components/SearchDropdown'
 
 export default function PublicPortalHome() {
