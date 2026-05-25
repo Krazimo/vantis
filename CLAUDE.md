@@ -52,7 +52,7 @@ Everything runs on localhost. No domain. No deployment needed for demo.
 
 5. MOBILE FIRST. Build every component mobile first, then desktop.
 
-6. NEVER BREAK THE BUILD. Run npm run build after every major
+6. NEVER BREAK THE BUILD. Run bun run build after every major
    addition. Fix all errors before continuing.
 
 7. UPDATE BUILD STATUS at end of every session.
@@ -547,7 +547,7 @@ See data/certificates.json for certificate data.
 
 This project follows the [Krazimo Next.js Standards](https://github.com/Krazimo/next-standards) (v0.3.3).
 
-- **Lint preset:** `@krazimo/next-standards` wired in `eslint.config.mjs`. Run `npm run lint`.
+- **Lint preset:** `@krazimo/next-standards` wired in `eslint.config.mjs`. Run `bun lint`.
 - **Skills:** when Claude Code runs in this directory with the `Krazimo/next-standards` plugin installed, the write-time and review skills load automatically.
 - **Canonical doc:** see `docs/` in the standards repo for the section-by-section rules.
 

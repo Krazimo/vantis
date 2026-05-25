@@ -6,10 +6,9 @@ import { CheckCircle, XCircle, AlertCircle, ExternalLink } from 'lucide-react'
 interface CertificateCardProps {
   certificateId: string | null
   certificateStatus: string
-  projectName: string
 }
 
-export default function CertificateCard({ certificateId, certificateStatus, projectName }: CertificateCardProps) {
+export default function CertificateCard({ certificateId, certificateStatus }: CertificateCardProps) {
   if (!certificateId || certificateStatus === 'NONE') {
     return (
       <div className="bg-surface border border-border rounded-sm p-4 flex items-start gap-3">

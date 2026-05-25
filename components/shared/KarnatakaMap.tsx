@@ -35,18 +35,6 @@ const DISTRICTS: District[] = [
   { id: 'chamarajanagar', label: 'Chamarajanagar',     points: '325,375 390,375 385,460 320,460',       risk: 'compliant',  projects: [] },
 ]
 
-function riskFill(risk: string, selected: boolean, hovered: boolean): string {
-  const base = {
-    'compliant':  { fill: 'rgba(46,204,113,0.18)',  stroke: 'rgba(46,204,113,0.5)' },
-    'caution':    { fill: 'rgba(243,156,18,0.18)',  stroke: 'rgba(243,156,18,0.5)' },
-    'high-risk':  { fill: 'rgba(231,76,60,0.28)',   stroke: 'rgba(231,76,60,0.75)' },
-  }[risk] ?? { fill: 'rgba(107,107,136,0.2)', stroke: 'rgba(107,107,136,0.4)' }
-
-  if (selected) return `fill:rgba(201,168,76,0.3);stroke:#C9A84C;stroke-width:2`
-  if (hovered)  return `fill:${base.fill.replace('0.18','0.32').replace('0.28','0.42')};stroke:${base.stroke};stroke-width:1.5`
-  return `fill:${base.fill};stroke:${base.stroke};stroke-width:1`
-}
-
 export default function KarnatakaMap({ selectedDistrict, onDistrictClick }: KarnatakaMapProps) {
   const [hovered, setHovered] = useState<string | null>(null)
 
@@ -60,8 +48,6 @@ export default function KarnatakaMap({ selectedDistrict, onDistrictClick }: Karn
         {DISTRICTS.map(d => {
           const isSelected = selectedDistrict === d.id
           const isHovered = hovered === d.id
-          const styleStr = riskFill(d.risk, isSelected, isHovered)
-
           const [fill, stroke, strokeWidth] = (() => {
             if (isSelected) return ['rgba(201,168,76,0.3)', '#C9A84C', '2']
             const fills = {

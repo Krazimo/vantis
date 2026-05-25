@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowLeft, MapPin, Calendar, Building2, Users, IndianRupee, Scale, AlertTriangle, CheckCircle2, Clock, XCircle } from 'lucide-react'
+import { ArrowLeft, MapPin, Calendar, Building2, Users, IndianRupee, Scale, AlertTriangle, CheckCircle2 } from 'lucide-react'
 import CertificateCard from '@/components/public/CertificateCard'
 import projects from '@/data/projects.json'
 import qprData from '@/data/qpr.json'
@@ -289,7 +289,6 @@ export default function ProjectProfile({ params }: { params: { id: string } }) {
           <CertificateCard
             certificateId={project.certificate_id}
             certificateStatus={project.certificate_status}
-            projectName={project.name}
           />
         </div>
 

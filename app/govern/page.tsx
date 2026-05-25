@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { AlertTriangle, BarChart2, Building2, Clock, Scale, Users, ChevronRight } from 'lucide-react'
-import KarnatakaMap, { DISTRICTS } from '@/components/shared/KarnatakaMap'
+import KarnatakaMap from '@/components/shared/KarnatakaMap'
 import projectsData from '@/data/projects.json'
 import litigationData from '@/data/litigation.json'
 import qprData from '@/data/qpr.json'
@@ -52,10 +52,6 @@ function statusDot(s: string) {
   if (s === 'COMPLIANT') return 'bg-green'
   if (s === 'CAUTION')   return 'bg-amber'
   return 'bg-red'
-}
-
-function formatDate(d: string) {
-  return new Date(d).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })
 }
 
 function qprKey(quarter: string) {
