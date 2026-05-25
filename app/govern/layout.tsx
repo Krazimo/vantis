@@ -169,9 +169,9 @@ function LoginScreen({ onLogin }: { onLogin: (o: Officer) => void }) {
         </form>
 
         <div className="mt-5 text-center">
-          <a href="/" className="text-xs text-gray-light hover:text-gold transition-colors duration-150">
+          <Link href="/" className="text-xs text-gray-light hover:text-gold transition-colors duration-150">
             ← Back to Public Portal
-          </a>
+          </Link>
         </div>
 
         <div className="mt-8 bg-surface border border-border rounded-sm p-4">

@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { QRCodeSVG } from 'qrcode.react'
 import { CheckCircle, AlertTriangle, XCircle, Shield, ArrowLeft } from 'lucide-react'
 import certificates from '@/data/certificates.json'
@@ -70,9 +71,9 @@ export default function CertificateContent({ params }: { params: { id: string } 
           <div className="text-[#1A1A28] font-syne text-xl mb-2">Certificate Not Found</div>
           <div className="text-[#6B6B88] text-sm mb-1">Certificate ID:</div>
           <div className="font-mono text-gold text-sm mb-6 break-all px-4">{params.id}</div>
-          <a href="/" className="text-gold hover:text-[#8B7035] text-sm transition-colors duration-150 underline">
+          <Link href="/" className="text-gold hover:text-[#8B7035] text-sm transition-colors duration-150 underline">
             ← Return to Vantis Public Portal
-          </a>
+          </Link>
         </div>
       </div>
     )
@@ -86,10 +87,10 @@ export default function CertificateContent({ params }: { params: { id: string } 
       <div className="max-w-[600px] mx-auto">
 
         <div className="mb-4 print:hidden">
-          <a href="/" className="inline-flex items-center gap-1.5 text-xs text-[#6B6B88] hover:text-gold transition-colors duration-150">
+          <Link href="/" className="inline-flex items-center gap-1.5 text-xs text-[#6B6B88] hover:text-gold transition-colors duration-150">
             <ArrowLeft className="w-3.5 h-3.5" />
             Back to Public Portal
-          </a>
+          </Link>
         </div>
 
         <div className="bg-white border border-[#E2DDD4] rounded-sm overflow-hidden">
@@ -188,9 +189,9 @@ export default function CertificateContent({ params }: { params: { id: string } 
         </div>
 
         <div className="text-center mt-5 print:hidden">
-          <a href="/" className="text-[#6B6B88] hover:text-gold text-xs transition-colors duration-150">
+          <Link href="/" className="text-[#6B6B88] hover:text-gold text-xs transition-colors duration-150">
             Verify another project at vantis.orianode.com
-          </a>
+          </Link>
         </div>
       </div>
     </div>
