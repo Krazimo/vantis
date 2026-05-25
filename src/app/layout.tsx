@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Syne, DM_Sans, DM_Mono } from 'next/font/google'
 import VantisIntelligence from '@/components/shared/VantisIntelligence'
+import Providers from './providers'
 import './globals.css'
 
 const syne = Syne({
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-background text-off-white font-sans antialiased">
         {children}
         <VantisIntelligence />
+        <Providers />
       </body>
     </html>
   )
