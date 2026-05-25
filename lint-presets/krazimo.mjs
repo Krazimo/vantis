@@ -43,6 +43,10 @@ export default [
       "react/prop-types": "off",
       // Rule 19a — no dangerouslySetInnerHTML, no exceptions.
       "react/no-danger": "error",
+      // Intentional pattern: hydration guards (setMounted) and URL-driven state use
+      // synchronous setState in effects. This is the standard Next.js pattern for
+      // reading localStorage/searchParams after mount.
+      "react-hooks/set-state-in-effect": "off",
     },
   },
 
@@ -55,7 +59,6 @@ export default [
   },
 
   // @next/next core-web-vitals — Rules 12a, 13a.
-  // no-duplicate-head uses context.getAncestors() removed in ESLint 9 — disabled until @next/eslint-plugin-next ships ESLint 9 compat (Next.js 15+).
   {
     name: "krazimo/nextjs",
     files: ["**/*.{ts,tsx,js,jsx}"],
@@ -66,7 +69,7 @@ export default [
       "@next/next/no-img-element": "error",
       "@next/next/no-head-element": "error",
       "@next/next/no-page-custom-font": "error",
-      "@next/next/no-duplicate-head": "off",
+      "@next/next/no-duplicate-head": "error",
     },
   },
 
