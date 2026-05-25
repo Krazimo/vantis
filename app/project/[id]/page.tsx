@@ -110,15 +110,16 @@ export function generateStaticParams() {
   ]
 }
 
-export default function ProjectProfile({ params }: { params: { id: string } }) {
-  const project = (projects as Project[]).find(p => p.id === params.id)
+export default async function ProjectProfile({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  const project = (projects as Project[]).find(p => p.id === id)
 
   if (!project) {
     return (
       <main className="min-h-screen bg-background flex items-center justify-center px-4">
         <div className="text-center">
           <div className="font-syne text-xl text-off-white mb-2">Project Not Found</div>
-          <div className="text-gray text-sm mb-6">No project with ID &quot;{params.id}&quot; found in our database.</div>
+          <div className="text-gray text-sm mb-6">No project with ID &quot;{id}&quot; found in our database.</div>
           <Link href="/" className="text-gold hover:text-gold-light text-sm transition-colors duration-150">
             ← Back to Search
           </Link>
