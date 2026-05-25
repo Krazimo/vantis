@@ -1,4 +1,4 @@
-import krazimo from "@krazimo/next-standards";
+import krazimo from "./lint-presets/krazimo.mjs";
 
 export default [
   ...krazimo,
