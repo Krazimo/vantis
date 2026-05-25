@@ -211,7 +211,7 @@ export default function GovernProjectRegistry() {
                 </td>
               </tr>
             ) : (
-              filtered.map((p, i) => {
+              filtered.map((p) => {
                 const qpr = getLastQPR(p.id)
                 return (
                   <tr

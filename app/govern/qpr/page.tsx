@@ -112,7 +112,8 @@ export default function QPRTracker() {
   function toggleRow(id: string) {
     setSelected(prev => {
       const next = new Set(prev)
-      next.has(id) ? next.delete(id) : next.add(id)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
       return next
     })
   }
@@ -220,7 +221,7 @@ export default function QPRTracker() {
             </tr>
           </thead>
           <tbody>
-            {displayRows.filter(r => r.entry.status !== 'NA').map((row, i) => {
+            {displayRows.filter(r => r.entry.status !== 'NA').map((row) => {
               const due = getDueDate(row.quarter)
               const overdue = daysOverdue(row.quarter, row.entry)
               const pen = penalty(row.quarter, row.entry)

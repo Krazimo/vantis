@@ -781,6 +781,7 @@ export default function ProjectDetailContent({ params }: { params: { id: string 
           <div className="text-[10px] text-gray uppercase tracking-widest font-semibold mb-3">Site Progress Photos</div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
             {photoKeys.map(key => (
+              // eslint-disable-next-line @next/next/no-img-element
               <img
                 key={key}
                 src={divyaVillasImages[key]}

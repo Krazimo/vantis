@@ -194,7 +194,7 @@ export default function RRCTracker() {
           <div>
             <div className="text-gold text-xs font-semibold uppercase tracking-widest mb-1">Auto-Escalation Policy</div>
             <div className="text-off-white text-sm leading-relaxed">
-              RRCs unacknowledged for <strong>30 days</strong> are automatically escalated to the District Collector's
+              RRCs unacknowledged for <strong>30 days</strong> are automatically escalated to the District Collector&apos;s
               office for coercive recovery. RRC-2026-001 is currently <strong className="text-red">2 days from auto-escalation</strong>.
             </div>
           </div>

@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Users, AlertTriangle, ChevronRight, Shield } from 'lucide-react'
+import { Users, ChevronRight, Shield } from 'lucide-react'
 
 interface HomebuyerRow {
   project_id: string
