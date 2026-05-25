@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+SOURCE_PATTERN="^(src/|tests/|package\.json|bun\.lock|tsconfig|vitest\.config|next\.config|middleware\.)"
+
+while read local_ref local_sha remote_ref remote_sha; do
+  if [ "$remote_sha" = "0000000000000000000000000000000000000000" ]; then
+    BASE=$(git rev-list --max-parents=0 HEAD)
+  else
+    BASE="$remote_sha"
+  fi
+
+  if git diff --name-only "$BASE" "$local_sha" 2>/dev/null | grep -qE "$SOURCE_PATTERN"; then
+    echo "Source/config changes detected --- running test + build gate..."
+    bun run test && bun run build
+  else
+    echo "No source/config changes --- skipping test + build gate."
+  fi
+done
+
+exit 0
