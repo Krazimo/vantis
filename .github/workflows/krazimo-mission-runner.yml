@@ -42,14 +42,23 @@ jobs:
           # npm/bun/pnpm (e.g. @krazimo/next-standards). actions/checkout
           # scopes auth to the PR repo only, so we need to inject our own
           # PAT-based auth for cross-repo git fetches inside npm install.
-          # Reset any prior insteadOf settings (runner may have leftovers
-          # from previous jobs / interactive setup) before re-adding ours.
-          REWRITE_KEY="url.https://oauth2:${KRAZIMO_HARNESS_PAT}@github.com/.insteadof"
-          git config --global --unset-all "$REWRITE_KEY" 2>/dev/null || true
+          # Use x-access-token username (GitHub-recommended for fine-grained
+          # PATs). Wipe ALL prior url.*.insteadof entries before adding ours
+          # to avoid multi-value collisions with leftover runner config.
+          git config --global --get-regexp '^url\..*\.insteadof' 2>/dev/null | awk '{print $1}' | sort -u | while read key; do
+            git config --global --unset-all "$key" || true
+          done
+          git config --global credential.helper ""
+          REWRITE_KEY="url.https://x-access-token:${KRAZIMO_HARNESS_PAT}@github.com/.insteadof"
           git config --global --add "$REWRITE_KEY" "ssh://git@github.com/"
           git config --global --add "$REWRITE_KEY" "git@github.com:"
           git config --global --add "$REWRITE_KEY" "https://github.com/"
-          git config --global credential.helper ""
+
+          echo "--- Active git rewrites ---"
+          git config --global --get-regexp '^url\.' | sed 's|:[^@]*@|:<redacted>@|g'
+
+          # Wipe npm cache to avoid stale resolutions from earlier failed runs
+          npm cache clean --force 2>/dev/null || true
 
           if [ -f "bun.lockb" ] || [ -f "bun.lock" ]; then
             bun install
