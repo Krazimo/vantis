@@ -1,0 +1,63 @@
+name: Krazimo Mission Sync
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review, closed]
+    branches: [dev]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync mission state
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            const event = context.payload.action;
+            const pr = context.payload.pull_request;
+            const branch = pr.head.ref;
+            const slug = branch.replace(/^(feat|fix|refactor|chore|docs|test|perf)\//, '');
+
+            // Find mission folder
+            const missionDir = `.krazimo/missions/${slug}`;
+            const statusFile = `${missionDir}/status.md`;
+
+            if (!fs.existsSync(statusFile)) {
+              console.log(`No mission found for slug '${slug}' — skipping sync`);
+              return;
+            }
+
+            const now = new Date().toISOString().replace(/\.\d{3}Z/, 'Z');
+            let status = fs.readFileSync(statusFile, 'utf8');
+
+            switch (event) {
+              case 'opened':
+              case 'synchronize':
+                status = status.replace(
+                  /## Timeline/,
+                  `## Timeline\n- ${now} — PR ${event} (#${pr.number})`
+                );
+                break;
+              case 'ready_for_review':
+                status = status.replace(/current_phase: .*/, 'current_phase: passed');
+                status = status.replace(
+                  /## Timeline/,
+                  `## Timeline\n- ${now} — PR ready for review (#${pr.number})`
+                );
+                break;
+              case 'closed':
+                if (pr.merged) {
+                  status = status.replace(/current_phase: .*/, 'current_phase: passed');
+                } else {
+                  status = status.replace(/current_phase: .*/, 'current_phase: abandoned');
+                }
+                break;
+            }
+
+            fs.writeFileSync(statusFile, status);
+            console.log(`Mission '${slug}' synced: ${event}`);

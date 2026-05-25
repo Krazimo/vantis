@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# Husky pre-commit hook — verify validator verdict and loop cap
+# Installed by next-standards installer into .husky/pre-commit
+
+# Find active mission
+ACTIVE_MISSION=""
+for status_file in .krazimo/missions/*/status.md; do
+  [ -f "$status_file" ] || continue
+  PHASE=$(grep -m1 'current_phase:' "$status_file" 2>/dev/null | sed 's/current_phase: *//')
+  case "$PHASE" in
+    passed|failed|abandoned) continue ;;
+    *) ACTIVE_MISSION=$(dirname "$status_file"); break ;;
+  esac
+done
+
+# No active mission — allow commit freely
+[ -z "$ACTIVE_MISSION" ] && exit 0
+
+# Check for staged src/ files (only enforce for code commits)
+if ! git diff --cached --name-only | grep -qE '^src/|^db/'; then
+  exit 0
+fi
+
+# Verify latest validator report exists and has verdict: pass
+LATEST_REPORT=$(ls -t "$ACTIVE_MISSION"/validator-*.md 2>/dev/null | head -1)
+if [ -z "$LATEST_REPORT" ]; then
+  echo "⚠️ No validator report found. Run /krazimo-validate before committing."
+  echo "   (This is a pre-commit check — skip with --no-verify if you know what you're doing)"
+  exit 1
+fi
+
+VERDICT=$(grep -m1 'verdict:' "$LATEST_REPORT" | sed 's/verdict: *//')
+if [ "$VERDICT" != "pass" ]; then
+  echo "❌ Latest validator verdict is '$VERDICT'. Fix failing assertions before committing."
+  exit 1
+fi
+
+# Check loop cap (max 4 attempts)
+ATTEMPTS=$(grep -c '^[0-9]' "$ACTIVE_MISSION/attempts.log" 2>/dev/null || echo 0)
+if [ "$ATTEMPTS" -ge 4 ]; then
+  echo "❌ Mission has hit the 4-attempt loop cap. Surface to human for review."
+  exit 1
+fi
+
+exit 0

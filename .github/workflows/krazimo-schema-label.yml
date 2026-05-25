@@ -1,0 +1,44 @@
+name: Krazimo Schema Label
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches: [dev]
+    paths:
+      - 'db/schema.ts'
+      - 'db/schema.tsx'
+      - 'db/migrations/**'
+      - 'prisma/schema.prisma'
+      - 'prisma/migrations/**'
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Apply schema-unreviewed label
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = await github.rest.issues.listLabelsOnIssue({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const hasLabel = labels.data.some(l => l.name === 'schema-unreviewed');
+            if (!hasLabel) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: ['schema-unreviewed'],
+              });
+            }
+            // Remove schema-safe if it existed (force re-review)
+            const hasSafe = labels.data.some(l => l.name === 'schema-safe');
+            if (hasSafe) {
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                name: 'schema-safe',
+              });
+            }

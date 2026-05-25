@@ -542,3 +542,80 @@ See data/certificates.json for certificate data.
 4. ✅ npm run build — 37/37 routes, zero errors
 
 ### DEMO STATUS: READY FOR DK SHIVAKUMAR MEETING
+
+## Engineering Standards
+
+This project follows the [Krazimo Next.js Standards](https://github.com/Krazimo/next-standards) (v0.3.3).
+
+- **Lint preset:** `@krazimo/next-standards` wired in `eslint.config.mjs`. Run `npm run lint`.
+- **Skills:** when Claude Code runs in this directory with the `Krazimo/next-standards` plugin installed, the write-time and review skills load automatically.
+- **Canonical doc:** see `docs/` in the standards repo for the section-by-section rules.
+
+Project-specific overrides go in the rest of this file.
+
+## LLM Behavior Guidelines
+
+Behavioral guidelines to reduce common LLM coding mistakes. **Tradeoff:** these bias toward caution over speed. For trivial tasks, use judgment.
+
+### 1. Think Before Coding
+
+Don't assume. Don't hide confusion. Surface tradeoffs.
+
+- State assumptions explicitly. If uncertain about the user's INTENT, ask.
+- If multiple interpretations exist, present them — don't pick silently.
+- If a simpler approach exists, say so. Push back when warranted.
+- If something is unclear about WHAT the user wants, stop and ask.
+
+**NEVER ask the user about codebase state.** If you need to know what exists, what's built, how something works, or what a file contains — READ THE CODE YOURSELF. Use Read, grep, find, ls, or spawn an explore agent. The codebase is right here. Only ask humans about intent, priorities, and business decisions — never about things you can observe.
+
+**NEVER reply about the codebase without reading it first.** Before ANY response that references code, architecture, file structure, what exists, or how something works — you MUST read the relevant files first. Do not guess from memory or training data. Your training data is stale and wrong about THIS project. If the user says "how does X work" or "can we change Y" — read X and Y before answering, even if you think you know. A wrong confident answer wastes more time than the 5 seconds it takes to read a file.
+
+### 2. Simplicity First
+
+Minimum code that solves the problem. Nothing speculative.
+
+- No features beyond what was asked.
+- No abstractions for single-use code.
+- No "flexibility" or "configurability" that wasn't requested.
+- No error handling for impossible scenarios.
+- If you write 200 lines and it could be 50, rewrite it.
+
+Ask: *"Would a senior engineer say this is overcomplicated?"* If yes, simplify.
+
+### 3. Surgical Changes
+
+Touch only what you must. Clean up only your own mess.
+
+- Don't "improve" adjacent code, comments, or formatting.
+- Don't refactor things that aren't broken.
+- Match existing style, even if you'd do it differently.
+- If you notice unrelated dead code, mention it — don't delete it.
+- Remove imports / variables / functions that YOUR changes made unused. Don't remove pre-existing dead code unless asked.
+
+**Test:** Every changed line should trace directly to the user's request.
+
+### 4. Goal-Driven Execution
+
+Define success criteria. Loop until verified.
+
+- "Add validation" → "Write tests for invalid inputs, then make them pass"
+- "Fix the bug" → "Write a test that reproduces it, then make it pass"
+- "Refactor X" → "Ensure tests pass before and after"
+
+For multi-step tasks, state a brief plan with a verify step per step. Strong success criteria let you loop independently.
+
+### 5. Krazimo Harness Workflow
+
+**For ANY non-trivial task (touching src/, db/, or multiple files):**
+
+1. Brainstorm with the user (2-3 clarifying questions max)
+2. Write the validation contract (`.krazimo/missions/<slug>/contract.md`)
+3. Get user approval on the contract
+4. Open the mission (worktree, branch, draft PR)
+5. Implement against the contract (TDD, real DB)
+6. Simplify (pre-validator refactor)
+7. Validate (adversarial — cannot read source)
+8. Ship or fix (loop max 4 times)
+
+Do NOT ask "should I open a mission?" — just start at step 1.
+Do NOT present alternative workflows. This IS the workflow.

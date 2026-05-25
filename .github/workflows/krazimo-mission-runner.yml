@@ -1,0 +1,217 @@
+name: Krazimo Mission Runner
+on:
+  pull_request:
+    types: [labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  run-phase:
+    if: >-
+      startsWith(github.event.label.name, 'phase:') &&
+      github.event.label.name != 'phase:ready'
+    runs-on: [self-hosted, krazimo-runner]
+    timeout-minutes: 60
+    env:
+      PHASE: ${{ github.event.label.name }}
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+      BRANCH: ${{ github.event.pull_request.head.ref }}
+      REPO: ${{ github.repository }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Extract mission slug from branch
+        id: slug
+        run: |
+          SLUG=$(echo "$BRANCH" | sed 's|^[a-z]*/||')
+          echo "slug=$SLUG" >> "$GITHUB_OUTPUT"
+          echo "Mission slug: $SLUG"
+
+      - name: Install dependencies
+        run: |
+          if [ -f "bun.lockb" ] || [ -f "bun.lock" ]; then
+            bun install
+          elif [ -f "pnpm-lock.yaml" ]; then
+            pnpm install
+          else
+            npm ci
+          fi
+
+      - name: Run database migrations
+        run: |
+          if [ -f "drizzle.config.ts" ] || [ -f "drizzle.config.mjs" ]; then
+            bun run db:migrate 2>/dev/null || true
+          elif [ -f "prisma/schema.prisma" ]; then
+            bunx prisma migrate deploy 2>/dev/null || true
+          fi
+
+      - name: Remove current phase label
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = await github.rest.issues.listLabelsOnIssue({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: ${{ github.event.pull_request.number }},
+            });
+            const phaseLabels = labels.data.filter(l => l.name.startsWith('phase:'));
+            for (const label of phaseLabels) {
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: ${{ github.event.pull_request.number }},
+                name: label.name,
+              });
+            }
+
+      - name: "Phase 2: Planning"
+        if: env.PHASE == 'phase:approved'
+        run: |
+          SLUG="${{ steps.slug.outputs.slug }}"
+          CONTRACT=".krazimo/missions/$SLUG/contract.md"
+
+          claude -p "$(cat <<PROMPT
+          You are the Architect for mission $SLUG (Phase 2: Planning).
+
+          1. Read the contract at $CONTRACT
+          2. Read ARCHITECTURE.md and directives.md if they exist
+          3. Read the codebase to understand current patterns
+          4. Write a step-by-step implementation plan to .krazimo/missions/$SLUG/plan.md
+          5. The plan must have exact file paths, code structure, test strategy, commit sequence
+          6. No TBD or placeholders
+          7. When done: git add -A && git commit -m "docs($SLUG): implementation plan" && git push
+
+          Follow the architect role in .claude/agents/architect.md.
+          PROMPT
+          )" --allowedTools 'Read,Bash,Grep,Glob,Write,Edit'
+
+      - name: "Phase 3: Execution"
+        if: env.PHASE == 'phase:planned' || env.PHASE == 'phase:execution'
+        run: |
+          SLUG="${{ steps.slug.outputs.slug }}"
+
+          claude -p "$(cat <<PROMPT
+          You are the Worker for mission $SLUG (Phase 3: Execution).
+
+          1. Read the contract at .krazimo/missions/$SLUG/contract.md
+          2. Read the plan at .krazimo/missions/$SLUG/plan.md
+          3. If a checkpoint exists at .krazimo/missions/$SLUG/checkpoint.md, resume from there
+          4. If a validator report exists, read it and fix only the failing assertions
+          5. Implement with TDD: failing test → implement → pass → commit
+          6. After each committed task, update checkpoint.md
+          7. When all tasks complete: write handoff to .krazimo/missions/$SLUG/handoff.md
+          8. Run: bun lint && bunx tsc --noEmit && bun run build && bun test
+          9. If all pass: git add -A && git commit -m "feat($SLUG): implementation complete" && git push
+
+          Follow the worker role in .claude/agents/worker.md.
+          PROMPT
+          )" --allowedTools 'Read,Bash,Grep,Glob,Write,Edit'
+
+      - name: "Phase 4: AI Review"
+        if: env.PHASE == 'phase:executed'
+        run: |
+          SLUG="${{ steps.slug.outputs.slug }}"
+
+          claude -p "$(cat <<PROMPT
+          You are running Phase 4: AI Review for mission $SLUG.
+
+          Step 1 — Adversarial Validation (validator role):
+          - Read the contract at .krazimo/missions/$SLUG/contract.md
+          - Read the handoff at .krazimo/missions/$SLUG/handoff.md
+          - Check EVERY assertion using the 'Verify by' command from the contract
+          - Do NOT read files under src/ or test files
+          - Write the report to .krazimo/missions/$SLUG/validator.md with verdict: pass or fail
+
+          Step 2 — Code Quality Review (reviewer role):
+          - Read the diff: git diff dev...HEAD
+          - Check against next-standards rules (file sizes, error handling, naming, etc.)
+          - If issues found, append them to the validator report
+
+          Step 3 — Verdict:
+          - If pass: git add -A && git commit -m "docs($SLUG): validator passed" && git push
+          - If fail: write failures to validator report, git add -A && git commit -m "docs($SLUG): validator failed" && git push
+
+          Follow .claude/agents/validator.md and .claude/agents/reviewer.md.
+          PROMPT
+          )" --allowedTools 'Read,Bash,Grep,Glob,Write'
+
+      - name: Determine next phase label
+        uses: actions/github-script@v7
+        with:
+          # Use a PAT here (not the default GITHUB_TOKEN) so the label
+          # event we apply actually triggers the next workflow run.
+          # Events fired by GITHUB_TOKEN don't fire workflows by design.
+          github-token: ${{ secrets.KRAZIMO_HARNESS_PAT }}
+          script: |
+            const fs = require('fs');
+            const slug = '${{ steps.slug.outputs.slug }}';
+            const phase = '${{ env.PHASE }}';
+            let nextLabel = '';
+
+            if (phase === 'phase:approved') {
+              nextLabel = 'phase:planned';
+            } else if (phase === 'phase:planned' || phase === 'phase:execution') {
+              nextLabel = 'phase:executed';
+            } else if (phase === 'phase:executed') {
+              // Check validator verdict
+              const validatorFiles = fs.readdirSync(`.krazimo/missions/${slug}/`)
+                .filter(f => f.startsWith('validator'));
+              if (validatorFiles.length > 0) {
+                const latest = validatorFiles.sort().pop();
+                const content = fs.readFileSync(`.krazimo/missions/${slug}/${latest}`, 'utf8');
+                if (/verdict\W*pass/i.test(content)) {
+                  nextLabel = 'phase:ready';
+                } else {
+                  // Check attempt count
+                  const attempts = validatorFiles.length;
+                  if (attempts >= 4) {
+                    nextLabel = 'blocked:max-attempts';
+                  } else {
+                    nextLabel = 'phase:execution';  // loop back
+                  }
+                }
+              } else {
+                nextLabel = 'phase:execution';  // no report found, retry
+              }
+            }
+
+            if (nextLabel) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: ${{ github.event.pull_request.number }},
+                labels: [nextLabel],
+              });
+              console.log(`Applied label: ${nextLabel}`);
+
+              // Notify on terminal states
+              if (nextLabel === 'phase:ready') {
+                // Post the reviewer brief as the top PR comment
+                const briefPath = `.krazimo/missions/${slug}/reviewer-brief.md`;
+                let briefBody = '✅ **Mission complete.** All contract assertions passed AI review.\n\n🤖 Krazimo Harness';
+                if (fs.existsSync(briefPath)) {
+                  const brief = fs.readFileSync(briefPath, 'utf8');
+                  briefBody = `# 🎁 Reviewer Brief\n\n${brief}\n\n---\n🤖 Auto-generated by Krazimo Harness Phase 4 reviewer agent`;
+                }
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: ${{ github.event.pull_request.number }},
+                  body: briefBody,
+                });
+              } else if (nextLabel === 'blocked:max-attempts') {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: ${{ github.event.pull_request.number }},
+                  body: '❌ **Mission blocked.** Validation failed after 4 attempts. Needs human intervention.\n\n🤖 Krazimo Harness',
+                });
+              }
+            }

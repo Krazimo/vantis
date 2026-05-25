@@ -1,0 +1,8 @@
+da1583a1cf30a958718559c0e5a75c9485f7754de4061defbfbead0ba2116f07  .claude/hooks/krazimo-branch-name.sh
+5e076892f68eb33bc975d3778fb9be975c2583a960a728838ebb923c0c96c988  .claude/hooks/krazimo-guard.sh
+c5719256583e16ab63322f754ba7919ef2eb7dfde01dd5e16a9502aaf50b8199  .claude/hooks/krazimo-integrity-warn.sh
+c799c43b7920038ebba09411c6c0c6c8ce0827f4b94718443d59d72cf35a67df  .claude/hooks/krazimo-mission-gate.sh
+e9e237bdfbb7424e4d4c4285bb358b9c8daf45680e8c119f12cffba944c8bc58  .claude/hooks/krazimo-phase-announce.sh
+a6f38d86b73ae725045c1b18601f3681ee2f1c97d09a7dcdc476763fdef50593  .claude/hooks/krazimo-role-shield.sh
+4ef2d84f58f8a73f51c2316a3fef4e8d7118cfecb8b6ce3c126ec3591c47f7b3  .claude/hooks/krazimo-schema-watch.sh
+a2b603bb170ef933ea40492457ecc24b5039070fd1fa005c11fb408290abd5d3  .claude/hooks/krazimo-touch-tracker.sh

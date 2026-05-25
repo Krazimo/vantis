@@ -1,0 +1,107 @@
+{
+  "extraKnownMarketplaces": {
+    "krazimo-next-standards": {
+      "source": {
+        "source": "github",
+        "repo": "Krazimo/next-standards"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "krazimo-next-standards@krazimo-next-standards": true
+  },
+  "permissions": {
+    "ask": [
+      "Edit(eslint.config.*)",
+      "Write(eslint.config.*)",
+      "Edit(.eslintrc*)",
+      "Edit(tsconfig*.json)",
+      "Edit(next.config.*)",
+      "Edit(package.json)",
+      "Edit(.prettierrc*)",
+      "Edit(prettier.config.*)",
+      "Edit(.github/workflows/**)",
+      "Edit(.husky/**)",
+      "Edit(.lintstagedrc*)",
+      "Edit(vitest.config.*)",
+      "Edit(playwright.config.*)",
+      "Edit(CLAUDE.md)",
+      "Edit(ARCHITECTURE.md)",
+      "Edit(ACTIVE_MISSIONS.md)",
+      "Edit(.krazimo/approvals/**)"
+    ],
+    "deny": [
+      "Edit(db/migrations/**)",
+      "Write(db/migrations/**)",
+      "Edit(.krazimo/missions/**/validator-*.md)",
+      "Write(.krazimo/missions/**/validator-*.md)",
+      "Read(.krazimo/missions/_archived/**)",
+      "Read(.krazimo/missions/_abandoned/**)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/krazimo-guard.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/krazimo-mission-gate.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/krazimo-branch-name.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/krazimo-role-shield.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/krazimo-touch-tracker.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/krazimo-schema-watch.sh"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/krazimo-integrity-warn.sh"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/krazimo-phase-announce.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

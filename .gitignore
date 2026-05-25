@@ -34,3 +34,17 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Krazimo Harness — gitignore additions
+# Append these to your project's .gitignore (installer handles this)
+
+# Scratch directory for agent temporary scripts and exploration code.
+# Anything here is throwaway — never committed.
+.krazimo/scratch/
+
+# Per-mission runtime state — sentinel files, lock files, in-memory state.
+.krazimo/missions/*/.running
+.krazimo/missions/*/touched-files.log
+
+# Audit log (local-only — server-side is the source of truth)
+.krazimo/audit.log

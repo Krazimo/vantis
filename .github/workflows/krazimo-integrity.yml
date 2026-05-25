@@ -1,0 +1,45 @@
+name: Krazimo Integrity
+on:
+  pull_request:
+    branches: [dev, prod]
+    paths:
+      - '.claude/hooks/**'
+      - '.claude/settings.json'
+      - '.claude/agents/**'
+
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify hook integrity
+        run: |
+          MANIFEST=".claude/hooks/manifest.sha256"
+          if [ ! -f "$MANIFEST" ]; then
+            echo "⚠️ No manifest found — skipping integrity check"
+            exit 0
+          fi
+
+          FAILED=0
+          while IFS='  ' read -r expected_hash file_path; do
+            if [ ! -f "$file_path" ]; then
+              echo "❌ MISSING: $file_path"
+              FAILED=1
+              continue
+            fi
+            actual_hash=$(sha256sum "$file_path" | cut -d' ' -f1)
+            if [ "$actual_hash" != "$expected_hash" ]; then
+              echo "❌ MODIFIED: $file_path (expected $expected_hash, got $actual_hash)"
+              FAILED=1
+            else
+              echo "✅ OK: $file_path"
+            fi
+          done < "$MANIFEST"
+
+          if [ "$FAILED" -eq 1 ]; then
+            echo ""
+            echo "Hook files have been modified from the upstream manifest."
+            echo "This may indicate tampering. Review the changes carefully."
+            exit 1
+          fi
