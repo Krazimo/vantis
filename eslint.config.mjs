@@ -6,7 +6,7 @@ export default [
   // lib/divya-villas-*.ts are intentionally @ts-nocheck (base64 blobs, see CLAUDE.md Session 10).
   {
     name: "vantis/ignores",
-    ignores: ["lib/divya-villas-images.ts", "lib/divya-villas-pdfs.ts"],
+    ignores: ["src/lib/divya-villas-images.ts", "src/lib/divya-villas-pdfs.ts"],
   },
 
   // Project-level overrides for rules that require architectural changes to working UI code.
