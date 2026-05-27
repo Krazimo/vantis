@@ -72,7 +72,7 @@ export default function DeveloperContent({ params }: { params: { id: string } })
         </div>
 
         <div className="grid grid-cols-4 gap-3 mb-5">
-          {[dev.total_projects, dev.active_projects, dev.completed_projects, dev.total_units.toLocaleString('en-IN')].map((v, i) => (
+          {[dev.total_projects, dev.active_projects, dev.completed_projects, (dev.total_units ?? 0).toLocaleString('en-IN')].map((v, i) => (
             <div key={i} className="bg-surface border border-border rounded-sm p-3 text-center">
               <div className="font-syne text-xl font-bold text-off-white">{v}</div>
               <div className="text-gray text-[10px] mt-0.5 leading-tight">{tx.stats[i]}</div>

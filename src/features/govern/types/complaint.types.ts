@@ -3,6 +3,7 @@ export interface Complaint {
   project_id?: string
   project_name?: string
   developer_name?: string
+  complainant_name?: string
   category: string
   status: string
   filed_date: string

@@ -1,19 +1,7 @@
-export type FilterTab = 'all' | 'filed' | 'hearing_scheduled' | 'order_passed' | 'resolved'
+import type { Complaint } from '@/features/govern/types/complaint.types'
 
-export interface Complaint {
-  id: string
-  project_id: string
-  project_name: string
-  filed_date: string
-  category: string
-  status: 'PENDING' | 'RESOLVED'
-  description: string
-  amount_at_risk_lakh: number
-  assigned_officer: string
-  hearing_date: string | null
-  resolution_date?: string
-  resolution_summary?: string
-}
+export type { Complaint }
+export type FilterTab = 'all' | 'filed' | 'hearing_scheduled' | 'order_passed' | 'resolved'
 
 export const COMPLAINTS: Complaint[] = [
   { id: 'CMP-2024-001', project_id: 'ozone-urbana',   project_name: 'Ozone Urbana',   filed_date: '2024-02-14', category: 'Possession Delay',      status: 'PENDING',  description: 'Possession promised by December 2021, still not received. Developer has stopped responding.', amount_at_risk_lakh: 48.5, assigned_officer: 'legal@krera.gov.in',    hearing_date: '2026-05-28' },

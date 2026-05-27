@@ -1,10 +1,7 @@
 import qprData from '@/data/qpr.json'
+import type { QPREntry } from '@/features/govern/types/qpr.types'
 
-export interface QPREntry {
-  status: string
-  filed_date: string | null
-  completion_pct: number | null
-}
+export type { QPREntry }
 
 export interface QPRRow {
   id: string

@@ -1,14 +1,8 @@
-export type FilterType = 'project' | 'developer' | 'rera'
-export type Language = 'en' | 'kn'
+import type { Project } from '@/features/govern/types/project.types'
+import type { Language } from '@/features/shared/types/i18n.types'
 
-export interface Project {
-  id: string
-  name: string
-  rera: string
-  developer_name: string
-  location: string
-  status: string
-}
+export type FilterType = 'project' | 'developer' | 'rera'
+export type { Language, Project }
 
 export const TRANSLATIONS = {
   en: {

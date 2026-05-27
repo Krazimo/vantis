@@ -8,9 +8,9 @@ import litigationData from '@/data/litigation.json'
 import qprData from '@/data/qpr.json'
 import DistrictPanel from './_components/DistrictPanel'
 import LiveFeeds from './_components/LiveFeeds'
+import type { Project } from '@/features/govern/types/project.types'
+import type { LitigationItem } from '@/features/govern/types/litigation.types'
 
-interface Project { id: string; name: string; developer_name: string; location: string; status: string; risk_score: number; complaints_pending: number }
-interface LitigationItem { id: string; project_name: string; developer_name: string; type: string; court: string; filed_date: string; severity: string }
 interface District { id: string; label: string; risk: string; projects: string[] }
 
 const KPIs = [

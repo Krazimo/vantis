@@ -1,9 +1,10 @@
 import projectsData from '@/data/projects.json'
+import type { Project } from '@/features/govern/types/project.types'
+import type { Language } from '@/features/shared/types/i18n.types'
 
-export type Language = 'en' | 'kn'
+export type { Language, Project }
 export type Step = 1 | 2 | 3 | 'success'
 
-export interface Project { id: string; name: string; developer_name: string; location: string }
 export const PROJECTS = projectsData as Project[]
 
 export const NATURES = [

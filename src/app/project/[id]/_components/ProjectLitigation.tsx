@@ -1,8 +1,10 @@
 import { Scale, CheckCircle2 } from 'lucide-react'
-import { type LitigationItem, formatDate } from '../_data/project-profile.data'
+import { formatDate } from '../_data/project-profile.data'
+
+type EmbeddedLit = { type: string; court: string; filed: string; status: string }
 
 interface Props {
-  litigation: LitigationItem[]
+  litigation: EmbeddedLit[]
 }
 
 export default function ProjectLitigation({ litigation }: Props) {

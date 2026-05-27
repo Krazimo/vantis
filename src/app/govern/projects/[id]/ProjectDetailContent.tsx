@@ -38,7 +38,7 @@ export default function ProjectDetailContent({ params }: { params: { id: string 
   }
 
   const project: Project = projectMaybe
-  const developer = (developersData as Developer[]).find(d => d.id === project.developer_id)
+  const developer = (developersData as unknown as Developer[]).find(d => d.id === project.developer_id)
   const qprSub = qprData.submissions.find(s => s.project_id === project.id)
   const litigation = (litigationData as LitigationItem[]).filter(l => l.project_id === project.id)
 

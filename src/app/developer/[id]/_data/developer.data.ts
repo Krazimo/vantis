@@ -1,37 +1,14 @@
 import developersData from '@/data/developers.json'
 import projectsData from '@/data/projects.json'
+import type { Developer } from '@/features/govern/types/developer.types'
+import type { Project } from '@/features/govern/types/project.types'
+import type { Language } from '@/features/shared/types/i18n.types'
 
-export type Language = 'en' | 'kn'
+export type { Language, Project }
 
-export interface Developer {
-  id: string
-  name: string
-  city: string
-  state: string
-  trust_score: number
-  total_projects: number
-  active_projects: number
-  completed_projects: number
-  total_units: number
-  status: string
-  years_active: number
-  contact_email: string
-  contact_phone: string
-  projects: string[]
-}
-
-export interface Project {
-  id: string
-  name: string
-  location: string
-  status: string
-  total_units: number
-  units_sold: number
-  completion_date: string
-  risk_score: number
-}
-
-export const DEVELOPERS = developersData as Developer[]
+// Raw developer JSON has projects as string[] (IDs), not objects
+type DeveloperRaw = Developer & { projects: string[] }
+export const DEVELOPERS = developersData as DeveloperRaw[]
 export const PROJECTS = projectsData as Project[]
 
 export const COMPONENT_SCORES: Record<string, number[]> = {

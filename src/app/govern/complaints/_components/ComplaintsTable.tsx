@@ -30,7 +30,7 @@ export default function ComplaintsTable({ complaints, expandedId, onToggle, onSc
           </thead>
           <tbody>
             {complaints.flatMap(c => {
-              const days = daysPending(c.filed_date, c.resolution_date)
+              const days = daysPending(c.filed_date, c.resolution_date ?? undefined)
               const isExpanded = expandedId === c.id
               const mainRow = (
                 <tr key={c.id} className={`border-b border-border cursor-pointer hover:bg-surface2/60 transition-colors duration-150 ${isExpanded ? 'bg-surface2/60' : ''}`} onClick={() => onToggle(c.id)}>
@@ -79,7 +79,7 @@ export default function ComplaintsTable({ complaints, expandedId, onToggle, onSc
       {/* Mobile cards */}
       <div className="lg:hidden space-y-3 mb-6">
         {complaints.map(c => {
-          const days = daysPending(c.filed_date, c.resolution_date)
+          const days = daysPending(c.filed_date, c.resolution_date ?? undefined)
           const isExpanded = expandedId === c.id
           return (
             <div key={c.id} className="bg-surface border border-border rounded-sm overflow-hidden">

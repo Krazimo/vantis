@@ -1,13 +1,5 @@
 import Link from 'next/link'
-
-interface Project {
-  id: string
-  name: string
-  developer_name: string
-  status: string
-  risk_score: number
-  complaints_pending: number
-}
+import type { Project } from '@/features/govern/types/project.types'
 
 interface District {
   id: string

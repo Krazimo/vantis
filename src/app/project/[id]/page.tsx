@@ -130,7 +130,7 @@ export default async function ProjectProfile({ params }: { params: Promise<{ id:
         {/* Certificate */}
         <div>
           <h2 className="font-syne text-base text-gold-dim uppercase tracking-widest mb-4">Vantis Certificate</h2>
-          <CertificateCard certificateId={project.certificate_id} certificateStatus={project.certificate_status} />
+          <CertificateCard certificateId={project.certificate_id ?? null} certificateStatus={project.certificate_status} />
         </div>
 
         {/* Litigation */}

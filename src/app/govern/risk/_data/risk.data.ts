@@ -3,7 +3,7 @@ export interface Component {
   value: number
 }
 
-export interface Developer {
+export type Developer = {
   id: string
   name: string
   score: number

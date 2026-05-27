@@ -1,20 +1,8 @@
 import projectsData from '@/data/projects.json'
 import qprData from '@/data/qpr.json'
+import type { Project } from '@/features/govern/types/project.types'
 
-export interface Project {
-  id: string
-  name: string
-  rera: string
-  developer_name: string
-  location: string
-  type: string
-  total_units: number
-  units_sold: number
-  status: string
-  risk_score: number
-  certificate_status: string
-  complaints_pending: number
-}
+export type { Project }
 
 export type StatusFilter = 'ALL' | 'COMPLIANT' | 'CAUTION' | 'HIGH RISK'
 

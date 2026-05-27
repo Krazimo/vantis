@@ -1,22 +1,8 @@
 import litigationData from '@/data/litigation.json'
 import projectsData from '@/data/projects.json'
+import type { LitigationItem } from '@/features/govern/types/litigation.types'
 
-export interface LitigationItem {
-  id: string
-  project_id: string
-  project_name: string
-  developer_name: string
-  type: string
-  court: string
-  case_number: string
-  filed_date: string
-  plaintiff: string
-  cause: string
-  relief_sought_crore: number | null
-  status: string
-  next_hearing: string
-  severity: string
-}
+export type { LitigationItem }
 
 export type CourtFilter = 'ALL' | 'HIGH_COURT' | 'DISTRICT' | 'CRIMINAL'
 

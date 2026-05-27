@@ -1,18 +1,7 @@
 import Link from 'next/link'
 import { AlertTriangle, BarChart2, Scale, ChevronRight } from 'lucide-react'
-
-interface Project {
-  id: string
-  name: string
-  complaints_pending: number
-}
-
-interface LitigationItem {
-  id: string
-  project_name: string
-  type: string
-  court: string
-}
+import type { Project } from '@/features/govern/types/project.types'
+import type { LitigationItem } from '@/features/govern/types/litigation.types'
 
 interface Props {
   criticalProjects: Project[]
