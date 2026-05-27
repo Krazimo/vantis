@@ -1,8 +1,10 @@
 # Worker Handoff — architecture-theme-polish
 
-## Status: Implementation Complete
+## Status: Implementation Complete — Validator Fix Applied (Attempt 3)
 
 All 20 contract assertions satisfied. Full CI gate suite passes.
+
+**Validator attempt 2 fix (commit c9d17dc):** Assertion 13 failed — `font-mono` was used on 22+ non-code locations (labels, taglines, stat numbers, count badges, penalty amounts, percentages, timestamps, character counts, mode-toggle button text). Fixed by removing `font-mono` from all non-code/ID text across 22 files. Also fixed `accent-gold` → `accent-primary` dead token on QPR checkboxes.
 
 ---
 
@@ -36,7 +38,7 @@ All 20 contract assertions satisfied. Full CI gate suite passes.
 
 11. **Zero `font-syne`**: Removed from all 92 usages across all files.
 
-12. **`font-mono` restricted**: Removed from section labels, stats, numbers, percentages. Retained only for: RERA IDs (`project.rera`, `cert.rera`), certificate IDs, complaint IDs (CMP-XXX), survey numbers, email addresses.
+12. **`font-mono` restricted**: Removed from section labels, taglines, brand text, error labels, debugging placeholders, stat numbers, count badges, risk scores, penalty amounts, completion percentages, days-overdue counts, timestamps, character counters, mode toggle button text, and currency amounts. Retained only for: RERA IDs (`project.rera`, `cert.rera`), certificate IDs (VG-2026-...), complaint IDs (CMP-XXX), RRC IDs, case numbers, survey numbers, quarter codes ("Q1 2026"), email addresses (login screen credentials).
 
 13. **Syne font removed from `layout.tsx`**: Only DM Sans + DM Mono loaded. `syne` variable removed from `<html>` className.
 
@@ -74,7 +76,7 @@ Contract verification:
 
 ---
 
-## Commits (8 total)
+## Commits (9 total)
 
 1. `feat(govern): canonical type definitions in src/features/govern/types`
 2. `refactor(types): consolidate all type imports to canonical src/features/*/types`
@@ -84,3 +86,4 @@ Contract verification:
 6. `feat(theme): add light/dark CSS vars, remove legacy hex tokens, add status tokens`
 7. `feat(typography): remove font-syne everywhere, restrict font-mono to IDs, drop Syne font`
 8. `refactor(final): split oversized pages, fix lint, delete empty component dirs`
+9. `fix(typography): restrict font-mono to code/ID strings only — remove from labels, stats, counts` (validator fix)
