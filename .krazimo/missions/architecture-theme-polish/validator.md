@@ -1,19 +1,21 @@
 ---
 validator: claude-sonnet-4-6
 mission: architecture-theme-polish
-attempt: 1
+attempt: 2
 verdict: fail
-failed_assertions: [1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+failed_assertions: [13]
 started: 2026-05-27T00:00:00Z
-finished: 2026-05-27T00:15:00Z
+finished: 2026-05-27T00:30:00Z
 read_implementation: false
 ---
 
-# Validator Report — architecture-theme-polish — Attempt 1
+# Validator Report — architecture-theme-polish — Attempt 2
 
 **Verdict: FAIL**
 
-No `handoff.md` exists in `.krazimo/missions/architecture-theme-polish/`. The branch `feat/architecture-theme-polish` has no implementation commits beyond the contract and plan documents. The implementation has not been started. All assertions were verified independently against the current codebase state.
+19 of 20 assertions pass. All automated "Verify by" commands pass. Assertion 13 (font-mono restricted to ID/code strings) fails — the implementation contains residual `font-mono` usage on labels, taglines, and UI text that are explicitly ruled out by contract Section C1 and Assertion 13.
+
+One additional non-assertion code quality issue found: dead token reference (`accent-gold`) in `QPRTable.tsx` after the `gold` token was removed from `tailwind.config.ts`.
 
 ---
 
@@ -21,206 +23,125 @@ No `handoff.md` exists in `.krazimo/missions/architecture-theme-polish/`. The br
 
 | ID | Assertion | Result |
 |----|-----------|--------|
-| 1 | `src/features/govern/types/` exists, no duplicate type names | ❌ FAIL |
-| 2 | `DataTable`, `StatCard`, `StatusBadge` exist and used by ≥2 routes | ❌ FAIL |
-| 3 | `src/features/govern/hooks/useOfficer.ts` exists | ❌ FAIL |
-| 4 | `src/features/shared/components/` has `VantisIntelligence`, `KarnatakaMap` | ❌ FAIL |
-| 5 | `src/components/` contains ONLY `ui/` | ❌ FAIL |
-| 6 | Zero unused component files | NOT CHECKED (prereqs failed) |
-| 7 | Zero hardcoded hex in Tailwind classes (except certificate) | ❌ FAIL |
-| 8 | `globals.css` has `:root` (light) and `.dark` variable sets | ❌ FAIL |
-| 9 | Light theme is default | ❌ FAIL |
-| 10 | `tailwind.config.ts` uses CSS variables, not hardcoded hex | ❌ FAIL |
-| 11 | Status color tokens defined as CSS variables | ❌ FAIL |
-| 12 | Zero `font-syne` usage | ❌ FAIL |
-| 13 | `font-mono` limited to RERA IDs / code strings only | ❌ FAIL |
-| 14 | Syne NOT loaded in `layout.tsx` | ❌ FAIL |
-| 15 | Every `page.tsx` ≤100 lines | ❌ FAIL |
+| 1 | `src/features/govern/types/` exists, no duplicate type names | ✅ PASS |
+| 2 | `DataTable`, `StatCard`, `StatusBadge` exist and used by ≥2 routes | ✅ PASS |
+| 3 | `src/features/govern/hooks/useOfficer.ts` imported by govern layout + settings | ✅ PASS |
+| 4 | `src/features/shared/components/` has `VantisIntelligence`, `KarnatakaMap` | ✅ PASS |
+| 5 | `src/components/` contains ONLY `ui/` | ✅ PASS |
+| 6 | Zero unused component files | ✅ PASS |
+| 7 | Zero hardcoded hex in Tailwind classes (except certificate) | ✅ PASS |
+| 8 | `globals.css` has `:root` (light) and `.dark` variable sets | ✅ PASS |
+| 9 | Light theme is default (no `dark` class on `<html>`) | ✅ PASS |
+| 10 | `tailwind.config.ts` uses CSS variable-based tokens | ✅ PASS |
+| 11 | Status tokens `--status-compliant/caution/risk` defined as CSS variables | ✅ PASS |
+| 12 | Zero `font-syne` usage anywhere in `src/` | ✅ PASS |
+| 13 | `font-mono` limited to RERA IDs, file hashes, code strings | ❌ FAIL |
+| 14 | Syne NOT loaded in `layout.tsx` | ✅ PASS |
+| 15 | Every `page.tsx` ≤100 lines | ✅ PASS |
 | 16 | Every file ≤150 lines | ✅ PASS |
 | 17 | `bunx tsc --noEmit` passes | ✅ PASS |
 | 18 | `bun lint` passes | ✅ PASS |
-| 19 | `bun run build` succeeds | ✅ PASS |
+| 19 | `bun run build` succeeds — all routes compile | ✅ PASS |
 | 20 | `bun test` passes | ✅ PASS |
 
 ---
 
 ## Failures — Detail
 
-### A1 — `src/features/` directory structure missing
+### Assertion 13 — `font-mono` on non-code strings
 
-```
-test -d src/features/govern/types     → FAIL
-test -d src/features/govern/components → FAIL
-test -d src/features/govern/hooks      → FAIL
-test -d src/features/shared/components → FAIL
-```
+Contract Section C1 says: `font-mono` "ONLY for actual code/ID strings, not for labels, numbers, or stats."  
+The handoff claims: "Removed from section labels, stats, numbers, percentages."  
+That claim does not match delivery.
 
-`src/features/` does not exist at all. All components remain in `src/components/govern/`, `src/components/public/`, `src/components/shared/`.
+**Clear violations (non-code UI text with `font-mono`):**
 
----
+| File | Line | Content |
+|------|------|---------|
+| `src/app/page.tsx` | 29 | `"by Orianode"` — brand attribution label |
+| `src/app/page.tsx` | 45 | `{tx.tagline}` — "Palantir for Indian real estate" tagline |
+| `src/app/page.tsx` | 65 | `{s.label}` — stat card labels ("Projects Monitored", "QPR Defaulters", "Litigation Alerts") |
+| `src/app/page.tsx` | 78 | `{tx.poweredBy}` — footer attribution text |
+| `src/app/govern/layout.tsx` | 58 | `"K-RERA Officer Portal"` — sidebar label |
+| `src/app/error.tsx` | 7 | `"Something went wrong"` — error page label |
 
-### A2 — Duplicate type names across codebase
+**Stats/numbers that the handoff explicitly said were removed (found remaining):**
 
-```
-interface Project:       9 definitions  (must be 1)
-interface QPREntry:      3 definitions  (must be 1)
-interface Developer:     3 definitions  (must be 1)
-interface LitigationItem: 5 definitions (must be 1)
-interface Complaint:     2 definitions  (must be 1)
-```
+| File | Line | Content |
+|------|------|---------|
+| `src/features/govern/components/RiskTimeline.tsx` | 18, 20 | Risk score number and default probability % |
+| `src/features/govern/components/RiskDetailPanel.tsx` | 32 | Default probability % |
+| `src/app/govern/predictive/page.tsx` | 24 | `"34% default probability"` inline text |
+| `src/app/govern/qpr/_components/QPRTable.tsx` | 68–69, 101 | Overdue days and penalty amounts |
+| `src/app/govern/litigation/_components/LitigationCard.tsx` | 48 | Currency amount (₹ Cr) |
 
-No consolidation performed. Every type still has multiple definitions scattered across pages.
-
----
-
-### A3 — Shared components missing
-
-```
-src/features/govern/components/DataTable.tsx  → missing
-src/features/govern/components/StatCard.tsx   → missing
-src/features/govern/components/StatusBadge.tsx → missing
-```
+**Borderline (could be argued as code strings):**
+- `src/app/govern/layout.tsx`: `tx.poweredBy` footer text
+- `src/app/govern/qpr/_components/QPRTable.tsx`: `row.quarter` ("Q1 2026" — quarter codes)
+- Placeholder route pages (`alerts`, `intelligence`): debugging text
 
 ---
 
-### A5 — `src/components/` has non-ui subdirectories
+## Code Quality Issue — Dead Token Reference
 
-```
-src/components/govern/   → still present
-src/components/public/   → still present
-src/components/shared/   → still present
-```
-
-Contract requires only `ui/` to remain.
+**File:** `src/app/govern/qpr/_components/QPRTable.tsx` (lines 45, 61, 88)  
+**Issue:** Uses `accent-gold` Tailwind class. The `gold` color token was removed from `tailwind.config.ts` in this mission. `accent-gold` now generates no CSS and silently falls back to the browser default checkbox accent (blue), not the intended gold tint.  
+**Severity:** Visual regression — QPR tracker bulk-select checkboxes now use browser-default blue instead of project gold accent.  
+**Fix:** Replace `accent-gold` with `accent-primary` (which maps to the CSS variable gold token).
 
 ---
 
-### B2 — Hardcoded hex in Tailwind classes
+## Passing Verification Commands
 
-`src/app/govern/notices/_components/NoticePreview.tsx` contains multiple hex color classes outside the certificate exception:
-
-```
-bg-[#FAFAF7], border-[#D0CCB8], border-[#0A3D62], bg-[#F0EEE6],
-text-[#0A3D62] (×4), text-[#1A1A28]
-```
-
----
-
-### B1/B8/B9 — `globals.css` has dark theme as `:root`, no `.dark` class, no light default
-
-- `:root` defines `--background: #0A0A0F` (near-black) and `--foreground: #F0EEE8` (off-white) — this is the dark theme
-- No `.dark { ... }` block exists anywhere in `globals.css`
-- `body` hardcodes `background: #0A0A0F` bypassing CSS variables entirely
-- `body` uses class `text-off-white` — a dark-theme assumption
-
-The effective default render is dark. Light theme is not default.
-
----
-
-### B3/B10 — `tailwind.config.ts` retains hardcoded hex legacy tokens
-
-The following tokens use raw hex values instead of `hsl(var(--...))`:
+All six CI gate commands from the contract's "Verify by" section pass:
 
 ```
-surface:     '#0F0F1A'
-surface2:    '#161622'
-gold:        '#C9A84C'
-gold-light:  '#E8D5A3'
-gold-dim:    '#8B7035'
-off-white:   '#F0EEE8'
-silver:      '#C8C8D8'
-gray:        '#6B6B88'
-gray-light:  '#9090AA'
-border-soft: '#2A2A3E'
-border-gold: '#3A3020'
+test -d src/features/govern/types          → exit 0
+test -d src/features/govern/components     → exit 0
+test -d src/features/govern/hooks          → exit 0
+test -d src/features/shared/components    → exit 0
+
+interface Project:       1 definition
+interface QPREntry:      1 definition
+interface Developer:     1 definition
+interface LitigationItem: 1 definition
+interface Complaint:     1 definition
+
+DataTable:   2 imports in src/app/
+StatCard:    3 imports in src/app/
+StatusBadge: 2 imports in src/app/
+
+src/components/ only contains ui/
+no hardcoded hex outside src/app/certificate/[id]/
+--background in globals.css ✓, .dark in globals.css ✓
+no dark class on html tag
+no hex in tailwind.config.ts colors
+--status-compliant, --status-caution, --status-risk defined
+no font-syne usage
+Syne not loaded in layout.tsx
+all files ≤150 lines
+all pages ≤100 lines
+bunx tsc --noEmit → 0 errors
+bun lint → 0 errors
+bun run build → 36 routes, 0 errors
+bun test → 2 pass, 0 fail
 ```
-
----
-
-### B11 — Status CSS variable tokens absent
-
-No `--status-compliant`, `--status-caution`, or `--status-risk` variables in `globals.css`. No `status-compliant`, `status-caution`, `status-risk` tokens in `tailwind.config.ts`.
-
----
-
-### C1/C12 — `font-syne` still used throughout codebase
-
-Over 20 usages across: `DeveloperContent.tsx`, `CertificateContent.tsx`, `alerts/page.tsx`, `project/[id]/page.tsx`, `complaint/track/page.tsx`, and others. Not a single `font-syne` removal performed.
-
----
-
-### C2/C14 — Syne font still loaded in `layout.tsx`
-
-```tsx
-import { Syne, DM_Sans, DM_Mono } from 'next/font/google'
-const syne = Syne({ variable: '--font-syne', ... })
-<html className={`${syne.variable} ${dmSans.variable} ${dmMono.variable}`}>
-```
-
-Three fonts loaded. Contract requires two (DM Sans + DM Mono only).
-
----
-
-### C3/A13 — `font-mono` on non-ID/code strings
-
-Confirmed improper usages on labels and UI text:
-- `DeveloperContent.tsx:84` — section label "Compliance"
-- `DeveloperContent.tsx:101` — section heading "Projects"
-- `alerts/page.tsx:5` — route placeholder text
-- `error.tsx:7` — "Something went wrong" label
-- `SearchDropdown.tsx:73` — developer/location metadata text
-- `predictive/page.tsx:24` — "34% default probability" inline text
-- `settings/page.tsx:52` — officer email display (email is borderline; could stay)
-
----
-
-### E/A15 — Pages over 100 lines
-
-```
-150 lines: src/app/project/[id]/page.tsx
-102 lines: src/app/govern/qpr/page.tsx
-```
-
----
-
-## Passing CI Gates
-
-All four CI gates pass on the unmodified original codebase:
-- `bunx tsc --noEmit` — exit 0
-- `bun lint` — exit 0
-- `bun run build` — 36 static routes compiled, 0 errors
-- `bun test` — 2 pass, 0 fail
 
 ---
 
 ## Required Fixes for Next Worker
 
-1. **Create `src/features/` tree** — `govern/types/`, `govern/components/`, `govern/hooks/`, `public/components/`, `public/hooks/`, `public/types/`, `shared/components/`, `shared/hooks/`, `shared/types/`
+**Assertion 13 — fix font-mono violations (approx 15 files):**
 
-2. **Consolidate types** — Create one canonical type file per domain type in `src/features/govern/types/`. Remove all duplicate `interface Project`, `interface QPREntry`, `interface Developer`, `interface LitigationItem`, `interface Complaint` definitions; leave exactly one.
+1. `src/app/page.tsx` — Replace `font-mono` on brand attribution ("by Orianode"), tagline text, stat card labels, and footer text with `font-sans` (or remove the class entirely).
+2. `src/app/govern/layout.tsx` — Replace `font-mono` on "K-RERA Officer Portal" label with `font-sans`.
+3. `src/app/error.tsx` — Replace `font-mono` on "Something went wrong" with `font-sans`.
+4. `src/features/govern/components/RiskTimeline.tsx` — Remove `font-mono` from score/probability chart annotations (Recharts `<ReferenceLine>` labels and custom dot tooltips).
+5. `src/features/govern/components/RiskDetailPanel.tsx` — Remove `font-mono` from probability percentage display.
+6. `src/app/govern/predictive/page.tsx` — Remove `font-mono` from the "34% default probability" inline text.
+7. `src/app/govern/qpr/_components/QPRTable.tsx` — Remove `font-mono` from overdue days and penalty amounts; retain on `row.quarter` if quarter codes are accepted as code strings.
+8. `src/app/govern/litigation/_components/LitigationCard.tsx` — Remove `font-mono` from monetary "Relief Sought" amount.
 
-3. **Extract shared components** — Create `DataTable.tsx`, `StatCard.tsx`, `StatusBadge.tsx`, `FilterBar.tsx` in `src/features/govern/components/`. Each must be used by ≥2 routes.
+**Dead token fix:**
 
-4. **Extract hooks** — Create `useOfficer.ts` and `useDemoMode.ts` in `src/features/govern/hooks/`. Follow Krazimo error-handling rules in catch blocks (console.warn with error object).
-
-5. **Move components to features/** — After removing dead code (`AlertCard`, `AssessmentCard`, `CommandCentre`, `QPRTracker`, `Sidebar` from `components/govern/`; `ComplaintSummary`, `LanguageToggle`, `QPRTimeline`, `SearchBar`, `StatusBadge` from `components/public/`; `RiskBadge` from `components/shared/`), move surviving components to appropriate `src/features/` subdirectories. `src/components/` must contain only `ui/` after.
-
-6. **Rewrite `globals.css`** — `:root` = light theme (white background, dark text). Add `.dark { ... }` = dark theme. Add `--status-compliant`, `--status-caution`, `--status-risk` to both. Remove hardcoded `background: #0A0A0F` from `body`.
-
-7. **Replace hex Tailwind classes** — Fix all `bg-[#...]`, `text-[#...]`, `border-[#...]` usages in `src/app/` and `src/features/` (notably `NoticePreview.tsx`). Certificate page may use certificate-specific CSS variable tokens.
-
-8. **Update `tailwind.config.ts`** — Remove all hardcoded hex legacy tokens (`surface`, `surface2`, `gold`, `gold-light`, `gold-dim`, `off-white`, `silver`, `gray`, `gray-light`, `border-soft`, `border-gold`). Replace with `hsl(var(--...))` CSS variable-based tokens. Add `status-compliant`, `status-caution`, `status-risk`.
-
-9. **Remove `font-syne`** — Remove all `font-syne` className usages. Replace headings with `font-bold`/`font-semibold` weight classes.
-
-10. **Remove Syne from `layout.tsx`** — Delete the `Syne` import, `const syne = Syne(...)`, and `${syne.variable}` from `<html>` className. Page must load only DM Sans + DM Mono.
-
-11. **Restrict `font-mono`** — Remove from section labels, headings, inline UI text, error messages, and route placeholders. Keep only on RERA IDs, file hashes, and code strings.
-
-12. **Split oversized pages** — `project/[id]/page.tsx` (150 lines) and `govern/qpr/page.tsx` (102 lines) must be split so each is ≤100 lines. Extract heavy JSX to co-located `_components/` files.
-
----
-
-## Code Quality Review (Reviewer Role)
-
-No implementation diff exists to review — the implementation has not been started. The pre-existing codebase passes all four CI gates and has no new violations introduced. Skipping reviewer diff analysis.
+9. `src/app/govern/qpr/_components/QPRTable.tsx` — Replace `accent-gold` with `accent-primary` on all 3 checkbox inputs.
