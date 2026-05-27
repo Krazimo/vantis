@@ -2,7 +2,7 @@ import { CheckCircle, AlertTriangle, XCircle } from 'lucide-react'
 import type { QPRRow } from '../_data/qpr-tracker.data'
 import { getDueDate, daysOverdue, penalty, fmtDate, fmtInr } from '../_data/qpr-tracker.utils'
 
-function StatusBadge({ status }: { status: string }) {
+function QPRStatusBadge({ status }: { status: string }) {
   if (status === 'ON_TIME') return (
     <span className="flex items-center gap-1 text-status-compliant text-xs font-medium">
       <CheckCircle className="w-3.5 h-3.5" /> On Time
@@ -64,7 +64,7 @@ export default function QPRTable({ rows, selected, onToggleRow, onToggleAll }: P
                   <td className="px-4 py-3 font-mono text-primary text-xs">{row.quarter}</td>
                   <td className="px-4 py-3 text-muted-foreground text-xs whitespace-nowrap">{fmtDate(due.toISOString().split('T')[0])}</td>
                   <td className="px-4 py-3 text-xs">{row.entry.filed_date ? <span className="text-foreground">{fmtDate(row.entry.filed_date)}</span> : <span className="text-muted-foreground">—</span>}</td>
-                  <td className="px-4 py-3"><StatusBadge status={row.entry.status} /></td>
+                  <td className="px-4 py-3"><QPRStatusBadge status={row.entry.status} /></td>
                   <td className="px-4 py-3 text-xs">{overdue > 0 ? <span className={isMissed ? 'text-status-risk' : 'text-status-caution'}>+{overdue}d</span> : <span className="text-muted-foreground">—</span>}</td>
                   <td className="px-4 py-3 text-xs">{pen > 0 ? <span className="flex items-center gap-1.5 text-status-risk"><span className="relative flex h-1.5 w-1.5"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-status-risk opacity-75" /><span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-status-risk" /></span>{fmtInr(pen)}</span> : <span className="text-muted-foreground">—</span>}</td>
                 </tr>
@@ -91,7 +91,7 @@ export default function QPRTable({ rows, selected, onToggleRow, onToggleAll }: P
                     <div className="text-muted-foreground text-xs mt-0.5">{row.developer_name}</div>
                   </div>
                 </div>
-                <div className="shrink-0"><StatusBadge status={row.entry.status} /></div>
+                <div className="shrink-0"><QPRStatusBadge status={row.entry.status} /></div>
               </div>
               <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
                 <div className="text-muted-foreground">Quarter: <span className="font-mono text-primary">{row.quarter}</span></div>

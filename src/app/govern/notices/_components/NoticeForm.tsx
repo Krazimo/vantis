@@ -38,8 +38,8 @@ export default function NoticeForm({ violationType, projectId, lang, loading, on
       {violationType && (
         <div>
           <label className="block text-xs text-muted-foreground mb-1.5">Applicable RERA Section</label>
-          <div className="w-full bg-muted border border-border rounded-sm px-3 py-2.5 text-sm font-mono text-primary">
-            {selectedSection} — Real Estate (Regulation and Development) Act, 2016
+          <div className="w-full bg-muted border border-border rounded-sm px-3 py-2.5 text-sm text-primary">
+            <span className="font-mono">{selectedSection}</span> — Real Estate (Regulation and Development) Act, 2016
           </div>
         </div>
       )}
