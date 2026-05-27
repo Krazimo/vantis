@@ -46,25 +46,25 @@ export function leftBorder(item: LitigationItem): string {
 }
 
 export function caseTypeColor(type: string): string {
-  if (type === 'Writ' || type === 'Criminal') return 'text-red'
-  if (type === 'Civil') return 'text-amber'
-  return 'text-gray'
+  if (type === 'Writ' || type === 'Criminal') return 'text-status-risk'
+  if (type === 'Civil') return 'text-status-caution'
+  return 'text-muted-foreground'
 }
 export function caseTypeDot(type: string): string {
-  if (type === 'Writ' || type === 'Criminal') return 'bg-red'
-  if (type === 'Civil') return 'bg-amber'
-  return 'bg-gray-light'
+  if (type === 'Writ' || type === 'Criminal') return 'bg-status-risk'
+  if (type === 'Civil') return 'bg-status-caution'
+  return 'bg-muted-light'
 }
 
 export function severityTextColor(severity: string): string {
-  if (severity === 'CRITICAL' || severity === 'HIGH') return 'text-red'
-  if (severity === 'MEDIUM') return 'text-amber'
-  return 'text-gray'
+  if (severity === 'CRITICAL' || severity === 'HIGH') return 'text-status-risk'
+  if (severity === 'MEDIUM') return 'text-status-caution'
+  return 'text-muted-foreground'
 }
 export function severityDot(severity: string): string {
-  if (severity === 'CRITICAL' || severity === 'HIGH') return 'bg-red'
-  if (severity === 'MEDIUM') return 'bg-amber'
-  return 'bg-gray-light'
+  if (severity === 'CRITICAL' || severity === 'HIGH') return 'bg-status-risk'
+  if (severity === 'MEDIUM') return 'bg-status-caution'
+  return 'bg-muted-light'
 }
 
 export const ALL_CASES = [...(litigationData as LitigationItem[])]

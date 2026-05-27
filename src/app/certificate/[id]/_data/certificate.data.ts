@@ -29,19 +29,19 @@ export function fmtDateTime(d: string) {
 }
 
 export function resultColor(r: string) {
-  if (r === 'PASS')    return 'text-green'
-  if (r === 'FLAGGED') return 'text-amber'
-  return 'text-red'
+  if (r === 'PASS')    return 'text-status-compliant'
+  if (r === 'FLAGGED') return 'text-status-caution'
+  return 'text-status-risk'
 }
 
 export function resultBg(r: string) {
-  if (r === 'PASS')    return 'bg-green/5 border-green/20'
-  if (r === 'FLAGGED') return 'bg-amber/5 border-amber/20'
-  return 'bg-red/5 border-red/20'
+  if (r === 'PASS')    return 'bg-status-compliant/5 border-status-compliant/20'
+  if (r === 'FLAGGED') return 'bg-status-caution/5 border-status-caution/20'
+  return 'bg-status-risk/5 border-status-risk/20'
 }
 
 export function statusConfig(s: string) {
-  if (s === 'FULL')        return { banner: 'bg-[#F0FBF5] border-b-2 border-b-green', text: 'text-green',  label: '✓  FULL CERTIFICATE' }
-  if (s === 'PROVISIONAL') return { banner: 'bg-[#FFFBF0] border-b-2 border-b-amber', text: 'text-amber', label: '⚠  PROVISIONAL CERTIFICATE' }
-  return                          { banner: 'bg-[#FFF5F5] border-b-2 border-b-red',   text: 'text-red',   label: '✗  FLAGGED' }
+  if (s === 'FULL')        return { banner: 'bg-[#F0FBF5] border-b-2 border-b-green', text: 'text-status-compliant',  label: '✓  FULL CERTIFICATE' }
+  if (s === 'PROVISIONAL') return { banner: 'bg-[#FFFBF0] border-b-2 border-b-amber', text: 'text-status-caution', label: '⚠  PROVISIONAL CERTIFICATE' }
+  return                          { banner: 'bg-[#FFF5F5] border-b-2 border-b-red',   text: 'text-status-risk',   label: '✗  FLAGGED' }
 }

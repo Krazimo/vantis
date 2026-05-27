@@ -11,7 +11,7 @@ const columns: Column<Row>[] = [
   {
     key: 'rank',
     header: '#',
-    render: r => <span className={`text-xl font-bold ${r.rank === 1 ? 'text-red' : 'text-muted-foreground'}`}>{r.rank}</span>,
+    render: r => <span className={`text-xl font-bold ${r.rank === 1 ? 'text-status-risk' : 'text-muted-foreground'}`}>{r.rank}</span>,
   },
   {
     key: 'project',
@@ -76,10 +76,10 @@ function mobileCard(r: Row) {
   const ac = actionConfig(r.action)
   return (
     <Link href={`/govern/projects/${r.project_id}?tab=timeline`}
-      className={`block border rounded-sm p-4 transition-colors duration-150 group ${r.action === 'ENFORCE' ? 'bg-red/5 border-red/30 hover:border-red/50' : 'bg-card border-border hover:border-primary/50'}`}>
+      className={`block border rounded-sm p-4 transition-colors duration-150 group ${r.action === 'ENFORCE' ? 'bg-status-risk/5 border-status-risk/30 hover:border-status-risk/50' : 'bg-card border-border hover:border-primary/50'}`}>
       <div className="flex items-start justify-between gap-3 mb-3">
         <div className="flex items-center gap-3">
-          <span className={`text-2xl font-bold ${r.rank === 1 ? 'text-red' : 'text-muted-foreground'}`}>{r.rank}</span>
+          <span className={`text-2xl font-bold ${r.rank === 1 ? 'text-status-risk' : 'text-muted-foreground'}`}>{r.rank}</span>
           <div>
             <div className="text-foreground text-sm font-medium group-hover:text-primary transition-colors duration-150">{r.project_name}</div>
             <div className="text-muted-foreground text-xs">{r.developer}</div>
@@ -121,7 +121,7 @@ export default function PredictiveTable() {
       columns={columns}
       rows={rows}
       mobileCard={mobileCard}
-      rowClassName={r => r.action === 'ENFORCE' ? 'bg-red/5 hover:bg-red/10 cursor-pointer' : 'hover:bg-muted/40 cursor-pointer'}
+      rowClassName={r => r.action === 'ENFORCE' ? 'bg-status-risk/5 hover:bg-status-risk/10 cursor-pointer' : 'hover:bg-muted/40 cursor-pointer'}
     />
   )
 }

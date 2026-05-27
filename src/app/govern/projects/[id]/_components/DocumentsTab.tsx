@@ -16,10 +16,10 @@ function DocRow({ name, onView }: { name: string; onView: () => void }) {
   return (
     <div className="flex items-center justify-between px-4 py-3 border-b border-border last:border-b-0">
       <div className="flex items-center gap-3 min-w-0">
-        <FileText className="w-4 h-4 text-gray shrink-0" />
-        <span className="text-off-white text-sm truncate">{name}</span>
+        <FileText className="w-4 h-4 text-muted-foreground shrink-0" />
+        <span className="text-foreground text-sm truncate">{name}</span>
       </div>
-      <button onClick={onView} className="flex items-center gap-1 text-xs text-gold hover:text-gold-light transition-colors duration-150 shrink-0 ml-3">
+      <button onClick={onView} className="flex items-center gap-1 text-xs text-primary hover:text-primary/80 transition-colors duration-150 shrink-0 ml-3">
         View <ExternalLink className="w-3 h-3" />
       </button>
     </div>
@@ -29,7 +29,7 @@ function DocRow({ name, onView }: { name: string; onView: () => void }) {
 function DocSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <div className="text-[10px] text-gray uppercase tracking-widest font-semibold mb-3">{title}</div>
+      <div className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold mb-3">{title}</div>
       <div className="border border-border rounded-sm overflow-hidden">{children}</div>
     </div>
   )
@@ -52,24 +52,24 @@ export default function DocumentsTab({ projectId }: Props) {
 
   if (projectId !== 'divya-villas') {
     return (
-      <div className="bg-surface border border-border rounded-sm p-8 text-center">
-        <FileX className="w-8 h-8 text-gray mx-auto mb-3" />
-        <div className="text-gray text-sm">No documents uploaded yet.</div>
+      <div className="bg-card border border-border rounded-sm p-8 text-center">
+        <FileX className="w-8 h-8 text-muted-foreground mx-auto mb-3" />
+        <div className="text-muted-foreground text-sm">No documents uploaded yet.</div>
       </div>
     )
   }
 
   if (!docModules) {
-    return <div className="text-gray text-sm p-4">Loading documents...</div>
+    return <div className="text-muted-foreground text-sm p-4">Loading documents...</div>
   }
 
   const { openPDF, openImage, divyaVillasImages } = docModules
 
   return (
     <div className="space-y-6">
-      <div className="bg-green/10 border border-green/20 rounded-sm px-4 py-3 flex items-center gap-3">
-        <CheckCircle className="w-4 h-4 text-green shrink-0" />
-        <span className="text-green text-sm font-medium">All required documents submitted — 29 documents across 6 categories.</span>
+      <div className="bg-status-compliant/10 border border-status-compliant/20 rounded-sm px-4 py-3 flex items-center gap-3">
+        <CheckCircle className="w-4 h-4 text-status-compliant shrink-0" />
+        <span className="text-status-compliant text-sm font-medium">All required documents submitted — 29 documents across 6 categories.</span>
       </div>
 
       <DocSection title="Registration Documents">
@@ -104,7 +104,7 @@ export default function DocumentsTab({ projectId }: Props) {
       </DocSection>
 
       <div>
-        <div className="text-[10px] text-gray uppercase tracking-widest font-semibold mb-3">Site Progress Photos</div>
+        <div className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold mb-3">Site Progress Photos</div>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
           {PHOTO_KEYS.map(key => (
             // eslint-disable-next-line @next/next/no-img-element
@@ -112,7 +112,7 @@ export default function DocumentsTab({ projectId }: Props) {
               key={key}
               src={divyaVillasImages[key]}
               alt={key}
-              className="w-full h-24 object-cover rounded-sm cursor-pointer border border-border hover:border-gold/50 transition-colors duration-150"
+              className="w-full h-24 object-cover rounded-sm cursor-pointer border border-border hover:border-primary/50 transition-colors duration-150"
               onClick={() => openImage(key, `${key}.jpeg`)}
             />
           ))}
@@ -123,10 +123,10 @@ export default function DocumentsTab({ projectId }: Props) {
         <DocRow name="RERA Registration Certificate" onView={() => openPDF('reraCertificate', 'Divya_Villas_RERA_Certificate.pdf')} />
         <div className="flex items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3 min-w-0">
-            <FileText className="w-4 h-4 text-gray shrink-0" />
-            <span className="text-off-white text-sm truncate">Vantis Compliance Certificate</span>
+            <FileText className="w-4 h-4 text-muted-foreground shrink-0" />
+            <span className="text-foreground text-sm truncate">Vantis Compliance Certificate</span>
           </div>
-          <Link href="/certificate/VG-2026-007034-0001" className="flex items-center gap-1 text-xs text-gold hover:text-gold-light transition-colors duration-150 shrink-0 ml-3">
+          <Link href="/certificate/VG-2026-007034-0001" className="flex items-center gap-1 text-xs text-primary hover:text-primary/80 transition-colors duration-150 shrink-0 ml-3">
             View <ExternalLink className="w-3 h-3" />
           </Link>
         </div>

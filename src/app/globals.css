@@ -2,20 +2,78 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #0A0A0F;
-  --foreground: #F0EEE8;
-}
-
 * {
   box-sizing: border-box;
 }
 
-body {
-  background: #0A0A0F;
-  color: #F0EEE8;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer base {
+  :root {
+    /* Light theme — default for K-RERA government officers */
+    --background:             0 0% 100%;
+    --foreground:             240 10% 10%;
+    --card:                   0 0% 98%;
+    --card-foreground:        240 10% 10%;
+    --popover:                0 0% 98%;
+    --popover-foreground:     240 10% 10%;
+    --primary:                40 52% 45%;
+    --primary-foreground:     0 0% 100%;
+    --secondary:              240 5% 92%;
+    --secondary-foreground:   240 10% 10%;
+    --muted:                  240 5% 96%;
+    --muted-foreground:       240 5% 45%;
+    --accent:                 240 5% 92%;
+    --accent-foreground:      240 10% 10%;
+    --destructive:            0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border:                 240 6% 90%;
+    --input:                  240 6% 90%;
+    --ring:                   40 52% 45%;
+    --radius:                 0.125rem;
+    /* Status tokens */
+    --status-compliant:       145 63% 42%;
+    --status-caution:         36 100% 50%;
+    --status-risk:            4 90% 58%;
+    /* Government document / notice letterhead tokens */
+    --notice-paper:           60 20% 97%;
+    --notice-header:          45 27% 92%;
+    --notice-border:          46 19% 76%;
+    --notice-ink:             210 81% 21%;
+    --notice-text:            240 22% 13%;
+  }
+
+  .dark {
+    /* Dark theme — optional toggle */
+    --background:             240 20% 5%;
+    --foreground:             45 21% 93%;
+    --card:                   240 22% 8%;
+    --card-foreground:        45 21% 93%;
+    --popover:                240 22% 8%;
+    --popover-foreground:     45 21% 93%;
+    --primary:                40 52% 55%;
+    --primary-foreground:     240 20% 5%;
+    --secondary:              240 17% 11%;
+    --secondary-foreground:   45 21% 93%;
+    --muted:                  240 17% 11%;
+    --muted-foreground:       245 13% 48%;
+    --accent:                 240 17% 11%;
+    --accent-foreground:      45 21% 93%;
+    --destructive:            4 76% 56%;
+    --destructive-foreground: 45 21% 93%;
+    --border:                 240 21% 15%;
+    --input:                  240 21% 15%;
+    --ring:                   40 52% 55%;
+    /* Status tokens (same semantics in dark) */
+    --status-compliant:       145 63% 42%;
+    --status-caution:         36 100% 50%;
+    --status-risk:            4 90% 58%;
+  }
+
+  body {
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
 
 @layer utilities {
@@ -37,29 +95,4 @@ body {
 
 .typing-dot {
   animation: typing-bounce 1s ease-in-out infinite;
-}
-
-@layer base {
-  :root {
-    --background:             240 20% 5%;
-    --foreground:             45 21% 93%;
-    --card:                   240 22% 8%;
-    --card-foreground:        45 21% 93%;
-    --popover:                240 22% 8%;
-    --popover-foreground:     45 21% 93%;
-    --primary:                40 52% 55%;
-    --primary-foreground:     240 20% 5%;
-    --secondary:              240 17% 11%;
-    --secondary-foreground:   45 21% 93%;
-    --muted:                  240 17% 11%;
-    --muted-foreground:       245 13% 48%;
-    --accent:                 240 17% 11%;
-    --accent-foreground:      45 21% 93%;
-    --destructive:            4 76% 56%;
-    --destructive-foreground: 45 21% 93%;
-    --border:                 240 21% 15%;
-    --input:                  240 21% 15%;
-    --ring:                   40 52% 55%;
-    --radius:                 0.125rem;
-  }
 }

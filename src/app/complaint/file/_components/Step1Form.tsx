@@ -32,23 +32,23 @@ export default function Step1Form({ lang, tx, onNext }: Props) {
 
   return (
     <div className="space-y-4">
-      <h2 className="font-syne text-xl text-off-white mb-4">{tx.step1}</h2>
+      <h2 className="font-syne text-xl text-foreground mb-4">{tx.step1}</h2>
       {fields.map(f => (
         <div key={f.key}>
-          <label className="block text-xs text-gray-light mb-1.5">{f.label}</label>
+          <label className="block text-xs text-muted-foreground mb-1.5">{f.label}</label>
           <input
             type={f.type}
             value={f.val}
             onChange={e => { f.set(e.target.value); setErrors(ev => ({ ...ev, [f.key]: '' })) }}
             placeholder={f.ph}
-            className={`w-full bg-surface border rounded-sm px-4 py-3 text-off-white placeholder-gray text-sm focus:outline-none focus:border-gold transition-colors duration-150 ${errors[f.key] ? 'border-red/50' : 'border-border'}`}
+            className={`w-full bg-card border rounded-sm px-4 py-3 text-foreground placeholder-gray text-sm focus:outline-none focus:border-primary transition-colors duration-150 ${errors[f.key] ? 'border-status-risk/50' : 'border-border'}`}
           />
-          {errors[f.key] && <p className="text-red text-xs mt-1">{errors[f.key]}</p>}
+          {errors[f.key] && <p className="text-status-risk text-xs mt-1">{errors[f.key]}</p>}
         </div>
       ))}
       <button
         onClick={() => { if (validate()) onNext(name, phone, email) }}
-        className="w-full py-3 bg-gold text-background font-semibold text-sm rounded-sm hover:bg-gold-light transition-colors duration-150 mt-2"
+        className="w-full py-3 bg-primary text-background font-semibold text-sm rounded-sm hover:bg-primary/80 transition-colors duration-150 mt-2"
       >
         {tx.next}
       </button>

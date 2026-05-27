@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${syne.variable} ${dmSans.variable} ${dmMono.variable}`}>
-      <body className="bg-background text-off-white font-sans antialiased">
+      <body className="bg-background text-foreground font-sans antialiased">
         {children}
         <VantisIntelligence />
         <Providers />

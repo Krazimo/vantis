@@ -17,19 +17,19 @@ export const ROWS: HomebuyerRow[] = [
 ]
 
 export function tierConfig(t: string) {
-  if (t === 'CRITICAL') return { textColor: 'text-red',   dotBg: 'bg-red',   label: 'CRITICAL', row: 'bg-red/5' }
-  if (t === 'WATCH')    return { textColor: 'text-amber', dotBg: 'bg-amber', label: 'WATCH',    row: 'bg-amber/5' }
-  return                       { textColor: 'text-green', dotBg: 'bg-green', label: 'CLEAR',    row: '' }
+  if (t === 'CRITICAL') return { textColor: 'text-status-risk',   dotBg: 'bg-status-risk',   label: 'CRITICAL', row: 'bg-status-risk/5' }
+  if (t === 'WATCH')    return { textColor: 'text-status-caution', dotBg: 'bg-status-caution', label: 'WATCH',    row: 'bg-status-caution/5' }
+  return                       { textColor: 'text-status-compliant', dotBg: 'bg-status-compliant', label: 'CLEAR',    row: '' }
 }
 
 export function statusColor(s: string): string {
-  if (s === 'COMPLIANT') return 'text-green'
-  if (s === 'CAUTION')   return 'text-amber'
-  return 'text-red'
+  if (s === 'COMPLIANT') return 'text-status-compliant'
+  if (s === 'CAUTION')   return 'text-status-caution'
+  return 'text-status-risk'
 }
 
 export function statusDot(s: string): string {
-  if (s === 'COMPLIANT') return 'bg-green'
-  if (s === 'CAUTION')   return 'bg-amber'
-  return 'bg-red'
+  if (s === 'COMPLIANT') return 'bg-status-compliant'
+  if (s === 'CAUTION')   return 'bg-status-caution'
+  return 'bg-status-risk'
 }

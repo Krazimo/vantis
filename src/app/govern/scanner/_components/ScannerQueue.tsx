@@ -17,16 +17,16 @@ export default function ScannerQueue({ apps, selectedId, onSelect }: Props) {
           <button
             key={a.id}
             onClick={() => onSelect(a.id)}
-            className={`w-full text-left bg-surface border rounded-sm p-4 transition-colors duration-150 ${
-              isSelected ? 'border-gold bg-gold/5' : 'border-border hover:border-gold/50'
+            className={`w-full text-left bg-card border rounded-sm p-4 transition-colors duration-150 ${
+              isSelected ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
             }`}
           >
             <div className="flex items-start justify-between gap-2 mb-2">
               <div className="flex-1 min-w-0">
-                <div className={`text-sm font-medium leading-tight truncate ${isSelected ? 'text-gold' : 'text-off-white'}`}>
+                <div className={`text-sm font-medium leading-tight truncate ${isSelected ? 'text-primary' : 'text-foreground'}`}>
                   {a.project_name}
                 </div>
-                <div className="text-gray text-xs mt-0.5 truncate">{a.developer}</div>
+                <div className="text-muted-foreground text-xs mt-0.5 truncate">{a.developer}</div>
               </div>
               <span className={`inline-flex items-center gap-1.5 text-[10px] shrink-0 ${r.textColor}`}>
                 <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${r.dotBg}`} />
@@ -34,8 +34,8 @@ export default function ScannerQueue({ apps, selectedId, onSelect }: Props) {
               </span>
             </div>
             <div className="flex items-center justify-between text-[10px]">
-              <span className="font-mono text-gray-light">{a.id}</span>
-              <span className="text-gray">Submitted {fmtDate(a.submitted_date)}</span>
+              <span className="font-mono text-muted-foreground">{a.id}</span>
+              <span className="text-muted-foreground">Submitted {fmtDate(a.submitted_date)}</span>
             </div>
           </button>
         )

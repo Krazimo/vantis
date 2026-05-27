@@ -24,20 +24,20 @@ export function getLastQPR(projectId: string): string {
 }
 
 export function statusColor(s: string) {
-  if (s === 'COMPLIANT') return 'text-green'
-  if (s === 'CAUTION')   return 'text-amber'
-  return 'text-red'
+  if (s === 'COMPLIANT') return 'text-status-compliant'
+  if (s === 'CAUTION')   return 'text-status-caution'
+  return 'text-status-risk'
 }
 export function statusDot(s: string) {
-  if (s === 'COMPLIANT') return 'bg-green'
-  if (s === 'CAUTION')   return 'bg-amber'
-  return 'bg-red'
+  if (s === 'COMPLIANT') return 'bg-status-compliant'
+  if (s === 'CAUTION')   return 'bg-status-caution'
+  return 'bg-status-risk'
 }
 export function qprClasses(status: string) {
-  if (status === 'ON_TIME') return 'text-green'
-  if (status === 'LATE')    return 'text-amber'
-  if (status === 'MISSED')  return 'text-red'
-  return 'text-gray'
+  if (status === 'ON_TIME') return 'text-status-compliant'
+  if (status === 'LATE')    return 'text-status-caution'
+  if (status === 'MISSED')  return 'text-status-risk'
+  return 'text-muted-foreground'
 }
 export function qprLabel(status: string) {
   if (status === 'ON_TIME') return 'On Time'
@@ -46,18 +46,18 @@ export function qprLabel(status: string) {
   return 'N/A'
 }
 export function certClasses(status: string) {
-  if (status === 'FULL')        return 'text-green'
-  if (status === 'PROVISIONAL') return 'text-amber'
-  if (status === 'NONE')        return 'text-red'
-  return 'text-gray'
+  if (status === 'FULL')        return 'text-status-compliant'
+  if (status === 'PROVISIONAL') return 'text-status-caution'
+  if (status === 'NONE')        return 'text-status-risk'
+  return 'text-muted-foreground'
 }
 export function riskScoreColor(score: number) {
-  if (score >= 70) return 'text-green'
-  if (score >= 40) return 'text-amber'
-  return 'text-red'
+  if (score >= 70) return 'text-status-compliant'
+  if (score >= 40) return 'text-status-caution'
+  return 'text-status-risk'
 }
 export function riskBarColor(score: number) {
-  if (score >= 70) return 'bg-green'
-  if (score >= 40) return 'bg-amber'
-  return 'bg-red'
+  if (score >= 70) return 'bg-status-compliant'
+  if (score >= 40) return 'bg-status-caution'
+  return 'bg-status-risk'
 }

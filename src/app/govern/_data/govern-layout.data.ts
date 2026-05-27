@@ -34,15 +34,15 @@ export const NAV = [
 ]
 
 export function roleTextColor(role: string): string {
-  if (role === 'Chairman')         return 'text-gold'
+  if (role === 'Chairman')         return 'text-primary'
   if (role === 'Member Technical') return 'text-blue'
-  if (role === 'Member Legal')     return 'text-red'
-  return 'text-gray-light'
+  if (role === 'Member Legal')     return 'text-status-risk'
+  return 'text-muted-foreground'
 }
 
 export function roleDotBg(role: string): string {
-  if (role === 'Chairman')         return 'bg-gold'
+  if (role === 'Chairman')         return 'bg-primary'
   if (role === 'Member Technical') return 'bg-blue'
-  if (role === 'Member Legal')     return 'bg-red'
-  return 'bg-gray-light'
+  if (role === 'Member Legal')     return 'bg-status-risk'
+  return 'bg-muted-light'
 }

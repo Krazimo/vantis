@@ -46,12 +46,12 @@ export type Tx = typeof TRANSLATIONS[Language]
 export const filterKeys: FilterType[] = ['project', 'developer', 'rera']
 
 export function statusColor(s: string) {
-  if (s === 'COMPLIANT') return 'text-green'
-  if (s === 'CAUTION')   return 'text-amber'
-  return 'text-red'
+  if (s === 'COMPLIANT') return 'text-status-compliant'
+  if (s === 'CAUTION')   return 'text-status-caution'
+  return 'text-status-risk'
 }
 export function statusDot(s: string) {
-  if (s === 'COMPLIANT') return 'bg-green'
-  if (s === 'CAUTION')   return 'bg-amber'
-  return 'bg-red'
+  if (s === 'COMPLIANT') return 'bg-status-compliant'
+  if (s === 'CAUTION')   return 'bg-status-caution'
+  return 'bg-status-risk'
 }

@@ -18,15 +18,15 @@ export default function DeveloperRiskIntelligence() {
     <div className="px-4 sm:px-6 py-6 max-w-7xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="font-syne text-2xl sm:text-3xl text-off-white">Developer Risk Intelligence</h1>
-          <p className="text-gray text-xs mt-1">Trust scores across K-RERA registered developers</p>
+          <h1 className="font-syne text-2xl sm:text-3xl text-foreground">Developer Risk Intelligence</h1>
+          <p className="text-muted-foreground text-xs mt-1">Trust scores across K-RERA registered developers</p>
         </div>
       </div>
 
       <div className="relative mb-6 max-w-sm">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
         <input type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search developer..."
-          className="w-full bg-surface border border-border rounded-sm pl-9 pr-3 py-2 text-sm text-off-white placeholder:text-gray/50 focus:outline-none focus:border-gold/50"
+          className="w-full bg-card border border-border rounded-sm pl-9 pr-3 py-2 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/50"
         />
       </div>
 
@@ -40,7 +40,7 @@ export default function DeveloperRiskIntelligence() {
           />
         ))}
         {filtered.length === 0 && (
-          <div className="col-span-2 text-center py-12 text-gray text-sm">No developers match &ldquo;{search}&rdquo;</div>
+          <div className="col-span-2 text-center py-12 text-muted-foreground text-sm">No developers match &ldquo;{search}&rdquo;</div>
         )}
       </div>
     </div>

@@ -30,24 +30,24 @@ export default function ComplaintManagement() {
 
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="font-syne text-2xl sm:text-3xl text-off-white">Complaint Management</h1>
-          <p className="text-gray text-xs mt-1">Track, schedule hearings, and record orders</p>
+          <h1 className="font-syne text-2xl sm:text-3xl text-foreground">Complaint Management</h1>
+          <p className="text-muted-foreground text-xs mt-1">Track, schedule hearings, and record orders</p>
         </div>
-        <FileText className="w-6 h-6 text-gray hidden sm:block" />
+        <FileText className="w-6 h-6 text-muted-foreground hidden sm:block" />
       </div>
 
       <div className="grid grid-cols-3 gap-3 mb-6">
-        <div className="bg-surface border border-border rounded-sm p-4 text-center">
-          <div className="font-syne text-3xl font-bold text-off-white">17</div>
-          <div className="text-gray text-xs mt-1">Total Complaints</div>
+        <div className="bg-card border border-border rounded-sm p-4 text-center">
+          <div className="font-syne text-3xl font-bold text-foreground">17</div>
+          <div className="text-muted-foreground text-xs mt-1">Total Complaints</div>
         </div>
-        <div className="bg-surface border border-amber/20 rounded-sm p-4 text-center">
-          <div className="font-syne text-3xl font-bold text-amber">14</div>
-          <div className="text-gray text-xs mt-1">Pending</div>
+        <div className="bg-card border border-status-caution/20 rounded-sm p-4 text-center">
+          <div className="font-syne text-3xl font-bold text-status-caution">14</div>
+          <div className="text-muted-foreground text-xs mt-1">Pending</div>
         </div>
-        <div className="bg-surface border border-green/20 rounded-sm p-4 text-center">
-          <div className="font-syne text-3xl font-bold text-green">3</div>
-          <div className="text-gray text-xs mt-1">Resolved</div>
+        <div className="bg-card border border-status-compliant/20 rounded-sm p-4 text-center">
+          <div className="font-syne text-3xl font-bold text-status-compliant">3</div>
+          <div className="text-muted-foreground text-xs mt-1">Resolved</div>
         </div>
       </div>
 

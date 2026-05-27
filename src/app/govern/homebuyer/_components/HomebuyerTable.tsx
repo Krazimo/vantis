@@ -75,7 +75,7 @@ const columns: Column<Row>[] = [
 function mobileCard(r: Row) {
   const tc = tierConfig(r.tier)
   return (
-    <div className={`border rounded-sm p-4 ${r.tier === 'CRITICAL' ? 'border-red/30 bg-red/5' : r.tier === 'WATCH' ? 'border-amber/30 bg-amber/5' : 'border-border bg-card'}`}>
+    <div className={`border rounded-sm p-4 ${r.tier === 'CRITICAL' ? 'border-status-risk/30 bg-status-risk/5' : r.tier === 'WATCH' ? 'border-status-caution/30 bg-status-caution/5' : 'border-border bg-card'}`}>
       <div className="flex items-start justify-between gap-3 mb-3">
         <div>
           <div className="text-foreground text-sm font-medium">{r.project_name}</div>

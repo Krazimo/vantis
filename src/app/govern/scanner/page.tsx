@@ -39,10 +39,10 @@ export default function SubmissionScanner() {
     <div className="px-4 sm:px-6 py-6 max-w-7xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="font-syne text-2xl sm:text-3xl text-off-white">Submission Scanner</h1>
-          <p className="text-gray text-xs mt-1">Pre-assessment queue · 5-database verification</p>
+          <h1 className="font-syne text-2xl sm:text-3xl text-foreground">Submission Scanner</h1>
+          <p className="text-muted-foreground text-xs mt-1">Pre-assessment queue · 5-database verification</p>
         </div>
-        <div className="hidden sm:flex items-center gap-2 text-gray text-xs">
+        <div className="hidden sm:flex items-center gap-2 text-muted-foreground text-xs">
           <ScanLine className="w-4 h-4" />
           {APPLICATIONS.length} pending
         </div>
@@ -50,11 +50,11 @@ export default function SubmissionScanner() {
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
         <div className="lg:col-span-2">
-          <div className="text-[10px] text-gray uppercase tracking-widest font-semibold mb-3">Pending Queue</div>
+          <div className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold mb-3">Pending Queue</div>
           <ScannerQueue apps={APPLICATIONS} selectedId={selectedId} onSelect={setSelectedId} />
         </div>
         <div className="lg:col-span-3">
-          <div className="text-[10px] text-gray uppercase tracking-widest font-semibold mb-3">Pre-Assessment Report</div>
+          <div className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold mb-3">Pre-Assessment Report</div>
           <AssessmentCard
             app={app}
             failCount={failCount}

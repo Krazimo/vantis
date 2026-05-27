@@ -10,14 +10,14 @@ export interface Submission {
 }
 
 export function statusColor(s: string) {
-  if (s === 'COMPLIANT') return 'text-green'
-  if (s === 'CAUTION')   return 'text-amber'
-  return 'text-red'
+  if (s === 'COMPLIANT') return 'text-status-compliant'
+  if (s === 'CAUTION')   return 'text-status-caution'
+  return 'text-status-risk'
 }
 export function statusDot(s: string) {
-  if (s === 'COMPLIANT') return 'bg-green'
-  if (s === 'CAUTION')   return 'bg-amber'
-  return 'bg-red'
+  if (s === 'COMPLIANT') return 'bg-status-compliant'
+  if (s === 'CAUTION')   return 'bg-status-caution'
+  return 'bg-status-risk'
 }
 
 export function statusSentence(project: Project) {
@@ -32,10 +32,10 @@ export function qprKey(quarter: string): string {
   return quarter.toLowerCase().replace(' ', '_')
 }
 export function dotClasses(status: string) {
-  if (status === 'ON_TIME') return 'bg-green border-green shadow-[0_0_8px_rgba(46,204,113,0.5)]'
-  if (status === 'LATE')    return 'bg-amber border-amber shadow-[0_0_8px_rgba(243,156,18,0.5)]'
-  if (status === 'MISSED')  return 'bg-red border-red shadow-[0_0_8px_rgba(231,76,60,0.5)]'
-  return 'bg-gray/30 border-gray/30'
+  if (status === 'ON_TIME') return 'bg-status-compliant border-status-compliant shadow-[0_0_8px_rgba(46,204,113,0.5)]'
+  if (status === 'LATE')    return 'bg-status-caution border-status-caution shadow-[0_0_8px_rgba(243,156,18,0.5)]'
+  if (status === 'MISSED')  return 'bg-status-risk border-status-risk shadow-[0_0_8px_rgba(231,76,60,0.5)]'
+  return 'bg-muted/30 border-gray/30'
 }
 export function dotLabel(status: string) {
   if (status === 'ON_TIME') return 'Filed'

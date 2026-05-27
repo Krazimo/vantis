@@ -10,7 +10,7 @@ interface Props {
 export default function ProjectLitigation({ litigation }: Props) {
   if (litigation.length === 0) {
     return (
-      <div className="flex items-center gap-2 text-green text-sm">
+      <div className="flex items-center gap-2 text-status-compliant text-sm">
         <CheckCircle2 className="w-4 h-4" />
         <span>No active court cases against this project.</span>
       </div>
@@ -19,18 +19,18 @@ export default function ProjectLitigation({ litigation }: Props) {
   return (
     <div className="space-y-3">
       {litigation.map((lit, i) => (
-        <div key={i} className="bg-surface border border-red/30 rounded-sm p-4">
+        <div key={i} className="bg-card border border-status-risk/30 rounded-sm p-4">
           <div className="flex items-start justify-between gap-3">
             <div className="flex items-start gap-2.5">
-              <Scale className="w-4 h-4 text-red shrink-0 mt-0.5" />
+              <Scale className="w-4 h-4 text-status-risk shrink-0 mt-0.5" />
               <div>
-                <div className="text-off-white text-sm font-medium">{lit.type} Case</div>
-                <div className="text-gray text-xs mt-0.5">{lit.court}</div>
-                <div className="font-mono text-gray-light text-xs mt-1">Filed: {formatDate(lit.filed)}</div>
+                <div className="text-foreground text-sm font-medium">{lit.type} Case</div>
+                <div className="text-muted-foreground text-xs mt-0.5">{lit.court}</div>
+                <div className="font-mono text-muted-foreground text-xs mt-1">Filed: {formatDate(lit.filed)}</div>
               </div>
             </div>
-            <span className="inline-flex items-center gap-1.5 text-xs text-red shrink-0">
-              <span className="w-1.5 h-1.5 rounded-full bg-red shrink-0" />
+            <span className="inline-flex items-center gap-1.5 text-xs text-status-risk shrink-0">
+              <span className="w-1.5 h-1.5 rounded-full bg-status-risk shrink-0" />
               {lit.status}
             </span>
           </div>

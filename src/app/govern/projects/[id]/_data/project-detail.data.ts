@@ -9,9 +9,9 @@ export const ESCROW: Record<string, EscrowData> = {
 }
 
 export const ESCROW_STATUS_CLASS: Record<string, string> = {
-  HEALTHY:  'text-green bg-green/10 border-green/30',
-  CAUTION:  'text-amber bg-amber/10 border-amber/30',
-  CRITICAL: 'text-red bg-red/10 border-red/30',
+  HEALTHY:  'text-status-compliant bg-status-compliant/10 border-status-compliant/30',
+  CAUTION:  'text-status-caution bg-status-caution/10 border-status-caution/30',
+  CRITICAL: 'text-status-risk bg-status-risk/10 border-status-risk/30',
 }
 
 export const TABS = [

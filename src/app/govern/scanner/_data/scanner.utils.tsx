@@ -1,27 +1,27 @@
 import { CheckCircle, AlertTriangle, XCircle } from 'lucide-react'
 
 export function riskConfig(risk: string) {
-  if (risk === 'HIGH')   return { textColor: 'text-red',   dotBg: 'bg-red',   label: 'High Risk' }
-  if (risk === 'MEDIUM') return { textColor: 'text-amber', dotBg: 'bg-amber', label: 'Medium Risk' }
-  return                        { textColor: 'text-green', dotBg: 'bg-green', label: 'Low Risk' }
+  if (risk === 'HIGH')   return { textColor: 'text-status-risk',   dotBg: 'bg-status-risk',   label: 'High Risk' }
+  if (risk === 'MEDIUM') return { textColor: 'text-status-caution', dotBg: 'bg-status-caution', label: 'Medium Risk' }
+  return                        { textColor: 'text-status-compliant', dotBg: 'bg-status-compliant', label: 'Low Risk' }
 }
 
 export function resultIcon(result: string) {
-  if (result === 'PASS')    return <CheckCircle className="w-4 h-4 text-green shrink-0" />
-  if (result === 'WARNING') return <AlertTriangle className="w-4 h-4 text-amber shrink-0" />
-  return                           <XCircle className="w-4 h-4 text-red shrink-0" />
+  if (result === 'PASS')    return <CheckCircle className="w-4 h-4 text-status-compliant shrink-0" />
+  if (result === 'WARNING') return <AlertTriangle className="w-4 h-4 text-status-caution shrink-0" />
+  return                           <XCircle className="w-4 h-4 text-status-risk shrink-0" />
 }
 
 export function resultColor(result: string): string {
-  if (result === 'PASS')    return 'text-green'
-  if (result === 'WARNING') return 'text-amber'
-  return 'text-red'
+  if (result === 'PASS')    return 'text-status-compliant'
+  if (result === 'WARNING') return 'text-status-caution'
+  return 'text-status-risk'
 }
 
 export function resultBg(result: string): string {
-  if (result === 'PASS')    return 'bg-green/5 border-green/20'
-  if (result === 'WARNING') return 'bg-amber/5 border-amber/20'
-  return 'bg-red/5 border-red/20'
+  if (result === 'PASS')    return 'bg-status-compliant/5 border-status-compliant/20'
+  if (result === 'WARNING') return 'bg-status-caution/5 border-status-caution/20'
+  return 'bg-status-risk/5 border-status-risk/20'
 }
 
 export function fmtDate(d: string): string {
@@ -34,13 +34,13 @@ export function fmtTimestamp(d: Date): string {
 }
 
 export function riskScoreColor(s: number): string {
-  if (s >= 70) return 'text-green'
-  if (s >= 40) return 'text-amber'
-  return 'text-red'
+  if (s >= 70) return 'text-status-compliant'
+  if (s >= 40) return 'text-status-caution'
+  return 'text-status-risk'
 }
 
 export function riskBarColor(s: number): string {
-  if (s >= 70) return 'bg-green'
-  if (s >= 40) return 'bg-amber'
-  return 'bg-red'
+  if (s >= 70) return 'bg-status-compliant'
+  if (s >= 40) return 'bg-status-caution'
+  return 'bg-status-risk'
 }

@@ -17,13 +17,13 @@ export default function LitigationWatchlist() {
     <div className="px-4 sm:px-6 py-6 max-w-5xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="font-syne text-2xl sm:text-3xl text-off-white">Litigation Watchlist</h1>
-          <p className="text-gray text-xs mt-1">Active court cases · eCourts integration</p>
+          <h1 className="font-syne text-2xl sm:text-3xl text-foreground">Litigation Watchlist</h1>
+          <p className="text-muted-foreground text-xs mt-1">Active court cases · eCourts integration</p>
         </div>
         <div className="flex items-center gap-2">
-          <Scale className="w-4 h-4 text-red" />
-          <span className="font-mono text-red text-sm font-bold">{ALL_CASES.length}</span>
-          <span className="text-gray text-xs">active alerts</span>
+          <Scale className="w-4 h-4 text-status-risk" />
+          <span className="font-mono text-status-risk text-sm font-bold">{ALL_CASES.length}</span>
+          <span className="text-muted-foreground text-xs">active alerts</span>
         </div>
       </div>
 
@@ -35,10 +35,10 @@ export default function LitigationWatchlist() {
       />
 
       {filtered.length === 0 ? (
-        <div className="bg-surface border border-border rounded-sm p-12 text-center">
-          <Scale className="w-8 h-8 text-gray mx-auto mb-3" />
-          <div className="text-off-white text-sm font-medium mb-1">No Cases Found</div>
-          <div className="text-gray text-xs">No litigation records match this filter.</div>
+        <div className="bg-card border border-border rounded-sm p-12 text-center">
+          <Scale className="w-8 h-8 text-muted-foreground mx-auto mb-3" />
+          <div className="text-foreground text-sm font-medium mb-1">No Cases Found</div>
+          <div className="text-muted-foreground text-xs">No litigation records match this filter.</div>
         </div>
       ) : (
         <div className="space-y-3">

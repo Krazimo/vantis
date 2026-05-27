@@ -2,9 +2,9 @@ import { CheckCircle, AlertTriangle, XCircle } from 'lucide-react'
 import { type Verification, resultColor, resultBg } from '../_data/certificate.data'
 
 function ResultIcon({ result }: { result: string }) {
-  if (result === 'PASS')    return <CheckCircle className="w-5 h-5 text-green shrink-0 mt-0.5" />
-  if (result === 'FLAGGED') return <AlertTriangle className="w-5 h-5 text-amber shrink-0 mt-0.5" />
-  return <XCircle className="w-5 h-5 text-red shrink-0 mt-0.5" />
+  if (result === 'PASS')    return <CheckCircle className="w-5 h-5 text-status-compliant shrink-0 mt-0.5" />
+  if (result === 'FLAGGED') return <AlertTriangle className="w-5 h-5 text-status-caution shrink-0 mt-0.5" />
+  return <XCircle className="w-5 h-5 text-status-risk shrink-0 mt-0.5" />
 }
 
 interface Props {

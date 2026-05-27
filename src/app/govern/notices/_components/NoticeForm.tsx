@@ -19,14 +19,14 @@ export default function NoticeForm({ violationType, projectId, lang, loading, on
 
   return (
     <div className="space-y-4">
-      <div className="text-[10px] text-gray uppercase tracking-widest font-semibold mb-2">Notice Configuration</div>
+      <div className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold mb-2">Notice Configuration</div>
 
       <div>
-        <label className="block text-xs text-gray mb-1.5">Violation Type</label>
+        <label className="block text-xs text-muted-foreground mb-1.5">Violation Type</label>
         <select
           value={violationType}
           onChange={e => onViolationChange(e.target.value as ViolationValue | '')}
-          className="w-full bg-surface border border-border rounded-sm px-3 py-2.5 text-sm text-off-white focus:outline-none focus:border-gold transition-colors duration-150 appearance-none cursor-pointer"
+          className="w-full bg-card border border-border rounded-sm px-3 py-2.5 text-sm text-foreground focus:outline-none focus:border-primary transition-colors duration-150 appearance-none cursor-pointer"
         >
           <option value="">Select violation type…</option>
           {VIOLATION_TYPES.map(v => (
@@ -37,19 +37,19 @@ export default function NoticeForm({ violationType, projectId, lang, loading, on
 
       {violationType && (
         <div>
-          <label className="block text-xs text-gray mb-1.5">Applicable RERA Section</label>
-          <div className="w-full bg-surface2 border border-border rounded-sm px-3 py-2.5 text-sm font-mono text-gold">
+          <label className="block text-xs text-muted-foreground mb-1.5">Applicable RERA Section</label>
+          <div className="w-full bg-muted border border-border rounded-sm px-3 py-2.5 text-sm font-mono text-primary">
             {selectedSection} — Real Estate (Regulation and Development) Act, 2016
           </div>
         </div>
       )}
 
       <div>
-        <label className="block text-xs text-gray mb-1.5">Project</label>
+        <label className="block text-xs text-muted-foreground mb-1.5">Project</label>
         <select
           value={projectId}
           onChange={e => onProjectChange(e.target.value)}
-          className="w-full bg-surface border border-border rounded-sm px-3 py-2.5 text-sm text-off-white focus:outline-none focus:border-gold transition-colors duration-150 appearance-none cursor-pointer"
+          className="w-full bg-card border border-border rounded-sm px-3 py-2.5 text-sm text-foreground focus:outline-none focus:border-primary transition-colors duration-150 appearance-none cursor-pointer"
         >
           <option value="">Select project…</option>
           {PROJECTS.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
@@ -57,21 +57,21 @@ export default function NoticeForm({ violationType, projectId, lang, loading, on
       </div>
 
       {selectedProject && (
-        <div className="bg-surface2 border border-border rounded-sm p-3 space-y-2">
-          <div className="text-[10px] text-gray uppercase tracking-widest font-semibold">Auto-populated Developer Details</div>
+        <div className="bg-muted border border-border rounded-sm p-3 space-y-2">
+          <div className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold">Auto-populated Developer Details</div>
           <div className="grid grid-cols-1 gap-1.5 text-xs">
-            <div className="flex items-start gap-2"><span className="text-gray shrink-0 w-20">Developer:</span><span className="text-off-white">{selectedProject.developer_name}</span></div>
-            <div className="flex items-start gap-2"><span className="text-gray shrink-0 w-20">Location:</span><span className="text-off-white">{selectedProject.location}</span></div>
-            <div className="flex items-start gap-2"><span className="text-gray shrink-0 w-20">RERA No.:</span><span className="font-mono text-gold text-[10px] break-all">{selectedProject.rera}</span></div>
+            <div className="flex items-start gap-2"><span className="text-muted-foreground shrink-0 w-20">Developer:</span><span className="text-foreground">{selectedProject.developer_name}</span></div>
+            <div className="flex items-start gap-2"><span className="text-muted-foreground shrink-0 w-20">Location:</span><span className="text-foreground">{selectedProject.location}</span></div>
+            <div className="flex items-start gap-2"><span className="text-muted-foreground shrink-0 w-20">RERA No.:</span><span className="font-mono text-primary text-[10px] break-all">{selectedProject.rera}</span></div>
           </div>
         </div>
       )}
 
       <div>
-        <label className="block text-xs text-gray mb-1.5">Notice Language</label>
+        <label className="block text-xs text-muted-foreground mb-1.5">Notice Language</label>
         <div className="flex gap-2">
           {(['en', 'kn'] as const).map(l => (
-            <button key={l} onClick={() => onLangChange(l)} className={`flex-1 py-2 text-sm font-medium rounded-sm border transition-colors duration-150 ${lang === l ? 'bg-gold/15 border-gold text-gold' : 'bg-surface border-border text-gray hover:border-gold/50 hover:text-gold-light'}`}>
+            <button key={l} onClick={() => onLangChange(l)} className={`flex-1 py-2 text-sm font-medium rounded-sm border transition-colors duration-150 ${lang === l ? 'bg-primary/15 border-primary text-primary' : 'bg-card border-border text-muted-foreground hover:border-primary/50 hover:text-primary/80'}`}>
               {l === 'en' ? 'English' : 'ಕನ್ನಡ'}
             </button>
           ))}
@@ -81,7 +81,7 @@ export default function NoticeForm({ violationType, projectId, lang, loading, on
       <button
         onClick={onGenerate}
         disabled={!canGenerate || loading}
-        className={`w-full py-3 text-sm font-bold rounded-sm transition-colors duration-150 ${canGenerate && !loading ? 'bg-gold text-background hover:bg-gold-light' : 'bg-surface2 border border-border text-gray cursor-not-allowed'}`}
+        className={`w-full py-3 text-sm font-bold rounded-sm transition-colors duration-150 ${canGenerate && !loading ? 'bg-primary text-background hover:bg-primary/80' : 'bg-muted border border-border text-muted-foreground cursor-not-allowed'}`}
       >
         {loading ? (
           <span className="flex items-center justify-center gap-1.5">

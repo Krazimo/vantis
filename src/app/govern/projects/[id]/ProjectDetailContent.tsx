@@ -27,9 +27,9 @@ export default function ProjectDetailContent({ params }: { params: { id: string 
     return (
       <div className="min-h-screen flex items-center justify-center px-4">
         <div className="text-center">
-          <XCircle className="w-10 h-10 text-gray mx-auto mb-3" />
-          <div className="font-syne text-xl text-off-white mb-2">Project Not Found</div>
-          <Link href="/govern/projects" className="text-gold text-sm hover:text-gold-light transition-colors duration-150">
+          <XCircle className="w-10 h-10 text-muted-foreground mx-auto mb-3" />
+          <div className="font-syne text-xl text-foreground mb-2">Project Not Found</div>
+          <Link href="/govern/projects" className="text-primary text-sm hover:text-primary/80 transition-colors duration-150">
             ← Back to Registry
           </Link>
         </div>
@@ -54,18 +54,18 @@ export default function ProjectDetailContent({ params }: { params: { id: string 
     <div className="px-4 sm:px-6 py-6 max-w-5xl mx-auto">
       <Link
         href="/govern/projects"
-        className="inline-flex items-center gap-1.5 text-xs text-gray hover:text-gold transition-colors duration-150 mb-5"
+        className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors duration-150 mb-5"
       >
         <ArrowLeft className="w-3.5 h-3.5" />
         Back to Registry
       </Link>
 
-      <div className="bg-surface border border-border rounded-sm p-5 mb-5">
+      <div className="bg-card border border-border rounded-sm p-5 mb-5">
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
           <div>
-            <h1 className="font-syne text-xl sm:text-2xl text-off-white font-bold leading-tight mb-1">{project.name}</h1>
-            <div className="font-mono text-gold text-xs mb-1.5">{project.rera}</div>
-            <div className="text-gray text-xs">{project.developer_name} · {project.location}</div>
+            <h1 className="font-syne text-xl sm:text-2xl text-foreground font-bold leading-tight mb-1">{project.name}</h1>
+            <div className="font-mono text-primary text-xs mb-1.5">{project.rera}</div>
+            <div className="text-muted-foreground text-xs">{project.developer_name} · {project.location}</div>
           </div>
           <div className="flex items-center gap-3 shrink-0">
             <span className={`inline-flex items-center gap-1.5 text-xs ${statusColor(project.status)}`}>
@@ -74,7 +74,7 @@ export default function ProjectDetailContent({ params }: { params: { id: string 
             </span>
             <div className="text-center">
               <div className={`font-syne text-3xl font-bold leading-none ${riskColor(project.risk_score)}`}>{project.risk_score}</div>
-              <div className="text-gray text-[10px] mt-0.5">Risk score</div>
+              <div className="text-muted-foreground text-[10px] mt-0.5">Risk score</div>
             </div>
           </div>
         </div>
@@ -89,7 +89,7 @@ export default function ProjectDetailContent({ params }: { params: { id: string 
             key={id}
             onClick={() => setActiveTab(id)}
             className={`flex items-center gap-1.5 px-4 py-2.5 text-xs font-medium whitespace-nowrap border-b-2 transition-colors duration-150 -mb-px ${
-              activeTab === id ? 'border-gold text-gold' : 'border-transparent text-gray hover:text-gold-light'
+              activeTab === id ? 'border-primary text-primary' : 'border-transparent text-muted-foreground hover:text-primary/80'
             }`}
           >
             <Icon className="w-3.5 h-3.5 shrink-0" />
