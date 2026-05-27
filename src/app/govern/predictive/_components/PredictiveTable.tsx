@@ -68,7 +68,7 @@ const columns: Column<Row>[] = [
   {
     key: 'nav',
     header: '',
-    render: r => <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors duration-150" />,
+    render: () => <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors duration-150" />,
   },
 ]
 

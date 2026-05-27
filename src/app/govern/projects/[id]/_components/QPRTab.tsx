@@ -1,4 +1,4 @@
-import type { Project, QPREntry, QPRRow } from '../_data/project-detail.types'
+import type { Project, QPRRow } from '../_data/project-detail.types'
 import {
   getDueDate, daysLate, fmtDate, fmtInr, qprRowClass, qprStatusEl,
 } from '../_data/project-detail.utils'

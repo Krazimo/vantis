@@ -6,6 +6,7 @@ import { ALL_ROWS, CURRENT_STATS, FILTER_TABS, QUARTERS, type FilterTab } from '
 import { penalty, fmtInr } from './_data/qpr-tracker.utils'
 import QPRTable from './_components/QPRTable'
 import BatchNoticeModal from './_components/BatchNoticeModal'
+import { StatCard } from '@/features/govern/components/StatCard'
 
 export default function QPRTracker() {
   const [activeFilter, setActiveFilter] = useState<FilterTab>('ALL')
@@ -45,21 +46,9 @@ export default function QPRTracker() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
-        <div className="bg-card border border-border rounded-sm p-4 text-center">
-          <div className="text-3xl font-bold text-foreground">{CURRENT_STATS.dueCount}</div>
-          <div className="text-muted-foreground text-xs mt-1">Projects Due This Quarter</div>
-          <div className="text-[10px] text-muted-foreground mt-0.5">Q1 2026</div>
-        </div>
-        <div className="bg-card border border-status-compliant/20 rounded-sm p-4 text-center">
-          <div className="text-3xl font-bold text-status-compliant">{CURRENT_STATS.onTimeCount}</div>
-          <div className="text-muted-foreground text-xs mt-1">Filed On Time</div>
-          <div className="text-[10px] text-status-compliant/60 mt-0.5">Q1 2026</div>
-        </div>
-        <div className="bg-card border border-status-risk/20 rounded-sm p-4 text-center">
-          <div className="text-3xl font-bold text-status-risk">{CURRENT_STATS.defaultingCount}</div>
-          <div className="text-muted-foreground text-xs mt-1">Defaulting</div>
-          <div className="text-[10px] text-status-risk/60 mt-0.5">Q1 2026</div>
-        </div>
+        <StatCard label="Projects Due This Quarter" value={String(CURRENT_STATS.dueCount)} sub="Q1 2026" />
+        <StatCard label="Filed On Time" value={String(CURRENT_STATS.onTimeCount)} sub="Q1 2026" valueColor="text-status-compliant" />
+        <StatCard label="Defaulting" value={String(CURRENT_STATS.defaultingCount)} sub="Q1 2026" valueColor="text-status-risk" />
       </div>
 
       {totalPenalty > 0 && (
