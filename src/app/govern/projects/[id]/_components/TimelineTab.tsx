@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { TrendingDown, ChevronRight } from 'lucide-react'
 
-const RiskTimeline = dynamic(() => import('@/components/govern/RiskTimeline'), { ssr: false })
+const RiskTimeline = dynamic(() => import('@/features/govern/components/RiskTimeline'), { ssr: false })
 
 interface Props { projectId: string }
 

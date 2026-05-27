@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ArrowLeft, MapPin, Building2, Users, IndianRupee, Calendar, AlertTriangle, CheckCircle2 } from 'lucide-react'
-import CertificateCard from '@/components/public/CertificateCard'
+import CertificateCard from '@/features/public/components/CertificateCard'
 import projects from '@/data/projects.json'
 import qprData from '@/data/qpr.json'
 import complaintsData from '@/data/complaints.json'

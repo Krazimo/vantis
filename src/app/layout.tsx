@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Syne, DM_Sans, DM_Mono } from 'next/font/google'
-import VantisIntelligence from '@/components/shared/VantisIntelligence'
+import VantisIntelligence from '@/features/shared/components/VantisIntelligence'
 import Providers from './providers'
 import './globals.css'
 

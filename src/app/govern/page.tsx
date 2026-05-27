@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { AlertTriangle, BarChart2, Building2, Clock, Scale, Users } from 'lucide-react'
-import KarnatakaMap from '@/components/shared/KarnatakaMap'
+import KarnatakaMap from '@/features/shared/components/KarnatakaMap'
 import projectsData from '@/data/projects.json'
 import litigationData from '@/data/litigation.json'
 import qprData from '@/data/qpr.json'
