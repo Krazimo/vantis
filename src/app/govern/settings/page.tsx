@@ -1,36 +1,21 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { User, Bell } from 'lucide-react'
 import { ROLE_DISPLAY, NAME_MAP, NOTIF_ITEMS } from './_data/settings.data'
 import DataFreshnessSection from './_components/DataFreshnessSection'
 import DemoModeSection from './_components/DemoModeSection'
-
-interface OfficerProfile { email: string; role: string; name: string }
+import { useOfficer } from '@/features/govern/hooks/useOfficer'
+import { useDemoMode } from '@/features/govern/hooks/useDemoMode'
 
 export default function Settings() {
-  const [mounted, setMounted] = useState(false)
-  const [officer, setOfficer] = useState<OfficerProfile | null>(null)
-  const [demoMode, setDemoMode] = useState(false)
+  const { mounted, officer: rawOfficer } = useOfficer()
+  const { demoMode, toggleDemoMode } = useDemoMode()
   const [notif, setNotif] = useState({ priority1: true, qprDefaults: true, newLitigation: false, weeklyReport: true })
 
-  useEffect(() => {
-    setMounted(true)
-    try {
-      const stored = localStorage.getItem('vantis_officer')
-      if (stored) {
-        const parsed = JSON.parse(stored) as { email: string; role: string }
-        setOfficer({ email: parsed.email, role: parsed.role, name: NAME_MAP[parsed.email] ?? parsed.email })
-      }
-      if (localStorage.getItem('vantis_demo_mode') === 'true') setDemoMode(true)
-    } catch (error) { console.warn('vantis localStorage read unavailable:', error) }
-  }, [])
-
-  function toggleDemoMode() {
-    const next = !demoMode
-    setDemoMode(next)
-    try { localStorage.setItem('vantis_demo_mode', String(next)) } catch (error) { console.warn('vantis_demo_mode localStorage write unavailable:', error) }
-  }
+  const officer = rawOfficer
+    ? { email: rawOfficer.email, role: rawOfficer.role, name: NAME_MAP[rawOfficer.email] ?? rawOfficer.name }
+    : null
 
   if (!mounted) return <div className="min-h-screen bg-background" />
 

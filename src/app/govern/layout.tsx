@@ -1,48 +1,26 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Shield, Menu } from 'lucide-react'
-import { roleTextColor, roleDotBg, type Officer } from './_data/govern-layout.data'
+import { roleTextColor, roleDotBg } from './_data/govern-layout.data'
 import SidebarNav from './_components/SidebarNav'
 import LoginScreen from './_components/LoginScreen'
+import { useOfficer } from '@/features/govern/hooks/useOfficer'
+import { useDemoMode } from '@/features/govern/hooks/useDemoMode'
 
 export default function GovernLayout({ children }: { children: React.ReactNode }) {
-  const [mounted, setMounted] = useState(false)
-  const [officer, setOfficer] = useState<Officer | null>(null)
+  const { mounted, officer, saveOfficer, clearOfficer } = useOfficer()
+  const { demoMode } = useDemoMode()
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [demoMode, setDemoMode] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-    try {
-      const stored = localStorage.getItem('vantis_officer')
-      if (stored) setOfficer(JSON.parse(stored))
-      if (localStorage.getItem('vantis_demo_mode') === 'true') setDemoMode(true)
-    } catch (error) { console.warn('vantis localStorage read unavailable:', error) }
-
-    function handleKey(e: KeyboardEvent) {
-      if (e.ctrlKey && e.shiftKey && e.key === 'D') {
-        e.preventDefault()
-        setDemoMode(prev => {
-          const next = !prev
-          try { localStorage.setItem('vantis_demo_mode', String(next)) } catch (error) { console.warn('vantis_demo_mode localStorage write unavailable:', error) }
-          return next
-        })
-      }
-    }
-    document.addEventListener('keydown', handleKey)
-    return () => document.removeEventListener('keydown', handleKey)
-  }, [])
 
   if (!mounted) return <div className="min-h-screen bg-background" />
 
   if (!officer) {
-    return <LoginScreen onLogin={o => { localStorage.setItem('vantis_officer', JSON.stringify(o)); setOfficer(o) }} />
+    return <LoginScreen onLogin={saveOfficer} />
   }
 
   function handleLogout() {
-    localStorage.removeItem('vantis_officer')
-    setOfficer(null)
+    clearOfficer()
   }
 
   return (
