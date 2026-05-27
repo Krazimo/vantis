@@ -14,7 +14,7 @@ export default function DeveloperCard({ dev, expanded, onToggle }: Props) {
       <div className="p-5">
         <div className="flex items-start justify-between gap-4 mb-4">
           <div>
-            <h2 className="font-syne text-base font-semibold text-foreground mb-0.5">{dev.name}</h2>
+            <h2 className="text-base font-semibold text-foreground mb-0.5">{dev.name}</h2>
             <div className="flex flex-wrap gap-1.5">
               {dev.projects.map(p => (
                 <span key={p.id} className={`inline-flex items-center gap-1.5 text-[10px] ${statusColor(p.status)}`}>
@@ -25,7 +25,7 @@ export default function DeveloperCard({ dev, expanded, onToggle }: Props) {
             </div>
           </div>
           <div className="text-right shrink-0">
-            <div className={`font-syne text-5xl font-bold leading-none ${scoreColor(dev.score)}`}>{dev.score}</div>
+            <div className={`text-5xl font-bold leading-none ${scoreColor(dev.score)}`}>{dev.score}</div>
             <div className="text-muted-foreground text-[10px] mt-1 uppercase tracking-widest">Trust Score</div>
           </div>
         </div>

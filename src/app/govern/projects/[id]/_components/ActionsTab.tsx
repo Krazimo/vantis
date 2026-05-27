@@ -74,7 +74,7 @@ export default function ActionsTab({ project }: Props) {
       {inspectionModal && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 px-4" onClick={() => setInspectionModal(false)}>
           <div className="bg-card border border-border rounded-sm p-6 max-w-sm w-full" onClick={e => e.stopPropagation()}>
-            <div className="font-syne text-foreground text-base mb-2">Flag for Inspection?</div>
+            <div className="text-foreground text-base mb-2">Flag for Inspection?</div>
             <div className="text-muted-foreground text-sm mb-4 leading-relaxed">
               An inspection request will be logged for <strong className="text-foreground">{project.name}</strong> and the assigned field officer will be notified.
             </div>
@@ -89,7 +89,7 @@ export default function ActionsTab({ project }: Props) {
       {rrcModal && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 px-4" onClick={() => setRrcModal(false)}>
           <div className="bg-card border border-border rounded-sm p-6 max-w-sm w-full" onClick={e => e.stopPropagation()}>
-            <div className="font-syne text-foreground text-base mb-2">Initiate RRC?</div>
+            <div className="text-foreground text-base mb-2">Initiate RRC?</div>
             <div className="text-muted-foreground text-sm mb-4 leading-relaxed">
               This will begin formal Recovery Proceedings against <strong className="text-foreground">{project.developer_name}</strong> under RERA. This action is recorded and cannot be undone.
             </div>

@@ -56,7 +56,7 @@ export default function OverviewTab({ project, developer, qprRows }: Props) {
       <div className="bg-muted border border-border rounded-sm p-4">
         <div className="flex items-center justify-between mb-2">
           <span className="text-muted-foreground text-xs font-semibold uppercase tracking-wide">Construction Completion</span>
-          <span className={`font-mono text-sm font-bold ${completionPct !== null ? 'text-primary' : 'text-status-risk'}`}>
+          <span className={`text-sm font-bold ${completionPct !== null ? 'text-primary' : 'text-status-risk'}`}>
             {completionPct !== null ? `${completionPct}%` : 'Unknown'}
           </span>
         </div>
@@ -93,7 +93,7 @@ export default function OverviewTab({ project, developer, qprRows }: Props) {
                 <div className="text-muted-foreground text-[10px] mt-0.5">Active</div>
               </div>
               <div>
-                <div className={`font-mono text-base font-bold ${riskColor(developer.trust_score)}`}>{developer.trust_score}</div>
+                <div className={`text-base font-bold ${riskColor(developer.trust_score)}`}>{developer.trust_score}</div>
                 <div className="text-muted-foreground text-[10px] mt-0.5">Trust score</div>
               </div>
             </div>
@@ -112,7 +112,7 @@ export default function OverviewTab({ project, developer, qprRows }: Props) {
           { label: 'Total',    value: project.complaints_pending + project.complaints_resolved, color: 'text-foreground' },
         ].map(({ label, value, color }) => (
           <div key={label} className="bg-muted border border-border rounded-sm p-3 text-center">
-            <div className={`font-syne text-2xl font-bold ${color}`}>{value}</div>
+            <div className={`text-2xl font-bold ${color}`}>{value}</div>
             <div className="text-muted-foreground text-xs mt-1">Complaints {label}</div>
           </div>
         ))}

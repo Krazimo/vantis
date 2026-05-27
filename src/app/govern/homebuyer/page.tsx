@@ -14,7 +14,7 @@ export default function HomebuyerEarlyWarning() {
     <div className="px-4 sm:px-6 py-6 max-w-7xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="font-syne text-2xl sm:text-3xl text-foreground">Homebuyer Early Warning</h1>
+          <h1 className="text-2xl sm:text-3xl text-foreground">Homebuyer Early Warning</h1>
           <p className="text-muted-foreground text-xs mt-1">Proactive protection for at-risk homebuyers</p>
         </div>
         <Users className="w-6 h-6 text-muted-foreground hidden sm:block" />

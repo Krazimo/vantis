@@ -7,7 +7,7 @@ export default function PredictiveDefault() {
   return (
     <div className="px-4 sm:px-6 py-6 max-w-7xl mx-auto">
       <div className="flex items-center justify-between mb-2">
-        <h1 className="font-syne text-2xl sm:text-3xl text-foreground">Predictive Default Analytics</h1>
+        <h1 className="text-2xl sm:text-3xl text-foreground">Predictive Default Analytics</h1>
         <TrendingDown className="w-6 h-6 text-muted-foreground hidden sm:block" />
       </div>
       <p className="text-muted-foreground text-xs mb-6">

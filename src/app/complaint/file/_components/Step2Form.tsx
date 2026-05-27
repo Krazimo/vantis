@@ -34,7 +34,7 @@ export default function Step2Form({ lang, tx, onNext, onBack }: Props) {
 
   return (
     <div className="space-y-5">
-      <h2 className="font-syne text-xl text-foreground mb-4">{tx.step2}</h2>
+      <h2 className="text-xl text-foreground mb-4">{tx.step2}</h2>
 
       <div>
         <label className="block text-xs text-muted-foreground mb-1.5">{lang === 'en' ? 'Project' : 'ಯೋಜನೆ'}</label>

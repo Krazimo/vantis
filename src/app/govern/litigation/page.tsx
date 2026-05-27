@@ -17,7 +17,7 @@ export default function LitigationWatchlist() {
     <div className="px-4 sm:px-6 py-6 max-w-5xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="font-syne text-2xl sm:text-3xl text-foreground">Litigation Watchlist</h1>
+          <h1 className="text-2xl sm:text-3xl text-foreground">Litigation Watchlist</h1>
           <p className="text-muted-foreground text-xs mt-1">Active court cases · eCourts integration</p>
         </div>
         <div className="flex items-center gap-2">

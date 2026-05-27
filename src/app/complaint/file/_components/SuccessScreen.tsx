@@ -19,12 +19,12 @@ export default function SuccessScreen({ lang, tx, ref, selectedProject, nature }
         <div className="w-16 h-16 bg-status-compliant/10 border border-status-compliant/30 rounded-full flex items-center justify-center mx-auto mb-6">
           <CheckCircle2 className="w-8 h-8 text-status-compliant" />
         </div>
-        <h1 className="font-syne text-2xl text-foreground mb-2">{tx.successTitle}</h1>
+        <h1 className="text-2xl text-foreground mb-2">{tx.successTitle}</h1>
         <p className="text-muted-foreground text-sm mb-6">{tx.successSub}</p>
 
         <div className="bg-card border border-primary/30 rounded-sm p-4 mb-4 text-center">
           <div className="text-muted-foreground text-xs uppercase tracking-widest mb-1">{tx.refLabel}</div>
-          <div className="font-syne text-3xl font-bold text-primary">{ref}</div>
+          <div className="text-3xl font-bold text-primary">{ref}</div>
         </div>
 
         <div className="bg-card border border-border rounded-sm p-4 mb-6 text-left">

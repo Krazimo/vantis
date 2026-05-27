@@ -24,7 +24,7 @@ export default function GovernProjectRegistry() {
     <div className="px-4 sm:px-6 py-6 max-w-7xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="font-syne text-2xl sm:text-3xl text-foreground">Project Registry</h1>
+          <h1 className="text-2xl sm:text-3xl text-foreground">Project Registry</h1>
           <div className="flex items-center gap-1.5 mt-1">
             <Building2 className="w-3 h-3 text-muted-foreground" />
             <span className="text-muted-foreground text-xs">All K-RERA registered projects · Vantis database</span>

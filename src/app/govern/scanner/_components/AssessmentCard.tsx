@@ -16,12 +16,12 @@ export default function AssessmentCard({ app, failCount, warningCount, onApprove
       <div className={`px-5 py-4 border-b border-border ${app.risk === 'HIGH' ? 'bg-status-risk/5' : app.risk === 'MEDIUM' ? 'bg-status-caution/5' : 'bg-status-compliant/5'}`}>
         <div className="flex items-start justify-between gap-3">
           <div>
-            <div className="font-syne text-foreground text-lg font-bold leading-tight">{app.project_name}</div>
+            <div className="text-foreground text-lg font-bold leading-tight">{app.project_name}</div>
             <div className="text-muted-foreground text-xs mt-0.5">{app.developer} · {app.rera_type} · {app.units} units</div>
             <div className="font-mono text-muted-foreground text-[10px] mt-1">Survey: {app.survey_numbers.join(', ')}</div>
           </div>
           <div className="text-center shrink-0">
-            <div className={`font-syne text-4xl font-bold ${riskScoreColor(app.risk_score)}`}>{app.risk_score}</div>
+            <div className={`text-4xl font-bold ${riskScoreColor(app.risk_score)}`}>{app.risk_score}</div>
             <div className="text-muted-foreground text-[10px] mt-0.5">Risk score</div>
           </div>
         </div>
@@ -44,7 +44,7 @@ export default function AssessmentCard({ app, failCount, warningCount, onApprove
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between gap-2 mb-0.5">
                 <span className="text-foreground text-sm font-semibold">{v.label}</span>
-                <span className={`font-mono text-xs font-bold shrink-0 ${resultColor(v.result)}`}>{v.result}</span>
+                <span className={`text-xs font-bold shrink-0 ${resultColor(v.result)}`}>{v.result}</span>
               </div>
               <div className="text-muted-foreground text-[10px] mb-1">Source: {v.source} · Checked: {v.checked}</div>
               <div className="text-muted-foreground text-xs leading-relaxed">{v.finding}</div>

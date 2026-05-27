@@ -46,7 +46,7 @@ export default function DistrictPanel({ selectedDistrict, projects, onClear }: P
     <div className="flex-1">
       <div className="flex items-start justify-between mb-4">
         <div>
-          <div className="font-syne text-base text-foreground">{selectedDistrict.label}</div>
+          <div className="text-base text-foreground">{selectedDistrict.label}</div>
           <div className="text-muted-foreground text-xs mt-0.5">{districtProjects.length} project{districtProjects.length !== 1 ? 's' : ''} in database</div>
         </div>
         <span className={`inline-flex items-center gap-1.5 text-xs ${riskClass}`}>
@@ -74,7 +74,7 @@ export default function DistrictPanel({ selectedDistrict, projects, onClear }: P
               <div className="flex items-center gap-3 mt-2">
                 <div className="flex items-center gap-1.5">
                   <span className="text-muted-foreground text-xs">Risk Score</span>
-                  <span className={`font-mono text-xs font-bold ${p.risk_score >= 70 ? 'text-status-compliant' : p.risk_score >= 40 ? 'text-status-caution' : 'text-status-risk'}`}>{p.risk_score}</span>
+                  <span className={`text-xs font-bold ${p.risk_score >= 70 ? 'text-status-compliant' : p.risk_score >= 40 ? 'text-status-caution' : 'text-status-risk'}`}>{p.risk_score}</span>
                 </div>
                 {p.complaints_pending > 0 && (
                   <div className="text-xs text-status-caution">{p.complaints_pending} complaint{p.complaints_pending > 1 ? 's' : ''}</div>

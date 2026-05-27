@@ -29,7 +29,7 @@ export default function ChatPanel({
     <>
       <div className="flex items-center justify-between px-4 py-3 border-b border-border shrink-0 bg-muted">
         <div>
-          <div className="font-syne text-sm text-primary">{panelTitle}</div>
+          <div className="text-sm text-primary">{panelTitle}</div>
           <div className="text-muted-foreground text-xs mt-0.5">{panelSub}</div>
         </div>
         <div className="flex items-center gap-2">

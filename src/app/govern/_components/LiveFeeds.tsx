@@ -12,14 +12,14 @@ interface Props {
 export default function LiveFeeds({ criticalProjects, qprDefaulters, activeLitigation }: Props) {
   return (
     <div className="mb-6">
-      <h2 className="font-mono text-[10px] text-muted-foreground uppercase tracking-[0.15em] mb-4">Live Feeds</h2>
+      <h2 className="text-[10px] text-muted-foreground uppercase tracking-[0.15em] mb-4">Live Feeds</h2>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
 
         <div className="bg-card border border-border rounded-sm p-4">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 text-status-risk" />
-              <span className="font-syne text-sm text-foreground">Critical Alerts</span>
+              <span className="text-sm text-foreground">Critical Alerts</span>
             </div>
             <span className="text-xs font-mono text-status-risk bg-status-risk/10 border border-status-risk/20 px-2 py-0.5 rounded-sm">{criticalProjects.length}</span>
           </div>
@@ -40,7 +40,7 @@ export default function LiveFeeds({ criticalProjects, qprDefaulters, activeLitig
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
               <BarChart2 className="w-4 h-4 text-status-caution" />
-              <span className="font-syne text-sm text-foreground">QPR Defaults</span>
+              <span className="text-sm text-foreground">QPR Defaults</span>
             </div>
             <span className="text-xs font-mono text-status-caution bg-status-caution/10 border border-status-caution/20 px-2 py-0.5 rounded-sm">{qprDefaulters.length}</span>
           </div>
@@ -61,7 +61,7 @@ export default function LiveFeeds({ criticalProjects, qprDefaulters, activeLitig
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
               <Scale className="w-4 h-4 text-status-risk" />
-              <span className="font-syne text-sm text-foreground">Active Litigation</span>
+              <span className="text-sm text-foreground">Active Litigation</span>
             </div>
             <span className="text-xs font-mono text-status-risk bg-status-risk/10 border border-status-risk/20 px-2 py-0.5 rounded-sm">{activeLitigation.length}</span>
           </div>

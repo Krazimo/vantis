@@ -70,7 +70,7 @@ export default function SearchDropdown({ tx, filter, query, open, results, onFil
                 className="w-full flex items-center justify-between px-4 py-3 hover:bg-muted transition-colors duration-150 text-left border-b border-border last:border-0 group">
                 <div>
                   <div className="text-foreground text-sm font-medium group-hover:text-primary transition-colors duration-150">{p.name}</div>
-                  <div className="font-mono text-muted-foreground text-xs mt-0.5">{p.developer_name} · {p.location}</div>
+                  <div className="text-muted-foreground text-xs mt-0.5">{p.developer_name} · {p.location}</div>
                 </div>
                 <span className={`inline-flex items-center gap-1.5 text-xs shrink-0 ml-3 ${statusColor(p.status)}`}>
                   <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${statusDot(p.status)}`} />

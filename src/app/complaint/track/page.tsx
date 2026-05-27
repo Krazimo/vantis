@@ -36,7 +36,7 @@ function TrackContent() {
       <header className="flex items-center justify-between px-5 py-4 border-b border-border bg-background">
         <Link href="/" className="flex items-center gap-2">
           <Shield className="w-4 h-4 text-primary" />
-          <span className="font-syne text-base text-primary">Vantis</span>
+          <span className="text-base text-primary">Vantis</span>
         </Link>
         <div className="text-foreground text-sm font-medium">{tx.title}</div>
         <button onClick={() => setLang(l => l === 'en' ? 'kn' : 'en')}
@@ -47,7 +47,7 @@ function TrackContent() {
 
       <div className="flex-1 px-5 py-8 max-w-2xl mx-auto w-full">
         <div className="mb-8">
-          <h1 className="font-syne text-2xl text-foreground mb-1">{tx.title}</h1>
+          <h1 className="text-2xl text-foreground mb-1">{tx.title}</h1>
           <p className="text-muted-foreground text-sm mb-4">{tx.sub}</p>
           <div className="flex gap-2">
             <div className="relative flex-1">

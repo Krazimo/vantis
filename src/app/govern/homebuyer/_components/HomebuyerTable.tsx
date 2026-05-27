@@ -38,7 +38,7 @@ const columns: Column<Row>[] = [
     header: 'Capital at Risk',
     render: r => {
       const tc = tierConfig(r.tier)
-      return <span className={`font-mono text-sm font-bold ${tc.textColor}`}>₹{r.capital_crore} Cr</span>
+      return <span className={`text-sm font-bold ${tc.textColor}`}>₹{r.capital_crore} Cr</span>
     },
   },
   {
@@ -92,7 +92,7 @@ function mobileCard(r: Row) {
         </div>
         <div>
           <div className="text-[10px] text-muted-foreground uppercase tracking-wide mb-0.5">Capital at Risk</div>
-          <div className={`font-mono text-sm font-bold ${tc.textColor}`}>₹{r.capital_crore} Cr</div>
+          <div className={`text-sm font-bold ${tc.textColor}`}>₹{r.capital_crore} Cr</div>
         </div>
       </div>
       <div className="flex items-center justify-between border-t border-border pt-3">

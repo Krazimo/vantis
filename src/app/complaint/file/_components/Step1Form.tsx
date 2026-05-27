@@ -32,7 +32,7 @@ export default function Step1Form({ lang, tx, onNext }: Props) {
 
   return (
     <div className="space-y-4">
-      <h2 className="font-syne text-xl text-foreground mb-4">{tx.step1}</h2>
+      <h2 className="text-xl text-foreground mb-4">{tx.step1}</h2>
       {fields.map(f => (
         <div key={f.key}>
           <label className="block text-xs text-muted-foreground mb-1.5">{f.label}</label>

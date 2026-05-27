@@ -16,15 +16,15 @@ export default function FinancialTab({ project }: Props) {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
           <div className="bg-muted border border-border rounded-sm p-4 text-center">
             <div className="text-[10px] text-muted-foreground uppercase tracking-wide mb-1.5">Balance</div>
-            <div className={`font-syne text-2xl font-bold ${statusTextColor}`}>{fmtCrore(escrow.balance_crore)}</div>
+            <div className={`text-2xl font-bold ${statusTextColor}`}>{fmtCrore(escrow.balance_crore)}</div>
           </div>
           <div className="bg-muted border border-border rounded-sm p-4 text-center">
             <div className="text-[10px] text-muted-foreground uppercase tracking-wide mb-1.5">Total Collected</div>
-            <div className="font-syne text-2xl font-bold text-foreground">{fmtCrore(escrow.collected_crore)}</div>
+            <div className="text-2xl font-bold text-foreground">{fmtCrore(escrow.collected_crore)}</div>
           </div>
           <div className="bg-muted border border-border rounded-sm p-4 text-center">
             <div className="text-[10px] text-muted-foreground uppercase tracking-wide mb-1.5">Escrow %</div>
-            <div className={`font-syne text-2xl font-bold ${statusTextColor}`}>{escrow.pct}%</div>
+            <div className={`text-2xl font-bold ${statusTextColor}`}>{escrow.pct}%</div>
             <span className={`inline-flex items-center gap-1.5 mt-1.5 text-[10px] ${statusTextColor}`}>
               <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${escrow.status === 'HEALTHY' ? 'bg-status-compliant' : escrow.status === 'CAUTION' ? 'bg-status-caution' : 'bg-status-risk'}`} />
               {escrow.status}

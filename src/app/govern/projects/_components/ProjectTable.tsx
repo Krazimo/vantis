@@ -52,7 +52,7 @@ export default function ProjectTable({ filtered, totalCount, lastQuarter }: Prop
                   </td>
                   <td className="px-4 py-3.5">
                     <div className="flex items-center gap-2">
-                      <span className={`font-mono text-sm font-bold ${riskScoreColor(p.risk_score)}`}>{p.risk_score}</span>
+                      <span className={`text-sm font-bold ${riskScoreColor(p.risk_score)}`}>{p.risk_score}</span>
                       <div className="w-16 h-1.5 bg-border rounded-full overflow-hidden">
                         <div className={`h-full rounded-full ${riskBarColor(p.risk_score)}`} style={{ width: `${p.risk_score}%` }} />
                       </div>
@@ -88,7 +88,7 @@ export default function ProjectTable({ filtered, totalCount, lastQuarter }: Prop
                 <StatusBadge status={p.status} className="shrink-0 whitespace-nowrap" />
               </div>
               <div className="grid grid-cols-3 gap-3 text-center border-t border-border pt-3">
-                <div><div className="text-[10px] text-muted-foreground uppercase tracking-wide mb-0.5">Risk Score</div><div className={`font-mono text-sm font-bold ${riskScoreColor(p.risk_score)}`}>{p.risk_score}</div></div>
+                <div><div className="text-[10px] text-muted-foreground uppercase tracking-wide mb-0.5">Risk Score</div><div className={`text-sm font-bold ${riskScoreColor(p.risk_score)}`}>{p.risk_score}</div></div>
                 <div><div className="text-[10px] text-muted-foreground uppercase tracking-wide mb-0.5">QPR</div><div className={`text-sm font-medium ${qprClasses(qpr)}`}>{qprLabel(qpr)}</div></div>
                 <div>
                   <div className="text-[10px] text-muted-foreground uppercase tracking-wide mb-0.5">Cert</div>

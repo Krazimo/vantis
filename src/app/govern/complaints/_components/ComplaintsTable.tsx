@@ -43,7 +43,7 @@ export default function ComplaintsTable({ complaints, expandedId, onToggle, onSc
                   <td className="px-4 py-3 text-muted-foreground text-xs whitespace-nowrap">{fmtDate(c.filed_date)}</td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-1.5">
-                      <span className={`font-mono text-xs font-bold ${days > 60 && c.status === 'PENDING' ? 'text-status-risk' : 'text-foreground'}`}>{days}d</span>
+                      <span className={`text-xs font-bold ${days > 60 && c.status === 'PENDING' ? 'text-status-risk' : 'text-foreground'}`}>{days}d</span>
                       {days > 60 && c.status === 'PENDING' && <AlertCircle className="w-3.5 h-3.5 text-status-risk shrink-0" />}
                     </div>
                   </td>
@@ -103,7 +103,7 @@ export default function ComplaintsTable({ complaints, expandedId, onToggle, onSc
                   <div>
                     <div className="text-[10px] text-muted-foreground uppercase tracking-wide mb-0.5">Days</div>
                     <div className="flex items-center gap-1">
-                      <span className={`font-mono text-xs font-bold ${days > 60 && c.status === 'PENDING' ? 'text-status-risk' : 'text-foreground'}`}>{days}d</span>
+                      <span className={`text-xs font-bold ${days > 60 && c.status === 'PENDING' ? 'text-status-risk' : 'text-foreground'}`}>{days}d</span>
                       {days > 60 && c.status === 'PENDING' && <AlertCircle className="w-3 h-3 text-status-risk" />}
                     </div>
                   </div>

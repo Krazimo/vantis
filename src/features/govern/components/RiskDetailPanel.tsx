@@ -16,8 +16,8 @@ export default function RiskDetailPanel({ point }: Props) {
   return (
     <div className="bg-muted border border-border rounded-sm p-4 h-full">
       <div className="flex items-center justify-between mb-3">
-        <span className="font-syne text-foreground text-base">{point.quarter}</span>
-        <span className={`font-mono text-sm font-bold px-2 py-0.5 rounded-sm border ${
+        <span className="text-foreground text-base">{point.quarter}</span>
+        <span className={`text-sm font-bold px-2 py-0.5 rounded-sm border ${
           point.score >= 40 ? 'text-status-caution bg-status-caution/10 border-status-caution/30' : 'text-status-risk bg-status-risk/10 border-status-risk/30'
         }`}>{point.score}</span>
       </div>

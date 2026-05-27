@@ -48,19 +48,19 @@ export default function RiskTimeline() {
     <div>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
         <div className="bg-status-risk/10 border border-status-risk/20 rounded-sm p-3 text-center">
-          <div className="font-syne text-status-risk text-2xl font-bold">{ozoneData.quarters_early_warning}</div>
+          <div className="text-status-risk text-2xl font-bold">{ozoneData.quarters_early_warning}</div>
           <div className="text-muted-foreground text-xs mt-1">Quarters early warning</div>
         </div>
         <div className="bg-status-risk/10 border border-status-risk/20 rounded-sm p-3 text-center">
-          <div className="font-syne text-status-risk text-2xl font-bold">{ozoneData.homebuyers_affected.toLocaleString('en-IN')}</div>
+          <div className="text-status-risk text-2xl font-bold">{ozoneData.homebuyers_affected.toLocaleString('en-IN')}</div>
           <div className="text-muted-foreground text-xs mt-1">Homebuyers at risk</div>
         </div>
         <div className="bg-status-risk/10 border border-status-risk/20 rounded-sm p-3 text-center">
-          <div className="font-syne text-status-risk text-2xl font-bold">₹{ozoneData.capital_at_risk_crore} Cr</div>
+          <div className="text-status-risk text-2xl font-bold">₹{ozoneData.capital_at_risk_crore} Cr</div>
           <div className="text-muted-foreground text-xs mt-1">Capital at risk</div>
         </div>
         <div className="bg-status-caution/10 border border-status-caution/20 rounded-sm p-3 text-center">
-          <div className="font-syne text-status-caution text-2xl font-bold">{ozoneData.fir_filed}</div>
+          <div className="text-status-caution text-2xl font-bold">{ozoneData.fir_filed}</div>
           <div className="text-muted-foreground text-xs mt-1">FIR filed</div>
         </div>
       </div>

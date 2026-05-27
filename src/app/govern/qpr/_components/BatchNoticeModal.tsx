@@ -44,7 +44,7 @@ export default function BatchNoticeModal({ selected, displayRows, open, onClose,
       {open && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 px-4" onClick={onClose}>
           <div className="bg-card border border-border rounded-sm p-6 max-w-md w-full" onClick={e => e.stopPropagation()}>
-            <div className="font-syne text-foreground text-base mb-1">Generate Batch Show Cause Notices</div>
+            <div className="text-foreground text-base mb-1">Generate Batch Show Cause Notices</div>
             <div className="text-muted-foreground text-xs mb-4">{selected.size} notice{selected.size > 1 ? 's' : ''} will be generated and queued for officer review.</div>
             <div className="space-y-2 mb-5">
               {Array.from(selected).map(id => {

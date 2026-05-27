@@ -21,7 +21,7 @@ export default function ComplaintExpandedDetail({ c }: Props) {
       <div className="space-y-3">
         <div>
           <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1">Amount at Risk</div>
-          <div className="font-mono text-sm font-bold text-status-caution">₹{c.amount_at_risk_lakh} Lakh</div>
+          <div className="text-sm font-bold text-status-caution">₹{c.amount_at_risk_lakh} Lakh</div>
         </div>
         <div>
           <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1">Assigned Officer</div>

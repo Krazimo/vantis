@@ -44,7 +44,7 @@ export default function GovernCommandCentre() {
     <div className="px-4 sm:px-6 py-6 max-w-7xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="font-syne text-2xl sm:text-3xl text-foreground">Command Centre</h1>
+          <h1 className="text-2xl sm:text-3xl text-foreground">Command Centre</h1>
           <div className="flex items-center gap-1.5 mt-1">
             <Clock className="w-3 h-3 text-muted-foreground" />
             <span className="text-muted-foreground text-xs">Data as of 12 May 2026 · Updated daily from K-RERA</span>
@@ -64,7 +64,7 @@ export default function GovernCommandCentre() {
 
       <div className="mb-8">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="font-mono text-[10px] text-muted-foreground uppercase tracking-[0.15em]">Karnataka District Map</h2>
+          <h2 className="text-[10px] text-muted-foreground uppercase tracking-[0.15em]">Karnataka District Map</h2>
           <span className="text-muted-foreground text-xs">Click a district to view projects</span>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">

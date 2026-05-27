@@ -9,7 +9,7 @@ export default function ScoreBar({ score }: Props) {
       <div className="flex-1 h-1.5 bg-border rounded-full overflow-hidden">
         <div className="h-full rounded-full transition-all duration-500" style={{ width: `${score}%`, backgroundColor: color }} />
       </div>
-      <span className="font-mono text-sm font-bold" style={{ color }}>{score}</span>
+      <span className="text-sm font-bold" style={{ color }}>{score}</span>
     </div>
   )
 }

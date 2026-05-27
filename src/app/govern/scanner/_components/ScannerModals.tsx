@@ -21,7 +21,7 @@ export default function ScannerModals({ app, approveModal, rejectModal, conditio
       {approveModal && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 px-4" onClick={onClose}>
           <div className="bg-card border border-border rounded-sm p-6 max-w-md w-full" onClick={e => e.stopPropagation()}>
-            <div className="font-syne text-foreground text-lg font-bold mb-4">Approve Application</div>
+            <div className="text-foreground text-lg font-bold mb-4">Approve Application</div>
             <div className="space-y-2 mb-4">
               {[
                 { label: 'Project',         value: app.project_name },
@@ -52,7 +52,7 @@ export default function ScannerModals({ app, approveModal, rejectModal, conditio
       {rejectModal && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 px-4" onClick={onClose}>
           <div className="bg-card border border-border rounded-sm p-6 max-w-sm w-full" onClick={e => e.stopPropagation()}>
-            <div className="font-syne text-foreground text-base mb-2">Reject Application?</div>
+            <div className="text-foreground text-base mb-2">Reject Application?</div>
             <div className="text-muted-foreground text-sm mb-1 leading-relaxed">
               <strong className="text-foreground">{app.project_name}</strong> will be rejected. The developer will receive a rejection notice with the following findings:
             </div>
@@ -78,7 +78,7 @@ export default function ScannerModals({ app, approveModal, rejectModal, conditio
       {conditionsModal && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 px-4" onClick={onClose}>
           <div className="bg-card border border-border rounded-sm p-6 max-w-sm w-full" onClick={e => e.stopPropagation()}>
-            <div className="font-syne text-foreground text-base mb-2">Approve with Conditions</div>
+            <div className="text-foreground text-base mb-2">Approve with Conditions</div>
             <div className="text-muted-foreground text-sm mb-4 leading-relaxed">
               Provisional approval granted for <strong className="text-foreground">{app.project_name}</strong>. Developer must resolve all warnings within 60 days or registration will be suspended.
             </div>

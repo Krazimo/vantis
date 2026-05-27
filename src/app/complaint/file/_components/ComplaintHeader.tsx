@@ -13,7 +13,7 @@ export default function ComplaintHeader({ lang, setLang, tx }: Props) {
     <header className="flex items-center justify-between px-5 py-4 border-b border-border bg-background">
       <Link href="/" className="flex items-center gap-2">
         <Shield className="w-4 h-4 text-primary" />
-        <span className="font-syne text-base text-primary">Vantis</span>
+        <span className="text-base text-primary">Vantis</span>
       </Link>
       <div className="text-center">
         <div className="text-foreground text-sm font-medium">{tx.title}</div>

@@ -13,13 +13,13 @@ export default function ApprovalSuccess({ approvedAt, onReset }: Props) {
     <div className="px-4 sm:px-6 py-6 max-w-2xl mx-auto">
       <div className="bg-status-compliant/10 border border-status-compliant/20 rounded-sm p-6 text-center">
         <CheckCircle className="w-10 h-10 text-status-compliant mx-auto mb-3" />
-        <div className="font-syne text-2xl text-foreground font-bold mb-2">Application Approved</div>
+        <div className="text-2xl text-foreground font-bold mb-2">Application Approved</div>
         <div className="text-muted-foreground text-sm mb-3 leading-relaxed">Prestige Whitefield Phase 2 has been approved for K-RERA registration</div>
         <div className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest">{fmtTimestamp(approvedAt)}</div>
       </div>
 
       <div className="bg-card border border-border rounded-sm p-6 mt-4">
-        <div className="font-syne text-foreground text-base font-semibold mb-1">Vantis Certificate Generated</div>
+        <div className="text-foreground text-base font-semibold mb-1">Vantis Certificate Generated</div>
         <div className="text-muted-foreground text-xs mb-4">Tamper-proof compliance record issued by Orianode Technologies</div>
         <div className="font-mono text-primary text-lg font-bold mb-5 tracking-wide">{CERT_ID}</div>
         <div className="space-y-2 mb-5">
@@ -29,7 +29,7 @@ export default function ApprovalSuccess({ approvedAt, onReset }: Props) {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-2">
                   <span className="text-foreground text-sm font-semibold">{v.label}</span>
-                  <span className="font-mono text-xs font-bold text-status-compliant shrink-0">PASS</span>
+                  <span className="text-xs font-bold text-status-compliant shrink-0">PASS</span>
                 </div>
                 <div className="text-muted-foreground text-[10px] mt-0.5">Source: {v.source}</div>
               </div>
@@ -40,7 +40,7 @@ export default function ApprovalSuccess({ approvedAt, onReset }: Props) {
       </div>
 
       <div className="bg-card border border-border rounded-sm p-6 mt-4">
-        <div className="font-mono text-[10px] text-muted-foreground uppercase tracking-[0.15em] mb-4">Next Steps</div>
+        <div className="text-[10px] text-muted-foreground uppercase tracking-[0.15em] mb-4">Next Steps</div>
         <div className="space-y-3 mb-6">
           {[
             'Project is now live in the K-RERA public registry',

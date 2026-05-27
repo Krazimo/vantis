@@ -30,7 +30,7 @@ export default function LoginScreen({ onLogin }: Props) {
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2 mb-2">
             <Shield className="w-6 h-6 text-primary" />
-            <span className="font-syne text-2xl text-primary">Vantis Govern</span>
+            <span className="text-2xl text-primary">Vantis Govern</span>
           </div>
           <div className="text-muted-foreground text-sm">K-RERA Officer Portal</div>
           <div className="text-muted-foreground text-xs mt-0.5">Karnataka Real Estate Regulatory Authority</div>

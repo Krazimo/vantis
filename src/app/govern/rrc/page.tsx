@@ -11,7 +11,7 @@ export default function RRCTracker() {
     <div className="px-4 sm:px-6 py-6 max-w-5xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="font-syne text-2xl sm:text-3xl text-foreground">RRC Tracker</h1>
+          <h1 className="text-2xl sm:text-3xl text-foreground">RRC Tracker</h1>
           <p className="text-muted-foreground text-xs mt-1">Revenue Recovery Certificate proceedings</p>
         </div>
         <Shield className="w-6 h-6 text-muted-foreground hidden sm:block" />
@@ -19,15 +19,15 @@ export default function RRCTracker() {
 
       <div className="grid grid-cols-3 gap-3 mb-6">
         <div className="bg-card border border-border rounded-sm p-4 text-center">
-          <div className="font-syne text-3xl font-bold text-foreground">{RRCS.length}</div>
+          <div className="text-3xl font-bold text-foreground">{RRCS.length}</div>
           <div className="text-muted-foreground text-xs mt-1">Active RRCs</div>
         </div>
         <div className="bg-card border border-status-risk/20 rounded-sm p-4 text-center">
-          <div className="font-syne text-3xl font-bold text-status-risk">₹{totalOutstanding.toFixed(2)} L</div>
+          <div className="text-3xl font-bold text-status-risk">₹{totalOutstanding.toFixed(2)} L</div>
           <div className="text-muted-foreground text-xs mt-1">Outstanding</div>
         </div>
         <div className="bg-card border border-status-compliant/20 rounded-sm p-4 text-center">
-          <div className="font-syne text-3xl font-bold text-status-compliant">₹0</div>
+          <div className="text-3xl font-bold text-status-compliant">₹0</div>
           <div className="text-muted-foreground text-xs mt-1">Recovered This Quarter</div>
         </div>
       </div>

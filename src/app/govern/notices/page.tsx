@@ -39,7 +39,7 @@ export default function NoticeGenerator() {
     <div className="px-4 sm:px-6 py-6 max-w-7xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="font-syne text-2xl sm:text-3xl text-foreground">AI Notice Generator</h1>
+          <h1 className="text-2xl sm:text-3xl text-foreground">AI Notice Generator</h1>
           <p className="text-muted-foreground text-xs mt-1">Draft regulatory notices · Powered by Vantis Intelligence</p>
         </div>
         <FileText className="w-6 h-6 text-muted-foreground hidden sm:block" />

@@ -16,7 +16,7 @@ export default function CertificateContent({ params }: { params: { id: string } 
       <div className="min-h-screen bg-[#FAF8F3] flex items-center justify-center px-4">
         <div className="text-center">
           <Shield className="w-10 h-10 text-muted-foreground mx-auto mb-3" />
-          <div className="text-[#1A1A28] font-syne text-xl mb-2">Certificate Not Found</div>
+          <div className="text-[#1A1A28] text-xl mb-2">Certificate Not Found</div>
           <div className="text-[#6B6B88] text-sm mb-1">Certificate ID:</div>
           <div className="font-mono text-primary text-sm mb-6 break-all px-4">{params.id}</div>
           <Link href="/" className="text-primary hover:text-[#8B7035] text-sm transition-colors duration-150 underline">
@@ -43,18 +43,18 @@ export default function CertificateContent({ params }: { params: { id: string } 
           <div className="flex items-center justify-between px-6 py-4 border-b border-[#E2DDD4] bg-[#FAF8F3]">
             <div className="flex items-center gap-2">
               <Shield className="w-4 h-4 text-primary" />
-              <span className="font-syne text-sm text-[#1A1A28] font-semibold">Vantis by Orianode</span>
+              <span className="text-sm text-[#1A1A28] font-semibold">Vantis by Orianode</span>
             </div>
             <span className="text-[#6B6B88] text-xs">K-RERA Compliance Certificate</span>
           </div>
 
           <div className={`${sc.banner} px-6 py-3 text-center`}>
-            <span className={`font-syne text-sm font-bold tracking-[0.15em] ${sc.text}`}>{sc.label}</span>
+            <span className={`text-sm font-bold tracking-[0.15em] ${sc.text}`}>{sc.label}</span>
           </div>
 
           <div className="px-6 py-6">
             <div className="text-center mb-6">
-              <h1 className="font-syne text-2xl sm:text-3xl text-[#1A1A28] font-bold mb-2 leading-tight">{cert.project_name}</h1>
+              <h1 className="text-2xl sm:text-3xl text-[#1A1A28] font-bold mb-2 leading-tight">{cert.project_name}</h1>
               <div className="font-mono text-primary text-xs sm:text-sm tracking-wide break-all mb-1">{cert.rera}</div>
               <div className="text-[#6B6B88] text-sm">{cert.developer_name}</div>
               <div className="text-[#6B6B88] text-xs mt-0.5">{cert.location}</div>

@@ -21,7 +21,7 @@ export default function VerificationList({ verifications }: Props) {
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between gap-2 mb-0.5">
               <span className="text-[#1A1A28] text-sm font-semibold">{v.label}</span>
-              <span className={`font-mono text-xs font-bold shrink-0 ${resultColor(v.result)}`}>{v.result}</span>
+              <span className={`text-xs font-bold shrink-0 ${resultColor(v.result)}`}>{v.result}</span>
             </div>
             <div className="text-[#6B6B88] text-xs mb-1">Source: {v.source}</div>
             <div className="text-[#6B6B88] text-xs leading-relaxed">{v.detail}</div>

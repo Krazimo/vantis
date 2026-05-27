@@ -12,7 +12,7 @@ export default function DemoModeSection({ demoMode, onToggle }: Props) {
     <div className="bg-card border border-border rounded-sm p-5">
       <div className="flex items-center gap-2 mb-4">
         <FlaskConical className="w-4 h-4 text-primary" />
-        <h2 className="font-syne text-sm font-semibold text-foreground uppercase tracking-widest">Demo Mode</h2>
+        <h2 className="text-sm font-semibold text-foreground uppercase tracking-widest">Demo Mode</h2>
       </div>
       <div className="flex items-start justify-between gap-6">
         <div className="flex-1">

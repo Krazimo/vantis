@@ -26,14 +26,14 @@ const columns: Column<Row>[] = [
   {
     key: 'risk',
     header: 'Risk Score',
-    render: r => <span className={`font-mono text-lg font-bold ${riskScoreColor(r.risk_score)}`}>{r.risk_score}</span>,
+    render: r => <span className={`text-lg font-bold ${riskScoreColor(r.risk_score)}`}>{r.risk_score}</span>,
   },
   {
     key: 'probability',
     header: 'Default Probability',
     render: r => (
       <div className="flex items-center gap-2">
-        <span className={`font-mono text-base font-bold ${probColor(r.default_probability)}`}>{r.default_probability}%</span>
+        <span className={`text-base font-bold ${probColor(r.default_probability)}`}>{r.default_probability}%</span>
         <div className="flex-1 h-2 bg-border rounded-full overflow-hidden min-w-[60px]">
           <div className={`h-full rounded-full ${probBarColor(r.default_probability)}`} style={{ width: `${r.default_probability}%` }} />
         </div>
@@ -92,12 +92,12 @@ function mobileCard(r: Row) {
       <div className="flex items-center gap-4 mb-3">
         <div>
           <div className="text-[10px] text-muted-foreground uppercase tracking-wide mb-0.5">Risk Score</div>
-          <div className={`font-mono text-lg font-bold ${riskScoreColor(r.risk_score)}`}>{r.risk_score}</div>
+          <div className={`text-lg font-bold ${riskScoreColor(r.risk_score)}`}>{r.risk_score}</div>
         </div>
         <div className="flex-1">
           <div className="flex items-center justify-between mb-1">
             <span className="text-[10px] text-muted-foreground uppercase tracking-wide">Default Probability</span>
-            <span className={`font-mono text-sm font-bold ${probColor(r.default_probability)}`}>{r.default_probability}%</span>
+            <span className={`text-sm font-bold ${probColor(r.default_probability)}`}>{r.default_probability}%</span>
           </div>
           <div className="h-2 bg-border rounded-full overflow-hidden">
             <div className={`h-full rounded-full ${probBarColor(r.default_probability)}`} style={{ width: `${r.default_probability}%` }} />

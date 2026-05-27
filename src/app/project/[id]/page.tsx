@@ -26,7 +26,7 @@ export default async function ProjectProfile({ params }: { params: Promise<{ id:
     return (
       <main className="min-h-screen bg-background flex items-center justify-center px-4">
         <div className="text-center">
-          <div className="font-syne text-xl text-foreground mb-2">Project Not Found</div>
+          <div className="text-xl text-foreground mb-2">Project Not Found</div>
           <div className="text-muted-foreground text-sm mb-6">No project with ID &quot;{id}&quot; found in our database.</div>
           <Link href="/" className="text-primary hover:text-primary/80 text-sm transition-colors duration-150">← Back to Search</Link>
         </div>
@@ -53,7 +53,7 @@ export default async function ProjectProfile({ params }: { params: Promise<{ id:
         <div>
           <div className="flex items-start justify-between gap-3 mb-3">
             <div>
-              <h1 className="font-syne text-2xl sm:text-3xl text-foreground leading-tight">{project.name}</h1>
+              <h1 className="text-2xl sm:text-3xl text-foreground leading-tight">{project.name}</h1>
               <div className="flex items-center gap-2 mt-1"><MapPin className="w-3.5 h-3.5 text-muted-foreground shrink-0" /><span className="text-muted-foreground text-sm">{project.location}</span></div>
             </div>
             <span className={`inline-flex items-center gap-1.5 text-xs font-medium shrink-0 ${statusColor(project.status)}`}>
@@ -75,7 +75,7 @@ export default async function ProjectProfile({ params }: { params: Promise<{ id:
 
         {/* Project Facts */}
         <div>
-          <h2 className="font-syne text-base text-primary/50 uppercase tracking-widest mb-4">Project Details</h2>
+          <h2 className="text-base text-primary/50 uppercase tracking-widest mb-4">Project Details</h2>
           <div className="grid grid-cols-2 gap-3">
             {[
               { icon: Building2,    label: 'Type',         value: project.type },
@@ -101,14 +101,14 @@ export default async function ProjectProfile({ params }: { params: Promise<{ id:
 
         {/* QPR */}
         <div>
-          <h2 className="font-syne text-base text-primary/50 uppercase tracking-widest mb-2">Quarterly Progress Reports</h2>
+          <h2 className="text-base text-primary/50 uppercase tracking-widest mb-2">Quarterly Progress Reports</h2>
           <p className="text-muted-foreground text-xs mb-5">Last 8 quarters · Most recent on right</p>
           <QPRDots submission={submission} quarters={quarters} />
         </div>
 
         {/* Complaints */}
         <div>
-          <h2 className="font-syne text-base text-primary/50 uppercase tracking-widest mb-4">Complaints</h2>
+          <h2 className="text-base text-primary/50 uppercase tracking-widest mb-4">Complaints</h2>
           <div className="grid grid-cols-3 gap-3">
             {[
               { value: project.complaints_pending, label: 'Pending', color: project.complaints_pending > 0 ? 'text-status-risk' : 'text-status-compliant' },
@@ -116,7 +116,7 @@ export default async function ProjectProfile({ params }: { params: Promise<{ id:
               { value: totalComplaints, label: 'Total Filed', color: 'text-foreground' },
             ].map(({ value, label, color }) => (
               <div key={label} className="bg-card border border-border rounded-sm p-4 text-center">
-                <div className={`font-syne text-3xl font-bold ${color}`}>{value}</div>
+                <div className={`text-3xl font-bold ${color}`}>{value}</div>
                 <div className="text-muted-foreground text-xs mt-1">{label}</div>
               </div>
             ))}
@@ -129,13 +129,13 @@ export default async function ProjectProfile({ params }: { params: Promise<{ id:
 
         {/* Certificate */}
         <div>
-          <h2 className="font-syne text-base text-primary/50 uppercase tracking-widest mb-4">Vantis Certificate</h2>
+          <h2 className="text-base text-primary/50 uppercase tracking-widest mb-4">Vantis Certificate</h2>
           <CertificateCard certificateId={project.certificate_id ?? null} certificateStatus={project.certificate_status} />
         </div>
 
         {/* Litigation */}
         <div>
-          <h2 className="font-syne text-base text-primary/50 uppercase tracking-widest mb-4">Court Cases</h2>
+          <h2 className="text-base text-primary/50 uppercase tracking-widest mb-4">Court Cases</h2>
           <ProjectLitigation litigation={project.litigation} />
         </div>
 

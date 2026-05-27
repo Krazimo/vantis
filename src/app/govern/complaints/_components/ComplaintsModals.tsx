@@ -22,7 +22,7 @@ export default function ComplaintsModals({ scheduleModal, orderModal, onSchedule
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 px-4" onClick={onCloseSchedule}>
           <div className="bg-card border border-border rounded-sm p-6 w-full max-w-md" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-syne text-lg text-foreground">Schedule Hearing</h3>
+              <h3 className="text-lg text-foreground">Schedule Hearing</h3>
               <button onClick={onCloseSchedule}><X className="w-4 h-4 text-muted-foreground hover:text-foreground transition-colors duration-150" /></button>
             </div>
             <p className="text-xs text-muted-foreground mb-4">
@@ -49,7 +49,7 @@ export default function ComplaintsModals({ scheduleModal, orderModal, onSchedule
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 px-4" onClick={onCloseOrder}>
           <div className="bg-card border border-border rounded-sm p-6 w-full max-w-md" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-syne text-lg text-foreground">Record Order</h3>
+              <h3 className="text-lg text-foreground">Record Order</h3>
               <button onClick={onCloseOrder}><X className="w-4 h-4 text-muted-foreground hover:text-foreground transition-colors duration-150" /></button>
             </div>
             <p className="text-xs text-muted-foreground mb-4">

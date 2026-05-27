@@ -25,7 +25,7 @@ export default function Step3Form({ lang, tx, onNext, onBack }: Props) {
 
   return (
     <div className="space-y-5">
-      <h2 className="font-syne text-xl text-foreground mb-4">{tx.step3}</h2>
+      <h2 className="text-xl text-foreground mb-4">{tx.step3}</h2>
 
       <div>
         <div className="flex items-center justify-between mb-1.5">

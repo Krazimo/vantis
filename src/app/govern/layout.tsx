@@ -45,7 +45,7 @@ export default function GovernLayout({ children }: { children: React.ReactNode }
           </button>
           <div className="flex items-center gap-2">
             <Shield className="w-4 h-4 text-primary" />
-            <span className="font-syne text-sm text-primary">Vantis Govern</span>
+            <span className="text-sm text-primary">Vantis Govern</span>
             {demoMode && <span className="text-[9px] font-bold bg-primary text-background px-1.5 py-0.5 rounded tracking-widest">DEMO</span>}
           </div>
           <span className={`inline-flex items-center gap-1.5 text-[10px] ${roleTextColor(officer.role)}`}>

@@ -34,7 +34,7 @@ export default function RRCCard({ rrc }: Props) {
           <div className="text-muted-foreground text-xs">{rrc.developer}</div>
         </div>
         <div className="text-right shrink-0">
-          <div className={`font-syne text-2xl font-bold ${rrc.status === 'RECOVERED' ? 'text-status-compliant' : 'text-status-risk'}`}>
+          <div className={`text-2xl font-bold ${rrc.status === 'RECOVERED' ? 'text-status-compliant' : 'text-status-risk'}`}>
             ₹{rrc.amount_lakh.toFixed(2)} L
           </div>
           <div className="text-muted-foreground text-[10px]">Total Amount</div>
@@ -44,7 +44,7 @@ export default function RRCCard({ rrc }: Props) {
       <div className="mb-4">
         <div className="flex items-center justify-between mb-1.5">
           <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Recovery Progress</span>
-          <span className={`font-mono text-xs font-bold ${rrc.status === 'RECOVERED' ? 'text-status-compliant' : 'text-muted-foreground'}`}>
+          <span className={`text-xs font-bold ${rrc.status === 'RECOVERED' ? 'text-status-compliant' : 'text-muted-foreground'}`}>
             {rrc.progress_pct}%
           </span>
         </div>

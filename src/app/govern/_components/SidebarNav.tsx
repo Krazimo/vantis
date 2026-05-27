@@ -18,7 +18,7 @@ export default function SidebarNav({ officer, onLogout, onClose }: Props) {
       <div className="flex items-center justify-between px-4 py-4 border-b border-border shrink-0">
         <div className="flex items-center gap-2">
           <Shield className="w-4 h-4 text-primary" />
-          <span className="font-syne text-base text-primary">Vantis Govern</span>
+          <span className="text-base text-primary">Vantis Govern</span>
         </div>
         <button onClick={onClose} className="md:hidden text-muted-foreground hover:text-primary transition-colors duration-150">
           <X className="w-4 h-4" />

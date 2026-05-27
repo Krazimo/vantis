@@ -6,7 +6,7 @@ export default function DataFreshnessSection() {
     <div className="bg-card border border-border rounded-sm p-5 mb-4">
       <div className="flex items-center gap-2 mb-4">
         <Database className="w-4 h-4 text-primary" />
-        <h2 className="font-syne text-sm font-semibold text-foreground uppercase tracking-widest">Data Freshness</h2>
+        <h2 className="text-sm font-semibold text-foreground uppercase tracking-widest">Data Freshness</h2>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full">
