@@ -26,7 +26,7 @@ export default function ProjectLitigation({ litigation }: Props) {
               <div>
                 <div className="text-foreground text-sm font-medium">{lit.type} Case</div>
                 <div className="text-muted-foreground text-xs mt-0.5">{lit.court}</div>
-                <div className="font-mono text-muted-foreground text-xs mt-1">Filed: {formatDate(lit.filed)}</div>
+                <div className="text-muted-foreground text-xs mt-1">Filed: {formatDate(lit.filed)}</div>
               </div>
             </div>
             <span className="inline-flex items-center gap-1.5 text-xs text-status-risk shrink-0">

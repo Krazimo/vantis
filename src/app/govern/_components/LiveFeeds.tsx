@@ -21,7 +21,7 @@ export default function LiveFeeds({ criticalProjects, qprDefaulters, activeLitig
               <AlertTriangle className="w-4 h-4 text-status-risk" />
               <span className="text-sm text-foreground">Critical Alerts</span>
             </div>
-            <span className="text-xs font-mono text-status-risk bg-status-risk/10 border border-status-risk/20 px-2 py-0.5 rounded-sm">{criticalProjects.length}</span>
+            <span className="text-xs text-status-risk bg-status-risk/10 border border-status-risk/20 px-2 py-0.5 rounded-sm">{criticalProjects.length}</span>
           </div>
           <div className="space-y-2.5">
             {criticalProjects.map(p => (
@@ -42,7 +42,7 @@ export default function LiveFeeds({ criticalProjects, qprDefaulters, activeLitig
               <BarChart2 className="w-4 h-4 text-status-caution" />
               <span className="text-sm text-foreground">QPR Defaults</span>
             </div>
-            <span className="text-xs font-mono text-status-caution bg-status-caution/10 border border-status-caution/20 px-2 py-0.5 rounded-sm">{qprDefaulters.length}</span>
+            <span className="text-xs text-status-caution bg-status-caution/10 border border-status-caution/20 px-2 py-0.5 rounded-sm">{qprDefaulters.length}</span>
           </div>
           <div className="space-y-2.5">
             {qprDefaulters.map(p => (
@@ -63,7 +63,7 @@ export default function LiveFeeds({ criticalProjects, qprDefaulters, activeLitig
               <Scale className="w-4 h-4 text-status-risk" />
               <span className="text-sm text-foreground">Active Litigation</span>
             </div>
-            <span className="text-xs font-mono text-status-risk bg-status-risk/10 border border-status-risk/20 px-2 py-0.5 rounded-sm">{activeLitigation.length}</span>
+            <span className="text-xs text-status-risk bg-status-risk/10 border border-status-risk/20 px-2 py-0.5 rounded-sm">{activeLitigation.length}</span>
           </div>
           <div className="space-y-2.5">
             {activeLitigation.map(l => (

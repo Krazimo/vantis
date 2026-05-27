@@ -31,7 +31,7 @@ export default function GovernProjectRegistry() {
           </div>
         </div>
         <div className="hidden sm:flex items-center gap-1.5 bg-card border border-border rounded-sm px-3 py-1.5">
-          <span className="font-mono text-primary text-sm font-bold">{filtered.length}</span>
+          <span className="text-primary text-sm font-bold">{filtered.length}</span>
           <span className="text-muted-foreground text-xs">/ {PROJECTS.length} projects</span>
         </div>
       </div>
@@ -63,7 +63,7 @@ export default function GovernProjectRegistry() {
                 : 'bg-card border-border text-muted-foreground hover:border-primary hover:text-primary/80'
             }`}>
             {s === 'ALL' ? 'All Status' : s}
-            {s !== 'ALL' && <span className="ml-1.5 font-mono text-[10px]">{PROJECTS.filter(p => p.status === s).length}</span>}
+            {s !== 'ALL' && <span className="ml-1.5 text-[10px]">{PROJECTS.filter(p => p.status === s).length}</span>}
           </button>
         ))}
       </div>

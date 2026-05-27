@@ -55,7 +55,7 @@ export default function GovernLayout({ children }: { children: React.ReactNode }
         </div>
 
         <div className="hidden md:flex items-center justify-between px-6 py-3 border-b border-border bg-card sticky top-0 z-20">
-          <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase">K-RERA Officer Portal</span>
+          <span className="text-xs text-muted-foreground tracking-widest uppercase">K-RERA Officer Portal</span>
           <div className="flex items-center gap-3">
             {demoMode && <span className="text-[10px] font-bold bg-primary text-background px-2 py-0.5 rounded tracking-widest">DEMO</span>}
             <span className="text-foreground text-xs">{officer.name}</span>

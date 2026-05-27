@@ -33,7 +33,7 @@ export default function ChatPanel({
           <div className="text-muted-foreground text-xs mt-0.5">{panelSub}</div>
         </div>
         <div className="flex items-center gap-2">
-          <button onClick={onToggleMode} className={`text-[10px] px-2 py-1 rounded border transition-colors duration-150 font-mono tracking-wider ${
+          <button onClick={onToggleMode} className={`text-[10px] px-2 py-1 rounded border transition-colors duration-150 tracking-wider ${
             mode === 'demo' ? 'border-border text-muted-foreground hover:border-primary-dim hover:text-primary' : 'border-blue/50 text-blue'
           }`}>{mode === 'demo' ? 'DEMO' : 'LIVE'}</button>
           <button onClick={onClose} className="text-muted-foreground hover:text-primary transition-colors duration-150 ml-1">

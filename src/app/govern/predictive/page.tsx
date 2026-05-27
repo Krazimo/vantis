@@ -21,7 +21,7 @@ export default function PredictiveDefault() {
             <div className="text-primary text-xs font-semibold uppercase tracking-widest mb-1">Vantis Early Detection · Case Study</div>
             <div className="text-foreground text-sm leading-relaxed">
               Ozone Urbana would have been flagged at{' '}
-              <span className="font-mono text-status-caution font-bold">34% default probability</span> in{' '}
+              <span className="text-status-caution font-bold">34% default probability</span> in{' '}
               <span className="text-primary font-semibold">Q1 2021</span> —{' '}
               <span className="font-bold text-status-risk">8 quarters before</span> the FIR was filed in Q3 2023.
               1,847 homebuyers and ₹927 Cr could have been protected.

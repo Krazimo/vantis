@@ -29,7 +29,7 @@ export default function RiskDetailPanel({ point }: Props) {
         </div>
         <div>
           <div className="text-[10px] text-muted-foreground uppercase tracking-wide mb-0.5">Default Prob</div>
-          <div className="text-xs font-mono font-bold text-status-risk">{point.default_probability}%</div>
+          <div className="text-xs font-bold text-status-risk">{point.default_probability}%</div>
         </div>
       </div>
 

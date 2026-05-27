@@ -42,7 +42,7 @@ export default function DeveloperCard({ dev, expanded, onToggle }: Props) {
             <div key={c.label}>
               <div className="flex items-center justify-between mb-1">
                 <span className="text-[10px] text-muted-foreground">{c.label}</span>
-                <span className={`font-mono text-[10px] font-bold ${barColor(c.value).replace('bg-', 'text-')}`}>{c.value}%</span>
+                <span className={`text-[10px] font-bold ${barColor(c.value).replace('bg-', 'text-')}`}>{c.value}%</span>
               </div>
               <div className="w-full h-1.5 bg-muted rounded-full overflow-hidden">
                 <div className={`h-full rounded-full ${barColor(c.value)}`} style={{ width: `${c.value}%` }} />

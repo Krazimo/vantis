@@ -46,7 +46,7 @@ export default async function ProjectProfile({ params }: { params: Promise<{ id:
         <Link href="/" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-150 text-sm">
           <ArrowLeft className="w-4 h-4" />Back
         </Link>
-        <span className="font-mono text-xs text-muted-foreground tracking-wider">K-RERA PUBLIC REGISTRY</span>
+        <span className="text-xs text-muted-foreground tracking-wider">K-RERA PUBLIC REGISTRY</span>
       </div>
 
       <div className="max-w-2xl mx-auto px-4 sm:px-8 py-8 space-y-8">

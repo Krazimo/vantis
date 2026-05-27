@@ -42,13 +42,13 @@ export default function QPRTab({ project, qprRows, totalQuarters }: Props) {
                     {entry.filed_date ? fmtDate(entry.filed_date) : <span className="text-muted-foreground">—</span>}
                   </td>
                   <td className="px-4 py-3">{qprStatusEl(entry.status)}</td>
-                  <td className="px-4 py-3 font-mono text-xs text-foreground">
+                  <td className="px-4 py-3 text-xs text-foreground">
                     {entry.completion_pct !== null ? `${entry.completion_pct}%` : <span className="text-muted-foreground">—</span>}
                   </td>
-                  <td className="px-4 py-3 font-mono text-xs">
+                  <td className="px-4 py-3 text-xs">
                     {late !== null ? <span className={late > 0 ? (entry.status === 'MISSED' ? 'text-status-risk' : 'text-status-caution') : 'text-muted-foreground'}>{late > 0 ? `+${late}d` : '—'}</span> : <span className="text-muted-foreground">—</span>}
                   </td>
-                  <td className="px-4 py-3 font-mono text-xs">
+                  <td className="px-4 py-3 text-xs">
                     {penalty !== null ? <span className="text-status-risk">{fmtInr(penalty)}</span> : <span className="text-muted-foreground">—</span>}
                   </td>
                 </tr>
@@ -79,7 +79,7 @@ export default function QPRTab({ project, qprRows, totalQuarters }: Props) {
                   <div className="text-muted-foreground">Late: <span className={entry.status === 'MISSED' ? 'text-status-risk' : 'text-status-caution'}>+{late} days</span></div>
                 )}
                 {penalty !== null && (
-                  <div className="text-muted-foreground col-span-2">Penalty: <span className="text-status-risk font-mono">{fmtInr(penalty)}</span></div>
+                  <div className="text-muted-foreground col-span-2">Penalty: <span className="text-status-risk">{fmtInr(penalty)}</span></div>
                 )}
               </div>
             </div>
@@ -90,7 +90,7 @@ export default function QPRTab({ project, qprRows, totalQuarters }: Props) {
       {project.status === 'HIGH RISK' && (
         <div className="mt-4 border-l-2 border-status-risk pl-3 bg-status-risk/5 rounded-sm p-3">
           <div className="text-status-risk text-xs font-semibold mb-0.5">Total Penalty Accrued</div>
-          <div className="font-mono text-status-risk text-lg font-bold">
+          <div className="text-status-risk text-lg font-bold">
             {fmtInr(
               qprRows
                 .filter(({ entry }) => entry.status === 'MISSED')

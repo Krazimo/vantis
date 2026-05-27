@@ -36,7 +36,7 @@ export default function DeveloperProjects({ projects, tx }: Props) {
             <div className="grid grid-cols-3 gap-3 text-xs text-muted-foreground mb-3">
               <div>
                 <div className="text-[10px] uppercase tracking-wide mb-0.5">{tx.riskScore}</div>
-                <span className={`font-mono font-bold ${scoreColor(p.risk_score)}`}>{p.risk_score}</span>
+                <span className={`font-bold ${scoreColor(p.risk_score)}`}>{p.risk_score}</span>
               </div>
               <div>
                 <div className="text-[10px] uppercase tracking-wide mb-0.5">{tx.units}</div>

@@ -22,7 +22,7 @@ export default function LitigationWatchlist() {
         </div>
         <div className="flex items-center gap-2">
           <Scale className="w-4 h-4 text-status-risk" />
-          <span className="font-mono text-status-risk text-sm font-bold">{ALL_CASES.length}</span>
+          <span className="text-status-risk text-sm font-bold">{ALL_CASES.length}</span>
           <span className="text-muted-foreground text-xs">active alerts</span>
         </div>
       </div>

@@ -45,7 +45,7 @@ export default function LitigationCard({ item: l }: Props) {
           </div>
           <div><div className="text-[10px] text-muted-foreground uppercase tracking-wide mb-0.5">Survey Nos.</div><div className="font-mono text-foreground text-xs">{survey}</div></div>
           {l.relief_sought_crore && (
-            <div><div className="text-[10px] text-muted-foreground uppercase tracking-wide mb-0.5">Relief Sought</div><div className="font-mono text-status-risk text-xs font-bold">₹{l.relief_sought_crore} Cr</div></div>
+            <div><div className="text-[10px] text-muted-foreground uppercase tracking-wide mb-0.5">Relief Sought</div><div className="text-status-risk text-xs font-bold">₹{l.relief_sought_crore} Cr</div></div>
           )}
         </div>
 

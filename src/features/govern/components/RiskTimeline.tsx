@@ -15,9 +15,9 @@ function CustomTooltip({ active, payload }: { active?: boolean; payload?: Array<
     <div className="bg-muted border border-border rounded-sm px-3 py-2 text-xs shadow-lg">
       <div className="text-primary font-semibold mb-1">{d.quarter}</div>
       <div className="text-foreground mb-0.5">
-        Score: <span className={`font-mono font-bold ${d.score >= 40 ? 'text-status-caution' : 'text-status-risk'}`}>{d.score}</span>
+        Score: <span className={`font-bold ${d.score >= 40 ? 'text-status-caution' : 'text-status-risk'}`}>{d.score}</span>
       </div>
-      <div className="text-muted-foreground">Default prob: <span className="text-status-risk font-mono font-bold">{d.default_probability}%</span></div>
+      <div className="text-muted-foreground">Default prob: <span className="text-status-risk font-bold">{d.default_probability}%</span></div>
     </div>
   )
 }

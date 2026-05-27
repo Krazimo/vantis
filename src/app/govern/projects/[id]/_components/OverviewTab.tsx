@@ -45,7 +45,7 @@ export default function OverviewTab({ project, developer, qprRows }: Props) {
       <div className="bg-muted border border-border rounded-sm p-4">
         <div className="flex items-center justify-between mb-2">
           <span className="text-muted-foreground text-xs font-semibold uppercase tracking-wide">Units Sold</span>
-          <span className="font-mono text-primary text-sm font-bold">{project.units_sold} / {project.total_units}</span>
+          <span className="text-primary text-sm font-bold">{project.units_sold} / {project.total_units}</span>
         </div>
         <div className="h-2 bg-border rounded-full overflow-hidden">
           <div className="h-full bg-primary rounded-full transition-all duration-700" style={{ width: `${unitsPct}%` }} />
@@ -85,11 +85,11 @@ export default function OverviewTab({ project, developer, qprRows }: Props) {
             </div>
             <div className="grid grid-cols-3 gap-3 text-center border-t border-border pt-3">
               <div>
-                <div className="font-mono text-primary text-base font-bold">{developer.total_projects}</div>
+                <div className="text-primary text-base font-bold">{developer.total_projects}</div>
                 <div className="text-muted-foreground text-[10px] mt-0.5">Total projects</div>
               </div>
               <div>
-                <div className="font-mono text-foreground text-base font-bold">{developer.active_projects}</div>
+                <div className="text-foreground text-base font-bold">{developer.active_projects}</div>
                 <div className="text-muted-foreground text-[10px] mt-0.5">Active</div>
               </div>
               <div>

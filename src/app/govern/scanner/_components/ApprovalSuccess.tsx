@@ -15,7 +15,7 @@ export default function ApprovalSuccess({ approvedAt, onReset }: Props) {
         <CheckCircle className="w-10 h-10 text-status-compliant mx-auto mb-3" />
         <div className="text-2xl text-foreground font-bold mb-2">Application Approved</div>
         <div className="text-muted-foreground text-sm mb-3 leading-relaxed">Prestige Whitefield Phase 2 has been approved for K-RERA registration</div>
-        <div className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest">{fmtTimestamp(approvedAt)}</div>
+        <div className="text-[10px] text-muted-foreground uppercase tracking-widest">{fmtTimestamp(approvedAt)}</div>
       </div>
 
       <div className="bg-card border border-border rounded-sm p-6 mt-4">

@@ -30,7 +30,7 @@ export default function Step3Form({ lang, tx, onNext, onBack }: Props) {
       <div>
         <div className="flex items-center justify-between mb-1.5">
           <label className="text-xs text-muted-foreground">{tx.complaintText}</label>
-          <span className={`text-xs font-mono ${text.length < 50 ? 'text-muted-foreground' : text.length > 2000 ? 'text-status-risk' : 'text-status-compliant'}`}>
+          <span className={`text-xs ${text.length < 50 ? 'text-muted-foreground' : text.length > 2000 ? 'text-status-risk' : 'text-status-compliant'}`}>
             {text.length} / 2000 {tx.charCount}
           </span>
         </div>

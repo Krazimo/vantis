@@ -4,7 +4,7 @@ export default function Error({ reset }: { error: Error; reset: () => void }) {
   return (
     <main className="min-h-screen bg-background flex items-center justify-center px-5">
       <div className="text-center">
-        <div className="font-mono text-muted-foreground text-xs uppercase tracking-widest mb-3">Something went wrong</div>
+        <div className="text-muted-foreground text-xs uppercase tracking-widest mb-3">Something went wrong</div>
         <button
           onClick={reset}
           className="text-xs text-primary border border-primary/30 px-4 py-2 rounded-sm hover:bg-primary/10 transition-colors duration-150"
