@@ -6,6 +6,7 @@ import { COMPLAINTS, FILTER_TABS, type FilterTab } from './_data/complaints.data
 import { tabOf } from './_data/complaints.utils'
 import ComplaintsTable from './_components/ComplaintsTable'
 import ComplaintsModals from './_components/ComplaintsModals'
+import { FilterBar } from '@/features/govern/components/FilterBar'
 
 export default function ComplaintManagement() {
   const [activeTab,     setActiveTab]     = useState<FilterTab>('all')
@@ -50,24 +51,12 @@ export default function ComplaintManagement() {
         </div>
       </div>
 
-      <div className="flex gap-1 mb-4 overflow-x-auto pb-1">
-        {FILTER_TABS.map(t => (
-          <button
-            key={t.key}
-            onClick={() => setActiveTab(t.key)}
-            className={`px-3 py-1.5 rounded-sm text-xs font-medium whitespace-nowrap transition-colors duration-150 flex items-center gap-1.5 ${
-              activeTab === t.key
-                ? 'bg-gold/15 text-gold border border-gold/30'
-                : 'bg-surface text-gray border border-border hover:text-off-white'
-            }`}
-          >
-            {t.label}
-            <span className={`text-[10px] px-1.5 py-0.5 rounded-sm ${activeTab === t.key ? 'bg-gold/20 text-gold' : 'bg-surface2 text-gray'}`}>
-              {tabCounts[t.key]}
-            </span>
-          </button>
-        ))}
-      </div>
+      <FilterBar
+        tabs={FILTER_TABS.map(t => ({ key: t.key, label: t.label, count: tabCounts[t.key] }))}
+        active={activeTab}
+        onChange={k => setActiveTab(k as FilterTab)}
+        className="mb-4"
+      />
 
       <ComplaintsTable
         complaints={filtered}

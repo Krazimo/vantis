@@ -3,6 +3,7 @@
 import { Users, Shield } from 'lucide-react'
 import { ROWS } from './_data/homebuyer.data'
 import HomebuyerTable from './_components/HomebuyerTable'
+import { StatCard } from '@/features/govern/components/StatCard'
 
 export default function HomebuyerEarlyWarning() {
   const totalDistressed = ROWS.filter(r => r.tier === 'CRITICAL').reduce((s, r) => s + r.homebuyers, 0)
@@ -20,18 +21,9 @@ export default function HomebuyerEarlyWarning() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
-        <div className="bg-surface border border-red/20 rounded-sm p-4 text-center">
-          <div className="font-syne text-3xl font-bold text-red">{totalDistressed.toLocaleString('en-IN')}</div>
-          <div className="text-gray text-xs mt-1">Homebuyers in Distressed Projects</div>
-        </div>
-        <div className="bg-surface border border-red/20 rounded-sm p-4 text-center">
-          <div className="font-syne text-3xl font-bold text-red">₹{totalCapital.toFixed(0)} Cr</div>
-          <div className="text-gray text-xs mt-1">Total Capital at Risk</div>
-        </div>
-        <div className="bg-surface border border-amber/20 rounded-sm p-4 text-center">
-          <div className="font-syne text-3xl font-bold text-amber">{criticalCount}</div>
-          <div className="text-gray text-xs mt-1">Projects in Critical State</div>
-        </div>
+        <StatCard label="Homebuyers in Distressed Projects" value={totalDistressed.toLocaleString('en-IN')} valueColor="text-red" />
+        <StatCard label="Total Capital at Risk" value={`₹${totalCapital.toFixed(0)} Cr`} valueColor="text-red" />
+        <StatCard label="Projects in Critical State" value={String(criticalCount)} valueColor="text-amber" />
       </div>
 
       <HomebuyerTable />

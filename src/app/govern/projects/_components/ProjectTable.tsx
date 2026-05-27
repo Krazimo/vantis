@@ -2,8 +2,9 @@ import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
 import {
   type Project, getLastQPR,
-  statusColor, statusDot, qprClasses, qprLabel, certClasses, riskScoreColor, riskBarColor,
+  qprClasses, qprLabel, certClasses, riskScoreColor, riskBarColor,
 } from '../_data/project-registry.data'
+import { StatusBadge } from '@/features/govern/components/StatusBadge'
 
 interface Props {
   filtered: Project[]
@@ -47,9 +48,7 @@ export default function ProjectTable({ filtered, totalCount, lastQuarter }: Prop
                   <td className="px-4 py-3.5 text-gray text-sm whitespace-nowrap">{p.location}</td>
                   <td className="px-4 py-3.5"><span className="text-xs text-gray-light bg-surface2 border border-border px-2 py-0.5 rounded-sm">{p.type}</span></td>
                   <td className="px-4 py-3.5">
-                    <span className={`inline-flex items-center gap-1.5 text-xs whitespace-nowrap ${statusColor(p.status)}`}>
-                      <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${statusDot(p.status)}`} />{p.status}
-                    </span>
+                    <StatusBadge status={p.status} className="whitespace-nowrap" />
                   </td>
                   <td className="px-4 py-3.5">
                     <div className="flex items-center gap-2">
@@ -86,9 +85,7 @@ export default function ProjectTable({ filtered, totalCount, lastQuarter }: Prop
                   <div className="text-gray text-xs">{p.developer_name}</div>
                   <div className="text-gray text-xs">{p.location}</div>
                 </div>
-                <span className={`inline-flex items-center gap-1.5 text-xs shrink-0 whitespace-nowrap ${statusColor(p.status)}`}>
-                  <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${statusDot(p.status)}`} />{p.status}
-                </span>
+                <StatusBadge status={p.status} className="shrink-0 whitespace-nowrap" />
               </div>
               <div className="grid grid-cols-3 gap-3 text-center border-t border-border pt-3">
                 <div><div className="text-[10px] text-gray uppercase tracking-wide mb-0.5">Risk Score</div><div className={`font-mono text-sm font-bold ${riskScoreColor(p.risk_score)}`}>{p.risk_score}</div></div>

@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react'
 import { Scale } from 'lucide-react'
 import { ALL_CASES, TABS, courtCategory, type CourtFilter } from './_data/litigation-watchlist.data'
 import LitigationCard from './_components/LitigationCard'
+import { FilterBar } from '@/features/govern/components/FilterBar'
 
 export default function LitigationWatchlist() {
   const [filter, setFilter] = useState<CourtFilter>('ALL')
@@ -26,19 +27,12 @@ export default function LitigationWatchlist() {
         </div>
       </div>
 
-      <div className="flex gap-0 border-b border-border mb-5 overflow-x-auto scrollbar-none">
-        {TABS.map(({ id, label, count }) => (
-          <button key={id} onClick={() => setFilter(id)}
-            className={`flex items-center gap-1.5 px-4 py-2.5 text-xs font-medium whitespace-nowrap border-b-2 transition-colors duration-150 -mb-px ${
-              filter === id
-                ? id === 'HIGH_COURT' || id === 'CRIMINAL' ? 'border-red text-red' : id === 'DISTRICT' ? 'border-amber text-amber' : 'border-gold text-gold'
-                : 'border-transparent text-gray hover:text-gold-light'
-            }`}>
-            {label}
-            <span className="font-mono text-[10px] opacity-70">{count}</span>
-          </button>
-        ))}
-      </div>
+      <FilterBar
+        tabs={TABS.map(({ id, label, count }) => ({ key: id, label, count }))}
+        active={filter}
+        onChange={k => setFilter(k as CourtFilter)}
+        className="mb-5"
+      />
 
       {filtered.length === 0 ? (
         <div className="bg-surface border border-border rounded-sm p-12 text-center">

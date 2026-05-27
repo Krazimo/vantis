@@ -8,6 +8,7 @@ import litigationData from '@/data/litigation.json'
 import qprData from '@/data/qpr.json'
 import DistrictPanel from './_components/DistrictPanel'
 import LiveFeeds from './_components/LiveFeeds'
+import { StatCard } from '@/features/govern/components/StatCard'
 import type { Project } from '@/features/govern/types/project.types'
 import type { LitigationItem } from '@/features/govern/types/litigation.types'
 
@@ -56,15 +57,8 @@ export default function GovernCommandCentre() {
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
-        {KPIs.map(({ label, value, icon: Icon, color, sub }) => (
-          <div key={label} className="bg-surface border border-border rounded-sm p-4">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-gray text-xs leading-tight">{label}</span>
-              <Icon className={`w-4 h-4 ${color} shrink-0`} />
-            </div>
-            <div className={`font-syne text-2xl sm:text-3xl font-bold ${color}`}>{value}</div>
-            <div className="text-gray text-xs mt-1">{sub}</div>
-          </div>
+        {KPIs.map(({ label, value, icon, color, sub }) => (
+          <StatCard key={label} label={label} value={value} sub={sub} icon={icon} valueColor={color} />
         ))}
       </div>
 
