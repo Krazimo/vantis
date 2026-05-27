@@ -1,22 +1,8 @@
 import complaintsData from '@/data/complaints.json'
+import type { Complaint } from '@/features/govern/types/complaint.types'
+import type { Language } from '@/features/shared/types/i18n.types'
 
-export type Language = 'en' | 'kn'
-
-export interface Complaint {
-  id: string
-  project_id: string
-  project_name: string
-  complainant_name: string
-  filed_date: string
-  category: string
-  status: 'PENDING' | 'RESOLVED'
-  description: string
-  amount_at_risk_lakh: number
-  assigned_officer: string
-  hearing_date: string | null
-  resolution_date?: string
-  resolution_summary?: string
-}
+export type { Complaint, Language }
 
 export const COMPLAINTS = complaintsData as Complaint[]
 

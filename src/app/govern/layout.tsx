@@ -1,48 +1,26 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Shield, Menu } from 'lucide-react'
-import { roleTextColor, roleDotBg, type Officer } from './_data/govern-layout.data'
+import { roleTextColor, roleDotBg } from './_data/govern-layout.data'
 import SidebarNav from './_components/SidebarNav'
 import LoginScreen from './_components/LoginScreen'
+import { useOfficer } from '@/features/govern/hooks/useOfficer'
+import { useDemoMode } from '@/features/govern/hooks/useDemoMode'
 
 export default function GovernLayout({ children }: { children: React.ReactNode }) {
-  const [mounted, setMounted] = useState(false)
-  const [officer, setOfficer] = useState<Officer | null>(null)
+  const { mounted, officer, saveOfficer, clearOfficer } = useOfficer()
+  const { demoMode } = useDemoMode()
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [demoMode, setDemoMode] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-    try {
-      const stored = localStorage.getItem('vantis_officer')
-      if (stored) setOfficer(JSON.parse(stored))
-      if (localStorage.getItem('vantis_demo_mode') === 'true') setDemoMode(true)
-    } catch (error) { console.warn('vantis localStorage read unavailable:', error) }
-
-    function handleKey(e: KeyboardEvent) {
-      if (e.ctrlKey && e.shiftKey && e.key === 'D') {
-        e.preventDefault()
-        setDemoMode(prev => {
-          const next = !prev
-          try { localStorage.setItem('vantis_demo_mode', String(next)) } catch (error) { console.warn('vantis_demo_mode localStorage write unavailable:', error) }
-          return next
-        })
-      }
-    }
-    document.addEventListener('keydown', handleKey)
-    return () => document.removeEventListener('keydown', handleKey)
-  }, [])
 
   if (!mounted) return <div className="min-h-screen bg-background" />
 
   if (!officer) {
-    return <LoginScreen onLogin={o => { localStorage.setItem('vantis_officer', JSON.stringify(o)); setOfficer(o) }} />
+    return <LoginScreen onLogin={saveOfficer} />
   }
 
   function handleLogout() {
-    localStorage.removeItem('vantis_officer')
-    setOfficer(null)
+    clearOfficer()
   }
 
   return (
@@ -61,14 +39,14 @@ export default function GovernLayout({ children }: { children: React.ReactNode }
       )}
 
       <div className="flex-1 md:ml-[220px] flex flex-col min-h-screen">
-        <div className="md:hidden flex items-center justify-between px-4 py-3 border-b border-border bg-surface sticky top-0 z-20">
-          <button onClick={() => setSidebarOpen(true)} className="text-gray-light hover:text-gold transition-colors duration-150">
+        <div className="md:hidden flex items-center justify-between px-4 py-3 border-b border-border bg-card sticky top-0 z-20">
+          <button onClick={() => setSidebarOpen(true)} className="text-muted-foreground hover:text-primary transition-colors duration-150">
             <Menu className="w-5 h-5" />
           </button>
           <div className="flex items-center gap-2">
-            <Shield className="w-4 h-4 text-gold" />
-            <span className="font-syne text-sm text-gold">Vantis Govern</span>
-            {demoMode && <span className="text-[9px] font-bold bg-gold text-background px-1.5 py-0.5 rounded tracking-widest">DEMO</span>}
+            <Shield className="w-4 h-4 text-primary" />
+            <span className="text-sm text-primary">Vantis Govern</span>
+            {demoMode && <span className="text-[9px] font-bold bg-primary text-background px-1.5 py-0.5 rounded tracking-widest">DEMO</span>}
           </div>
           <span className={`inline-flex items-center gap-1.5 text-[10px] ${roleTextColor(officer.role)}`}>
             <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${roleDotBg(officer.role)}`} />
@@ -76,11 +54,11 @@ export default function GovernLayout({ children }: { children: React.ReactNode }
           </span>
         </div>
 
-        <div className="hidden md:flex items-center justify-between px-6 py-3 border-b border-border bg-surface sticky top-0 z-20">
-          <span className="font-mono text-xs text-gray tracking-widest uppercase">K-RERA Officer Portal</span>
+        <div className="hidden md:flex items-center justify-between px-6 py-3 border-b border-border bg-card sticky top-0 z-20">
+          <span className="text-xs text-muted-foreground tracking-widest uppercase">K-RERA Officer Portal</span>
           <div className="flex items-center gap-3">
-            {demoMode && <span className="text-[10px] font-bold bg-gold text-background px-2 py-0.5 rounded tracking-widest">DEMO</span>}
-            <span className="text-off-white text-xs">{officer.name}</span>
+            {demoMode && <span className="text-[10px] font-bold bg-primary text-background px-2 py-0.5 rounded tracking-widest">DEMO</span>}
+            <span className="text-foreground text-xs">{officer.name}</span>
             <span className={`inline-flex items-center gap-1.5 text-xs ${roleTextColor(officer.role)}`}>
               <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${roleDotBg(officer.role)}`} />
               {officer.role}

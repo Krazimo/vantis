@@ -19,15 +19,15 @@ export function fmtDate(d: string | null | undefined): string {
 }
 
 export function statusBadgeColor(c: Complaint): string {
-  if (c.status === 'RESOLVED') return 'text-green'
+  if (c.status === 'RESOLVED') return 'text-status-compliant'
   if (c.hearing_date) return 'text-blue'
-  return 'text-amber'
+  return 'text-status-caution'
 }
 
 export function statusBadgeDot(c: Complaint): string {
-  if (c.status === 'RESOLVED') return 'bg-green'
+  if (c.status === 'RESOLVED') return 'bg-status-compliant'
   if (c.hearing_date) return 'bg-blue'
-  return 'bg-amber'
+  return 'bg-status-caution'
 }
 
 export function statusLabel(c: Complaint): string {

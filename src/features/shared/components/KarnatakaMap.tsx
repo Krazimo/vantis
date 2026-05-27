@@ -111,13 +111,13 @@ export default function KarnatakaMap({ selectedDistrict, onDistrictClick }: Karn
       {/* Legend */}
       <div className="flex items-center gap-4 mt-2 flex-wrap">
         {[
-          { color: 'bg-green/40', label: 'Compliant' },
-          { color: 'bg-amber/40', label: 'Caution' },
-          { color: 'bg-red/40',   label: 'High Risk' },
+          { color: 'bg-status-compliant/40', label: 'Compliant' },
+          { color: 'bg-status-caution/40', label: 'Caution' },
+          { color: 'bg-status-risk/40',   label: 'High Risk' },
         ].map(({ color, label }) => (
           <div key={label} className="flex items-center gap-1.5">
             <div className={`w-2.5 h-2.5 rounded-sm ${color}`} />
-            <span className="text-gray text-xs">{label}</span>
+            <span className="text-muted-foreground text-xs">{label}</span>
           </div>
         ))}
       </div>

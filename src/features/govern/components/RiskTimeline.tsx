@@ -12,12 +12,12 @@ function CustomTooltip({ active, payload }: { active?: boolean; payload?: Array<
   if (!active || !payload?.length) return null
   const d = payload[0].payload
   return (
-    <div className="bg-surface2 border border-border rounded-sm px-3 py-2 text-xs shadow-lg">
-      <div className="text-gold font-semibold mb-1">{d.quarter}</div>
-      <div className="text-off-white mb-0.5">
-        Score: <span className={`font-mono font-bold ${d.score >= 40 ? 'text-amber' : 'text-red'}`}>{d.score}</span>
+    <div className="bg-muted border border-border rounded-sm px-3 py-2 text-xs shadow-lg">
+      <div className="text-primary font-semibold mb-1">{d.quarter}</div>
+      <div className="text-foreground mb-0.5">
+        Score: <span className={`font-bold ${d.score >= 40 ? 'text-status-caution' : 'text-status-risk'}`}>{d.score}</span>
       </div>
-      <div className="text-gray">Default prob: <span className="text-red font-mono font-bold">{d.default_probability}%</span></div>
+      <div className="text-muted-foreground">Default prob: <span className="text-status-risk font-bold">{d.default_probability}%</span></div>
     </div>
   )
 }
@@ -47,27 +47,27 @@ export default function RiskTimeline() {
   return (
     <div>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-        <div className="bg-red/10 border border-red/20 rounded-sm p-3 text-center">
-          <div className="font-syne text-red text-2xl font-bold">{ozoneData.quarters_early_warning}</div>
-          <div className="text-gray text-xs mt-1">Quarters early warning</div>
+        <div className="bg-status-risk/10 border border-status-risk/20 rounded-sm p-3 text-center">
+          <div className="text-status-risk text-2xl font-bold">{ozoneData.quarters_early_warning}</div>
+          <div className="text-muted-foreground text-xs mt-1">Quarters early warning</div>
         </div>
-        <div className="bg-red/10 border border-red/20 rounded-sm p-3 text-center">
-          <div className="font-syne text-red text-2xl font-bold">{ozoneData.homebuyers_affected.toLocaleString('en-IN')}</div>
-          <div className="text-gray text-xs mt-1">Homebuyers at risk</div>
+        <div className="bg-status-risk/10 border border-status-risk/20 rounded-sm p-3 text-center">
+          <div className="text-status-risk text-2xl font-bold">{ozoneData.homebuyers_affected.toLocaleString('en-IN')}</div>
+          <div className="text-muted-foreground text-xs mt-1">Homebuyers at risk</div>
         </div>
-        <div className="bg-red/10 border border-red/20 rounded-sm p-3 text-center">
-          <div className="font-syne text-red text-2xl font-bold">₹{ozoneData.capital_at_risk_crore} Cr</div>
-          <div className="text-gray text-xs mt-1">Capital at risk</div>
+        <div className="bg-status-risk/10 border border-status-risk/20 rounded-sm p-3 text-center">
+          <div className="text-status-risk text-2xl font-bold">₹{ozoneData.capital_at_risk_crore} Cr</div>
+          <div className="text-muted-foreground text-xs mt-1">Capital at risk</div>
         </div>
-        <div className="bg-amber/10 border border-amber/20 rounded-sm p-3 text-center">
-          <div className="font-syne text-amber text-2xl font-bold">{ozoneData.fir_filed}</div>
-          <div className="text-gray text-xs mt-1">FIR filed</div>
+        <div className="bg-status-caution/10 border border-status-caution/20 rounded-sm p-3 text-center">
+          <div className="text-status-caution text-2xl font-bold">{ozoneData.fir_filed}</div>
+          <div className="text-muted-foreground text-xs mt-1">FIR filed</div>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
         <div className="lg:col-span-3">
-          <div className="text-[10px] text-gray uppercase tracking-widest mb-3 font-semibold">Vantis Risk Score · 8-Quarter Trajectory</div>
+          <div className="text-[10px] text-muted-foreground uppercase tracking-widest mb-3 font-semibold">Vantis Risk Score · 8-Quarter Trajectory</div>
           <ResponsiveContainer width="100%" height={240}>
             <AreaChart data={TIMELINE} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
               <defs>
@@ -102,9 +102,9 @@ export default function RiskTimeline() {
             </AreaChart>
           </ResponsiveContainer>
           <div className="flex items-center gap-4 mt-2 flex-wrap">
-            <div className="flex items-center gap-1.5"><div className="w-6 h-0.5 bg-gradient-to-r from-amber to-red" /><span className="text-gray text-[10px]">Risk Score</span></div>
-            <div className="flex items-center gap-1.5"><div className="w-6 h-0.5 bg-red opacity-40" /><span className="text-gray text-[10px]">Default Probability</span></div>
-            <span className="text-gray text-[10px] ml-auto">← Click a point for details</span>
+            <div className="flex items-center gap-1.5"><div className="w-6 h-0.5 bg-gradient-to-r from-amber to-red" /><span className="text-muted-foreground text-[10px]">Risk Score</span></div>
+            <div className="flex items-center gap-1.5"><div className="w-6 h-0.5 bg-status-risk opacity-40" /><span className="text-muted-foreground text-[10px]">Default Probability</span></div>
+            <span className="text-muted-foreground text-[10px] ml-auto">← Click a point for details</span>
           </div>
         </div>
         <div className="lg:col-span-2">

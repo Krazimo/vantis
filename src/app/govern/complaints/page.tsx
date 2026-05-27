@@ -6,6 +6,7 @@ import { COMPLAINTS, FILTER_TABS, type FilterTab } from './_data/complaints.data
 import { tabOf } from './_data/complaints.utils'
 import ComplaintsTable from './_components/ComplaintsTable'
 import ComplaintsModals from './_components/ComplaintsModals'
+import { FilterBar } from '@/features/govern/components/FilterBar'
 
 export default function ComplaintManagement() {
   const [activeTab,     setActiveTab]     = useState<FilterTab>('all')
@@ -29,45 +30,33 @@ export default function ComplaintManagement() {
 
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="font-syne text-2xl sm:text-3xl text-off-white">Complaint Management</h1>
-          <p className="text-gray text-xs mt-1">Track, schedule hearings, and record orders</p>
+          <h1 className="text-2xl sm:text-3xl text-foreground">Complaint Management</h1>
+          <p className="text-muted-foreground text-xs mt-1">Track, schedule hearings, and record orders</p>
         </div>
-        <FileText className="w-6 h-6 text-gray hidden sm:block" />
+        <FileText className="w-6 h-6 text-muted-foreground hidden sm:block" />
       </div>
 
       <div className="grid grid-cols-3 gap-3 mb-6">
-        <div className="bg-surface border border-border rounded-sm p-4 text-center">
-          <div className="font-syne text-3xl font-bold text-off-white">17</div>
-          <div className="text-gray text-xs mt-1">Total Complaints</div>
+        <div className="bg-card border border-border rounded-sm p-4 text-center">
+          <div className="text-3xl font-bold text-foreground">17</div>
+          <div className="text-muted-foreground text-xs mt-1">Total Complaints</div>
         </div>
-        <div className="bg-surface border border-amber/20 rounded-sm p-4 text-center">
-          <div className="font-syne text-3xl font-bold text-amber">14</div>
-          <div className="text-gray text-xs mt-1">Pending</div>
+        <div className="bg-card border border-status-caution/20 rounded-sm p-4 text-center">
+          <div className="text-3xl font-bold text-status-caution">14</div>
+          <div className="text-muted-foreground text-xs mt-1">Pending</div>
         </div>
-        <div className="bg-surface border border-green/20 rounded-sm p-4 text-center">
-          <div className="font-syne text-3xl font-bold text-green">3</div>
-          <div className="text-gray text-xs mt-1">Resolved</div>
+        <div className="bg-card border border-status-compliant/20 rounded-sm p-4 text-center">
+          <div className="text-3xl font-bold text-status-compliant">3</div>
+          <div className="text-muted-foreground text-xs mt-1">Resolved</div>
         </div>
       </div>
 
-      <div className="flex gap-1 mb-4 overflow-x-auto pb-1">
-        {FILTER_TABS.map(t => (
-          <button
-            key={t.key}
-            onClick={() => setActiveTab(t.key)}
-            className={`px-3 py-1.5 rounded-sm text-xs font-medium whitespace-nowrap transition-colors duration-150 flex items-center gap-1.5 ${
-              activeTab === t.key
-                ? 'bg-gold/15 text-gold border border-gold/30'
-                : 'bg-surface text-gray border border-border hover:text-off-white'
-            }`}
-          >
-            {t.label}
-            <span className={`text-[10px] px-1.5 py-0.5 rounded-sm ${activeTab === t.key ? 'bg-gold/20 text-gold' : 'bg-surface2 text-gray'}`}>
-              {tabCounts[t.key]}
-            </span>
-          </button>
-        ))}
-      </div>
+      <FilterBar
+        tabs={FILTER_TABS.map(t => ({ key: t.key, label: t.label, count: tabCounts[t.key] }))}
+        active={activeTab}
+        onChange={k => setActiveTab(k as FilterTab)}
+        className="mb-4"
+      />
 
       <ComplaintsTable
         complaints={filtered}

@@ -3,7 +3,7 @@ export interface Component {
   value: number
 }
 
-export interface Developer {
+export type Developer = {
   id: string
   name: string
   score: number
@@ -65,31 +65,31 @@ export const DEVELOPERS: Developer[] = [
 ]
 
 export function scoreColor(s: number): string {
-  if (s >= 70) return 'text-green'
-  if (s >= 45) return 'text-amber'
-  return 'text-red'
+  if (s >= 70) return 'text-status-compliant'
+  if (s >= 45) return 'text-status-caution'
+  return 'text-status-risk'
 }
 
 export function scoreBorder(s: number): string {
-  if (s >= 70) return 'border-green/20'
-  if (s >= 45) return 'border-amber/20'
-  return 'border-red/30'
+  if (s >= 70) return 'border-status-compliant/20'
+  if (s >= 45) return 'border-status-caution/20'
+  return 'border-status-risk/30'
 }
 
 export function barColor(v: number): string {
-  if (v >= 70) return 'bg-green'
-  if (v >= 45) return 'bg-amber'
-  return 'bg-red'
+  if (v >= 70) return 'bg-status-compliant'
+  if (v >= 45) return 'bg-status-caution'
+  return 'bg-status-risk'
 }
 
 export function statusColor(s: string): string {
-  if (s === 'COMPLIANT') return 'text-green'
-  if (s === 'CAUTION')   return 'text-amber'
-  return 'text-red'
+  if (s === 'COMPLIANT') return 'text-status-compliant'
+  if (s === 'CAUTION')   return 'text-status-caution'
+  return 'text-status-risk'
 }
 
 export function statusDot(s: string): string {
-  if (s === 'COMPLIANT') return 'bg-green'
-  if (s === 'CAUTION')   return 'bg-amber'
-  return 'bg-red'
+  if (s === 'COMPLIANT') return 'bg-status-compliant'
+  if (s === 'CAUTION')   return 'bg-status-caution'
+  return 'bg-status-risk'
 }

@@ -6,6 +6,7 @@ import { ALL_ROWS, CURRENT_STATS, FILTER_TABS, QUARTERS, type FilterTab } from '
 import { penalty, fmtInr } from './_data/qpr-tracker.utils'
 import QPRTable from './_components/QPRTable'
 import BatchNoticeModal from './_components/BatchNoticeModal'
+import { StatCard } from '@/features/govern/components/StatCard'
 
 export default function QPRTracker() {
   const [activeFilter, setActiveFilter] = useState<FilterTab>('ALL')
@@ -38,37 +39,25 @@ export default function QPRTracker() {
     <div className="px-4 sm:px-6 py-6 max-w-7xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="font-syne text-2xl sm:text-3xl text-off-white">QPR Compliance Tracker</h1>
-          <p className="text-gray text-xs mt-1">Quarterly Progress Reports · {QUARTERS.length} quarters tracked</p>
+          <h1 className="text-2xl sm:text-3xl text-foreground">QPR Compliance Tracker</h1>
+          <p className="text-muted-foreground text-xs mt-1">Quarterly Progress Reports · {QUARTERS.length} quarters tracked</p>
         </div>
-        <BarChart2 className="w-6 h-6 text-gray hidden sm:block" />
+        <BarChart2 className="w-6 h-6 text-muted-foreground hidden sm:block" />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
-        <div className="bg-surface border border-border rounded-sm p-4 text-center">
-          <div className="font-syne text-3xl font-bold text-off-white">{CURRENT_STATS.dueCount}</div>
-          <div className="text-gray text-xs mt-1">Projects Due This Quarter</div>
-          <div className="text-[10px] text-gray-light mt-0.5">Q1 2026</div>
-        </div>
-        <div className="bg-surface border border-green/20 rounded-sm p-4 text-center">
-          <div className="font-syne text-3xl font-bold text-green">{CURRENT_STATS.onTimeCount}</div>
-          <div className="text-gray text-xs mt-1">Filed On Time</div>
-          <div className="text-[10px] text-green/60 mt-0.5">Q1 2026</div>
-        </div>
-        <div className="bg-surface border border-red/20 rounded-sm p-4 text-center">
-          <div className="font-syne text-3xl font-bold text-red">{CURRENT_STATS.defaultingCount}</div>
-          <div className="text-gray text-xs mt-1">Defaulting</div>
-          <div className="text-[10px] text-red/60 mt-0.5">Q1 2026</div>
-        </div>
+        <StatCard label="Projects Due This Quarter" value={String(CURRENT_STATS.dueCount)} sub="Q1 2026" />
+        <StatCard label="Filed On Time" value={String(CURRENT_STATS.onTimeCount)} sub="Q1 2026" valueColor="text-status-compliant" />
+        <StatCard label="Defaulting" value={String(CURRENT_STATS.defaultingCount)} sub="Q1 2026" valueColor="text-status-risk" />
       </div>
 
       {totalPenalty > 0 && (
-        <div className="bg-red/5 border border-red/20 rounded-sm p-4 mb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="bg-status-risk/5 border border-status-risk/20 rounded-sm p-4 mb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <div className="text-red text-xs font-semibold uppercase tracking-widest mb-0.5">Total Penalty Accrued Across All Defaulters</div>
-            <div className="font-syne text-2xl font-bold text-red">{fmtInr(totalPenalty)}</div>
+            <div className="text-status-risk text-xs font-semibold uppercase tracking-widest mb-0.5">Total Penalty Accrued Across All Defaulters</div>
+            <div className="text-2xl font-bold text-status-risk">{fmtInr(totalPenalty)}</div>
           </div>
-          <div className="text-gray text-xs">@ Rs.25,000 per project per day</div>
+          <div className="text-muted-foreground text-xs">@ Rs.25,000 per project per day</div>
         </div>
       )}
 
@@ -77,11 +66,11 @@ export default function QPRTracker() {
           <button key={id} onClick={() => setActiveFilter(id)}
             className={`flex items-center gap-1.5 px-4 py-2.5 text-xs font-medium whitespace-nowrap border-b-2 transition-colors duration-150 -mb-px ${
               activeFilter === id
-                ? id === 'MISSED' ? 'border-red text-red' : id === 'LATE' ? 'border-amber text-amber' : id === 'ON_TIME' ? 'border-green text-green' : 'border-gold text-gold'
-                : 'border-transparent text-gray hover:text-gold-light'
+                ? id === 'MISSED' ? 'border-status-risk text-status-risk' : id === 'LATE' ? 'border-status-caution text-status-caution' : id === 'ON_TIME' ? 'border-status-compliant text-status-compliant' : 'border-primary text-primary'
+                : 'border-transparent text-muted-foreground hover:text-primary/80'
             }`}>
             {label}
-            <span className="font-mono text-[10px] opacity-70">{count}</span>
+            <span className="text-[10px] opacity-70">{count}</span>
           </button>
         ))}
       </div>

@@ -32,50 +32,50 @@ export function fmtInr(n: number): string {
 }
 
 export function statusColor(s: string): string {
-  if (s === 'COMPLIANT') return 'text-green'
-  if (s === 'CAUTION')   return 'text-amber'
-  return 'text-red'
+  if (s === 'COMPLIANT') return 'text-status-compliant'
+  if (s === 'CAUTION')   return 'text-status-caution'
+  return 'text-status-risk'
 }
 
 export function statusDot(s: string): string {
-  if (s === 'COMPLIANT') return 'bg-green'
-  if (s === 'CAUTION')   return 'bg-amber'
-  return 'bg-red'
+  if (s === 'COMPLIANT') return 'bg-status-compliant'
+  if (s === 'CAUTION')   return 'bg-status-caution'
+  return 'bg-status-risk'
 }
 
 export function riskColor(score: number): string {
-  if (score >= 70) return 'text-green'
-  if (score >= 40) return 'text-amber'
-  return 'text-red'
+  if (score >= 70) return 'text-status-compliant'
+  if (score >= 40) return 'text-status-caution'
+  return 'text-status-risk'
 }
 
 export function riskBarColor(score: number): string {
-  if (score >= 70) return 'bg-green'
-  if (score >= 40) return 'bg-amber'
-  return 'bg-red'
+  if (score >= 70) return 'bg-status-compliant'
+  if (score >= 40) return 'bg-status-caution'
+  return 'bg-status-risk'
 }
 
 export function qprRowClass(status: string): string {
-  if (status === 'MISSED') return 'bg-red/5'
-  if (status === 'LATE')   return 'bg-amber/5'
+  if (status === 'MISSED') return 'bg-status-risk/5'
+  if (status === 'LATE')   return 'bg-status-caution/5'
   return ''
 }
 
 export function qprStatusEl(status: string) {
-  if (status === 'ON_TIME') return <span className="text-green font-medium text-xs">On Time</span>
-  if (status === 'LATE')    return <span className="text-amber font-medium text-xs">Late</span>
-  if (status === 'MISSED')  return <span className="text-red font-medium text-xs">Missed</span>
-  return <span className="text-gray text-xs">N/A</span>
+  if (status === 'ON_TIME') return <span className="text-status-compliant font-medium text-xs">On Time</span>
+  if (status === 'LATE')    return <span className="text-status-caution font-medium text-xs">Late</span>
+  if (status === 'MISSED')  return <span className="text-status-risk font-medium text-xs">Missed</span>
+  return <span className="text-muted-foreground text-xs">N/A</span>
 }
 
 export function severityTextColor(s: string): string {
-  if (s === 'CRITICAL' || s === 'HIGH') return 'text-red'
-  if (s === 'MEDIUM')                   return 'text-amber'
-  return 'text-gray'
+  if (s === 'CRITICAL' || s === 'HIGH') return 'text-status-risk'
+  if (s === 'MEDIUM')                   return 'text-status-caution'
+  return 'text-muted-foreground'
 }
 
 export function severityDotBg(s: string): string {
-  if (s === 'CRITICAL' || s === 'HIGH') return 'bg-red'
-  if (s === 'MEDIUM')                   return 'bg-amber'
-  return 'bg-gray'
+  if (s === 'CRITICAL' || s === 'HIGH') return 'bg-status-risk'
+  if (s === 'MEDIUM')                   return 'bg-status-caution'
+  return 'bg-muted'
 }

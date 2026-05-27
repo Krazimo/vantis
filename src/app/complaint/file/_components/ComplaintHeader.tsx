@@ -12,16 +12,16 @@ export default function ComplaintHeader({ lang, setLang, tx }: Props) {
   return (
     <header className="flex items-center justify-between px-5 py-4 border-b border-border bg-background">
       <Link href="/" className="flex items-center gap-2">
-        <Shield className="w-4 h-4 text-gold" />
-        <span className="font-syne text-base text-gold">Vantis</span>
+        <Shield className="w-4 h-4 text-primary" />
+        <span className="text-base text-primary">Vantis</span>
       </Link>
       <div className="text-center">
-        <div className="text-off-white text-sm font-medium">{tx.title}</div>
-        <div className="text-gray text-xs">{tx.sub}</div>
+        <div className="text-foreground text-sm font-medium">{tx.title}</div>
+        <div className="text-muted-foreground text-xs">{tx.sub}</div>
       </div>
       <button
         onClick={() => setLang(lang === 'en' ? 'kn' : 'en')}
-        className="text-xs text-gray-light border border-border rounded-sm px-3 py-1.5 hover:border-gold hover:text-gold transition-colors duration-150"
+        className="text-xs text-muted-foreground border border-border rounded-sm px-3 py-1.5 hover:border-primary hover:text-primary transition-colors duration-150"
       >
         {tx.langToggle}
       </button>

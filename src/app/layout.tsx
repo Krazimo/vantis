@@ -1,14 +1,8 @@
 import type { Metadata } from 'next'
-import { Syne, DM_Sans, DM_Mono } from 'next/font/google'
-import VantisIntelligence from '@/components/shared/VantisIntelligence'
+import { DM_Sans, DM_Mono } from 'next/font/google'
+import VantisIntelligence from '@/features/shared/components/VantisIntelligence'
 import Providers from './providers'
 import './globals.css'
-
-const syne = Syne({
-  subsets: ['latin'],
-  variable: '--font-syne',
-  display: 'swap',
-})
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -31,8 +25,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${syne.variable} ${dmSans.variable} ${dmMono.variable}`}>
-      <body className="bg-background text-off-white font-sans antialiased">
+    <html lang="en" className={`${dmSans.variable} ${dmMono.variable}`}>
+      <body className="bg-background text-foreground font-sans antialiased">
         {children}
         <VantisIntelligence />
         <Providers />

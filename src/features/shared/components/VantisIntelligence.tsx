@@ -46,7 +46,7 @@ export default function VantisIntelligence() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.97 }}
             transition={{ duration: 0.18, ease: 'easeOut' }}
-            className="fixed bottom-[4.5rem] right-4 sm:bottom-[5rem] sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[380px] h-[520px] bg-surface border border-border rounded-sm flex flex-col overflow-hidden"
+            className="fixed bottom-[4.5rem] right-4 sm:bottom-[5rem] sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[380px] h-[520px] bg-card border border-border rounded-sm flex flex-col overflow-hidden"
             style={{ maxWidth: '380px' }}
           >
             <ChatPanel
@@ -71,10 +71,10 @@ export default function VantisIntelligence() {
       <button
         onClick={() => setOpen(o => !o)}
         aria-label="Open Vantis Intelligence"
-        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 rounded-full bg-gold hover:bg-gold-light transition-colors duration-150 flex items-center justify-center"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 rounded-full bg-primary hover:bg-primary/80 transition-colors duration-150 flex items-center justify-center"
       >
         {!open && messages.length === 0 && (
-          <span className="absolute inset-0 rounded-full animate-ping bg-gold opacity-30 pointer-events-none" />
+          <span className="absolute inset-0 rounded-full animate-ping bg-primary opacity-30 pointer-events-none" />
         )}
         <AnimatePresence mode="wait" initial={false}>
           {open ? (

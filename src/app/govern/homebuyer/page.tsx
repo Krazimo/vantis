@@ -3,6 +3,7 @@
 import { Users, Shield } from 'lucide-react'
 import { ROWS } from './_data/homebuyer.data'
 import HomebuyerTable from './_components/HomebuyerTable'
+import { StatCard } from '@/features/govern/components/StatCard'
 
 export default function HomebuyerEarlyWarning() {
   const totalDistressed = ROWS.filter(r => r.tier === 'CRITICAL').reduce((s, r) => s + r.homebuyers, 0)
@@ -13,35 +14,26 @@ export default function HomebuyerEarlyWarning() {
     <div className="px-4 sm:px-6 py-6 max-w-7xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="font-syne text-2xl sm:text-3xl text-off-white">Homebuyer Early Warning</h1>
-          <p className="text-gray text-xs mt-1">Proactive protection for at-risk homebuyers</p>
+          <h1 className="text-2xl sm:text-3xl text-foreground">Homebuyer Early Warning</h1>
+          <p className="text-muted-foreground text-xs mt-1">Proactive protection for at-risk homebuyers</p>
         </div>
-        <Users className="w-6 h-6 text-gray hidden sm:block" />
+        <Users className="w-6 h-6 text-muted-foreground hidden sm:block" />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
-        <div className="bg-surface border border-red/20 rounded-sm p-4 text-center">
-          <div className="font-syne text-3xl font-bold text-red">{totalDistressed.toLocaleString('en-IN')}</div>
-          <div className="text-gray text-xs mt-1">Homebuyers in Distressed Projects</div>
-        </div>
-        <div className="bg-surface border border-red/20 rounded-sm p-4 text-center">
-          <div className="font-syne text-3xl font-bold text-red">₹{totalCapital.toFixed(0)} Cr</div>
-          <div className="text-gray text-xs mt-1">Total Capital at Risk</div>
-        </div>
-        <div className="bg-surface border border-amber/20 rounded-sm p-4 text-center">
-          <div className="font-syne text-3xl font-bold text-amber">{criticalCount}</div>
-          <div className="text-gray text-xs mt-1">Projects in Critical State</div>
-        </div>
+        <StatCard label="Homebuyers in Distressed Projects" value={totalDistressed.toLocaleString('en-IN')} valueColor="text-status-risk" />
+        <StatCard label="Total Capital at Risk" value={`₹${totalCapital.toFixed(0)} Cr`} valueColor="text-status-risk" />
+        <StatCard label="Projects in Critical State" value={String(criticalCount)} valueColor="text-status-caution" />
       </div>
 
       <HomebuyerTable />
 
-      <div className="border-l-2 border-gold pl-4 bg-surface rounded-sm p-4">
+      <div className="border-l-2 border-primary pl-4 bg-card rounded-sm p-4">
         <div className="flex items-start gap-3">
-          <Shield className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+          <Shield className="w-4 h-4 text-primary shrink-0 mt-0.5" />
           <div>
-            <div className="text-gold text-xs font-semibold uppercase tracking-widest mb-1">Vantis Proactive Intelligence</div>
-            <div className="text-off-white text-sm leading-relaxed">
+            <div className="text-primary text-xs font-semibold uppercase tracking-widest mb-1">Vantis Proactive Intelligence</div>
+            <div className="text-foreground text-sm leading-relaxed">
               K-RERA currently waits for homebuyers to file complaints.{' '}
               <strong>Vantis flags projects before the complaints arrive</strong> — using QPR patterns, escrow velocity,
               and litigation signals to identify distress 6–8 quarters early.

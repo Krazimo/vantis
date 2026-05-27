@@ -49,25 +49,25 @@ export const ROWS: PredictiveRow[] = [
 ]
 
 export function actionConfig(a: string) {
-  if (a === 'ENFORCE') return { label: 'Enforce',   textColor: 'text-red',   dotBg: 'bg-red' }
-  if (a === 'MONITOR') return { label: 'Monitor',   textColor: 'text-amber', dotBg: 'bg-amber' }
-  return                      { label: 'No Action', textColor: 'text-green', dotBg: 'bg-green' }
+  if (a === 'ENFORCE') return { label: 'Enforce',   textColor: 'text-status-risk',   dotBg: 'bg-status-risk' }
+  if (a === 'MONITOR') return { label: 'Monitor',   textColor: 'text-status-caution', dotBg: 'bg-status-caution' }
+  return                      { label: 'No Action', textColor: 'text-status-compliant', dotBg: 'bg-status-compliant' }
 }
 
 export function probColor(p: number): string {
-  if (p >= 70) return 'text-red'
-  if (p >= 30) return 'text-amber'
-  return 'text-green'
+  if (p >= 70) return 'text-status-risk'
+  if (p >= 30) return 'text-status-caution'
+  return 'text-status-compliant'
 }
 
 export function probBarColor(p: number): string {
-  if (p >= 70) return 'bg-red'
-  if (p >= 30) return 'bg-amber'
-  return 'bg-green'
+  if (p >= 70) return 'bg-status-risk'
+  if (p >= 30) return 'bg-status-caution'
+  return 'bg-status-compliant'
 }
 
 export function riskScoreColor(s: number): string {
-  if (s >= 70) return 'text-green'
-  if (s >= 40) return 'text-amber'
-  return 'text-red'
+  if (s >= 70) return 'text-status-compliant'
+  if (s >= 40) return 'text-status-caution'
+  return 'text-status-risk'
 }

@@ -21,10 +21,10 @@ export const RRCS: RRCCard[] = [
 ]
 
 export const STATUS_CONFIG: Record<RRCStatus, { label: string; textColor: string; dotBg: string; bar: string }> = {
-  ISSUED:       { label: 'Issued',       textColor: 'text-gray-light', dotBg: 'bg-gray',  bar: 'bg-gray'  },
+  ISSUED:       { label: 'Issued',       textColor: 'text-muted-foreground', dotBg: 'bg-muted',  bar: 'bg-muted'  },
   ACKNOWLEDGED: { label: 'Acknowledged', textColor: 'text-blue',       dotBg: 'bg-blue',  bar: 'bg-blue'  },
-  IN_RECOVERY:  { label: 'In Recovery',  textColor: 'text-amber',      dotBg: 'bg-amber', bar: 'bg-amber' },
-  RECOVERED:    { label: 'Recovered',    textColor: 'text-green',      dotBg: 'bg-green', bar: 'bg-green' },
+  IN_RECOVERY:  { label: 'In Recovery',  textColor: 'text-status-caution',      dotBg: 'bg-status-caution', bar: 'bg-status-caution' },
+  RECOVERED:    { label: 'Recovered',    textColor: 'text-status-compliant',      dotBg: 'bg-status-compliant', bar: 'bg-status-compliant' },
 }
 
 export function fmtDate(d: string): string {

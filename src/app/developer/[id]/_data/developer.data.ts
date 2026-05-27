@@ -1,37 +1,14 @@
 import developersData from '@/data/developers.json'
 import projectsData from '@/data/projects.json'
+import type { Developer } from '@/features/govern/types/developer.types'
+import type { Project } from '@/features/govern/types/project.types'
+import type { Language } from '@/features/shared/types/i18n.types'
 
-export type Language = 'en' | 'kn'
+export type { Language, Project }
 
-export interface Developer {
-  id: string
-  name: string
-  city: string
-  state: string
-  trust_score: number
-  total_projects: number
-  active_projects: number
-  completed_projects: number
-  total_units: number
-  status: string
-  years_active: number
-  contact_email: string
-  contact_phone: string
-  projects: string[]
-}
-
-export interface Project {
-  id: string
-  name: string
-  location: string
-  status: string
-  total_units: number
-  units_sold: number
-  completion_date: string
-  risk_score: number
-}
-
-export const DEVELOPERS = developersData as Developer[]
+// Raw developer JSON has projects as string[] (IDs), not objects
+type DeveloperRaw = Developer & { projects: string[] }
+export const DEVELOPERS = developersData as DeveloperRaw[]
 export const PROJECTS = projectsData as Project[]
 
 export const COMPONENT_SCORES: Record<string, number[]> = {
@@ -79,33 +56,33 @@ export const TX = {
 export type Tx = typeof TX[Language]
 
 export function scoreColor(s: number) {
-  if (s >= 70) return 'text-green'
-  if (s >= 45) return 'text-amber'
-  return 'text-red'
+  if (s >= 70) return 'text-status-compliant'
+  if (s >= 45) return 'text-status-caution'
+  return 'text-status-risk'
 }
 
 export function scoreBorder(s: number) {
-  if (s >= 70) return 'border-green/20'
-  if (s >= 45) return 'border-amber/30'
-  return 'border-red/30'
+  if (s >= 70) return 'border-status-compliant/20'
+  if (s >= 45) return 'border-status-caution/30'
+  return 'border-status-risk/30'
 }
 
 export function barColor(v: number) {
-  if (v >= 70) return 'bg-green'
-  if (v >= 45) return 'bg-amber'
-  return 'bg-red'
+  if (v >= 70) return 'bg-status-compliant'
+  if (v >= 45) return 'bg-status-caution'
+  return 'bg-status-risk'
 }
 
 export function statusColor(s: string) {
-  if (s === 'COMPLIANT') return 'text-green'
-  if (s === 'CAUTION')   return 'text-amber'
-  return 'text-red'
+  if (s === 'COMPLIANT') return 'text-status-compliant'
+  if (s === 'CAUTION')   return 'text-status-caution'
+  return 'text-status-risk'
 }
 
 export function statusDot(s: string) {
-  if (s === 'COMPLIANT') return 'bg-green'
-  if (s === 'CAUTION')   return 'bg-amber'
-  return 'bg-red'
+  if (s === 'COMPLIANT') return 'bg-status-compliant'
+  if (s === 'CAUTION')   return 'bg-status-caution'
+  return 'bg-status-risk'
 }
 
 export function fmtDate(d: string) {

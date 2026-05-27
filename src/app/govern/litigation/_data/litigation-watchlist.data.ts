@@ -1,22 +1,8 @@
 import litigationData from '@/data/litigation.json'
 import projectsData from '@/data/projects.json'
+import type { LitigationItem } from '@/features/govern/types/litigation.types'
 
-export interface LitigationItem {
-  id: string
-  project_id: string
-  project_name: string
-  developer_name: string
-  type: string
-  court: string
-  case_number: string
-  filed_date: string
-  plaintiff: string
-  cause: string
-  relief_sought_crore: number | null
-  status: string
-  next_hearing: string
-  severity: string
-}
+export type { LitigationItem }
 
 export type CourtFilter = 'ALL' | 'HIGH_COURT' | 'DISTRICT' | 'CRIMINAL'
 
@@ -60,25 +46,25 @@ export function leftBorder(item: LitigationItem): string {
 }
 
 export function caseTypeColor(type: string): string {
-  if (type === 'Writ' || type === 'Criminal') return 'text-red'
-  if (type === 'Civil') return 'text-amber'
-  return 'text-gray'
+  if (type === 'Writ' || type === 'Criminal') return 'text-status-risk'
+  if (type === 'Civil') return 'text-status-caution'
+  return 'text-muted-foreground'
 }
 export function caseTypeDot(type: string): string {
-  if (type === 'Writ' || type === 'Criminal') return 'bg-red'
-  if (type === 'Civil') return 'bg-amber'
-  return 'bg-gray-light'
+  if (type === 'Writ' || type === 'Criminal') return 'bg-status-risk'
+  if (type === 'Civil') return 'bg-status-caution'
+  return 'bg-muted-light'
 }
 
 export function severityTextColor(severity: string): string {
-  if (severity === 'CRITICAL' || severity === 'HIGH') return 'text-red'
-  if (severity === 'MEDIUM') return 'text-amber'
-  return 'text-gray'
+  if (severity === 'CRITICAL' || severity === 'HIGH') return 'text-status-risk'
+  if (severity === 'MEDIUM') return 'text-status-caution'
+  return 'text-muted-foreground'
 }
 export function severityDot(severity: string): string {
-  if (severity === 'CRITICAL' || severity === 'HIGH') return 'bg-red'
-  if (severity === 'MEDIUM') return 'bg-amber'
-  return 'bg-gray-light'
+  if (severity === 'CRITICAL' || severity === 'HIGH') return 'bg-status-risk'
+  if (severity === 'MEDIUM') return 'bg-status-caution'
+  return 'bg-muted-light'
 }
 
 export const ALL_CASES = [...(litigationData as LitigationItem[])]
