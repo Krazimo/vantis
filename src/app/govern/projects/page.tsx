@@ -1,12 +1,13 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { Search, Building2, Filter } from 'lucide-react'
+import { Search, Filter } from 'lucide-react'
 import { PROJECTS, UNIQUE_DEVELOPERS, LAST_QUARTER, type StatusFilter } from './_data/project-registry.data'
 import ProjectTable from './_components/ProjectTable'
+import { PageShell } from '@/features/govern/components/PageShell'
 
 export default function GovernProjectRegistry() {
-  const [search, setSearch]           = useState('')
+  const [search, setSearch]             = useState('')
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('ALL')
   const [devFilter, setDevFilter]       = useState('ALL')
 
@@ -21,21 +22,16 @@ export default function GovernProjectRegistry() {
   }, [search, statusFilter, devFilter])
 
   return (
-    <div className="px-4 sm:px-6 py-6 max-w-7xl mx-auto">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-2xl sm:text-3xl text-foreground">Project Registry</h1>
-          <div className="flex items-center gap-1.5 mt-1">
-            <Building2 className="w-3 h-3 text-muted-foreground" />
-            <span className="text-muted-foreground text-xs">All K-RERA registered projects · Vantis database</span>
-          </div>
-        </div>
+    <PageShell
+      title="Project Registry"
+      subtitle="All K-RERA registered projects · Vantis database"
+      icon={
         <div className="hidden sm:flex items-center gap-1.5 bg-card border border-border rounded-sm px-3 py-1.5">
           <span className="text-primary text-sm font-bold">{filtered.length}</span>
           <span className="text-muted-foreground text-xs">/ {PROJECTS.length} projects</span>
         </div>
-      </div>
-
+      }
+    >
       <div className="flex flex-col sm:flex-row gap-3 mb-5">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
@@ -71,6 +67,6 @@ export default function GovernProjectRegistry() {
       <div className="sm:hidden text-muted-foreground text-xs mb-3">Showing {filtered.length} of {PROJECTS.length} projects</div>
 
       <ProjectTable filtered={filtered} totalCount={PROJECTS.length} lastQuarter={LAST_QUARTER} />
-    </div>
+    </PageShell>
   )
 }

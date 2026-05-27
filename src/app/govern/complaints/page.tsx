@@ -7,6 +7,7 @@ import { tabOf } from './_data/complaints.utils'
 import ComplaintsTable from './_components/ComplaintsTable'
 import ComplaintsModals from './_components/ComplaintsModals'
 import { FilterBar } from '@/features/govern/components/FilterBar'
+import { PageShell } from '@/features/govern/components/PageShell'
 
 export default function ComplaintManagement() {
   const [activeTab,     setActiveTab]     = useState<FilterTab>('all')
@@ -26,16 +27,11 @@ export default function ComplaintManagement() {
   )
 
   return (
-    <div className="px-4 sm:px-6 py-6 max-w-7xl mx-auto">
-
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-2xl sm:text-3xl text-foreground">Complaint Management</h1>
-          <p className="text-muted-foreground text-xs mt-1">Track, schedule hearings, and record orders</p>
-        </div>
-        <FileText className="w-6 h-6 text-muted-foreground hidden sm:block" />
-      </div>
-
+    <PageShell
+      title="Complaint Management"
+      subtitle="Track, schedule hearings, and record orders"
+      icon={<FileText className="w-6 h-6 text-muted-foreground hidden sm:block" />}
+    >
       <div className="grid grid-cols-3 gap-3 mb-6">
         <div className="bg-card border border-border rounded-sm p-4 text-center">
           <div className="text-3xl font-bold text-foreground">17</div>
@@ -74,6 +70,6 @@ export default function ComplaintManagement() {
         onCloseSchedule={() => setScheduleModal(null)}
         onCloseOrder={() => setOrderModal(null)}
       />
-    </div>
+    </PageShell>
   )
 }

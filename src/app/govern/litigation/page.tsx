@@ -5,6 +5,7 @@ import { Scale } from 'lucide-react'
 import { ALL_CASES, TABS, courtCategory, type CourtFilter } from './_data/litigation-watchlist.data'
 import LitigationCard from './_components/LitigationCard'
 import { FilterBar } from '@/features/govern/components/FilterBar'
+import { PageShell } from '@/features/govern/components/PageShell'
 
 export default function LitigationWatchlist() {
   const [filter, setFilter] = useState<CourtFilter>('ALL')
@@ -14,19 +15,17 @@ export default function LitigationWatchlist() {
   , [filter])
 
   return (
-    <div className="px-4 sm:px-6 py-6 max-w-5xl mx-auto">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-2xl sm:text-3xl text-foreground">Litigation Watchlist</h1>
-          <p className="text-muted-foreground text-xs mt-1">Active court cases · eCourts integration</p>
-        </div>
+    <PageShell
+      title="Litigation Watchlist"
+      subtitle="Active court cases · eCourts integration"
+      icon={
         <div className="flex items-center gap-2">
           <Scale className="w-4 h-4 text-status-risk" />
           <span className="text-status-risk text-sm font-bold">{ALL_CASES.length}</span>
           <span className="text-muted-foreground text-xs">active alerts</span>
         </div>
-      </div>
-
+      }
+    >
       <FilterBar
         tabs={TABS.map(({ id, label, count }) => ({ key: id, label, count }))}
         active={filter}
@@ -45,6 +44,6 @@ export default function LitigationWatchlist() {
           {filtered.map(l => <LitigationCard key={l.id} item={l} />)}
         </div>
       )}
-    </div>
+    </PageShell>
   )
 }

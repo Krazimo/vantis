@@ -2,18 +2,15 @@
 
 import { TrendingDown, AlertTriangle } from 'lucide-react'
 import PredictiveTable from './_components/PredictiveTable'
+import { PageShell } from '@/features/govern/components/PageShell'
 
 export default function PredictiveDefault() {
   return (
-    <div className="px-4 sm:px-6 py-6 max-w-7xl mx-auto">
-      <div className="flex items-center justify-between mb-2">
-        <h1 className="text-2xl sm:text-3xl text-foreground">Predictive Default Analytics</h1>
-        <TrendingDown className="w-6 h-6 text-muted-foreground hidden sm:block" />
-      </div>
-      <p className="text-muted-foreground text-xs mb-6">
-        Projects ranked by probability of default in next 4 quarters · Powered by QPR patterns, escrow velocity, litigation accumulation, and sales velocity
-      </p>
-
+    <PageShell
+      title="Predictive Default Analytics"
+      subtitle="Projects ranked by probability of default in next 4 quarters · Powered by QPR patterns, escrow velocity, litigation accumulation, and sales velocity"
+      icon={<TrendingDown className="w-6 h-6 text-muted-foreground hidden sm:block" />}
+    >
       <div className="border border-primary/40 bg-primary/5 rounded-sm px-5 py-4 mb-6">
         <div className="flex items-start gap-3">
           <AlertTriangle className="w-4 h-4 text-primary shrink-0 mt-0.5" />
@@ -31,6 +28,6 @@ export default function PredictiveDefault() {
       </div>
 
       <PredictiveTable />
-    </div>
+    </PageShell>
   )
 }

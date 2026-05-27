@@ -4,6 +4,7 @@ import { Users, Shield } from 'lucide-react'
 import { ROWS } from './_data/homebuyer.data'
 import HomebuyerTable from './_components/HomebuyerTable'
 import { StatCard } from '@/features/govern/components/StatCard'
+import { PageShell } from '@/features/govern/components/PageShell'
 
 export default function HomebuyerEarlyWarning() {
   const totalDistressed = ROWS.filter(r => r.tier === 'CRITICAL').reduce((s, r) => s + r.homebuyers, 0)
@@ -11,15 +12,11 @@ export default function HomebuyerEarlyWarning() {
   const criticalCount   = ROWS.filter(r => r.tier === 'CRITICAL').length
 
   return (
-    <div className="px-4 sm:px-6 py-6 max-w-7xl mx-auto">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-2xl sm:text-3xl text-foreground">Homebuyer Early Warning</h1>
-          <p className="text-muted-foreground text-xs mt-1">Proactive protection for at-risk homebuyers</p>
-        </div>
-        <Users className="w-6 h-6 text-muted-foreground hidden sm:block" />
-      </div>
-
+    <PageShell
+      title="Homebuyer Early Warning"
+      subtitle="Proactive protection for at-risk homebuyers"
+      icon={<Users className="w-6 h-6 text-muted-foreground hidden sm:block" />}
+    >
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
         <StatCard label="Homebuyers in Distressed Projects" value={totalDistressed.toLocaleString('en-IN')} valueColor="text-status-risk" />
         <StatCard label="Total Capital at Risk" value={`₹${totalCapital.toFixed(0)} Cr`} valueColor="text-status-risk" />
@@ -41,6 +38,6 @@ export default function HomebuyerEarlyWarning() {
           </div>
         </div>
       </div>
-    </div>
+    </PageShell>
   )
 }

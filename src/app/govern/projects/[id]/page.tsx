@@ -1,4 +1,7 @@
+import { PageShell } from '@/features/govern/components/PageShell'
 import ProjectDetailContent from './ProjectDetailContent'
+import projectsData from '@/data/projects.json'
+import type { Project } from '@/features/govern/types/project.types'
 
 export function generateStaticParams() {
   return [
@@ -10,6 +13,12 @@ export function generateStaticParams() {
 }
 
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
-  const resolvedParams = await params
-  return <ProjectDetailContent params={resolvedParams} />
+  const { id } = await params
+  const project = (projectsData as Project[]).find(p => p.id === id)
+  if (!project) return <ProjectDetailContent params={{ id }} />
+  return (
+    <PageShell title={project.name}>
+      <ProjectDetailContent params={{ id }} />
+    </PageShell>
+  )
 }

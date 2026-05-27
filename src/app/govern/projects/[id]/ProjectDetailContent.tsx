@@ -51,7 +51,7 @@ export default function ProjectDetailContent({ params }: { params: { id: string 
     : []
 
   return (
-    <div className="px-4 sm:px-6 py-6 max-w-5xl mx-auto">
+    <>
       <Link
         href="/govern/projects"
         className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors duration-150 mb-5"
@@ -63,7 +63,6 @@ export default function ProjectDetailContent({ params }: { params: { id: string 
       <div className="bg-card border border-border rounded-sm p-5 mb-5">
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
           <div>
-            <h1 className="text-xl sm:text-2xl text-foreground font-bold leading-tight mb-1">{project.name}</h1>
             <div className="font-mono text-primary text-xs mb-1.5">{project.rera}</div>
             <div className="text-muted-foreground text-xs">{project.developer_name} · {project.location}</div>
           </div>
@@ -107,6 +106,6 @@ export default function ProjectDetailContent({ params }: { params: { id: string 
         {activeTab === 'actions'    && <ActionsTab project={project} />}
         {activeTab === 'documents'  && <DocumentsTab projectId={project.id} />}
       </div>
-    </div>
+    </>
   )
 }
