@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react'
 import { Search } from 'lucide-react'
 import { DEVELOPERS } from './_data/risk.data'
 import DeveloperCard from './_components/DeveloperCard'
+import { PageShell } from '@/features/govern/components/PageShell'
 
 export default function DeveloperRiskIntelligence() {
   const [search,     setSearch]     = useState('')
@@ -15,14 +16,10 @@ export default function DeveloperRiskIntelligence() {
   )
 
   return (
-    <div className="px-4 sm:px-6 py-6 max-w-7xl mx-auto">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-2xl sm:text-3xl text-foreground">Developer Risk Intelligence</h1>
-          <p className="text-muted-foreground text-xs mt-1">Trust scores across K-RERA registered developers</p>
-        </div>
-      </div>
-
+    <PageShell
+      title="Developer Risk Intelligence"
+      subtitle="Trust scores across K-RERA registered developers"
+    >
       <div className="relative mb-6 max-w-sm">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
         <input type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search developer..."
@@ -43,6 +40,6 @@ export default function DeveloperRiskIntelligence() {
           <div className="col-span-2 text-center py-12 text-muted-foreground text-sm">No developers match &ldquo;{search}&rdquo;</div>
         )}
       </div>
-    </div>
+    </PageShell>
   )
 }

@@ -7,6 +7,7 @@ import ScannerQueue from './_components/ScannerQueue'
 import AssessmentCard from './_components/AssessmentCard'
 import ScannerModals from './_components/ScannerModals'
 import ApprovalSuccess from './_components/ApprovalSuccess'
+import { PageShell } from '@/features/govern/components/PageShell'
 
 export default function SubmissionScanner() {
   const [selectedId,      setSelectedId]      = useState<string>(APPLICATIONS[2].id)
@@ -36,18 +37,16 @@ export default function SubmissionScanner() {
   }
 
   return (
-    <div className="px-4 sm:px-6 py-6 max-w-7xl mx-auto">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-2xl sm:text-3xl text-foreground">Submission Scanner</h1>
-          <p className="text-muted-foreground text-xs mt-1">Pre-assessment queue · 5-database verification</p>
-        </div>
+    <PageShell
+      title="Submission Scanner"
+      subtitle="Pre-assessment queue · 5-database verification"
+      icon={
         <div className="hidden sm:flex items-center gap-2 text-muted-foreground text-xs">
           <ScanLine className="w-4 h-4" />
           {APPLICATIONS.length} pending
         </div>
-      </div>
-
+      }
+    >
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
         <div className="lg:col-span-2">
           <div className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold mb-3">Pending Queue</div>
@@ -76,6 +75,6 @@ export default function SubmissionScanner() {
         onConfirmConditions={closeModals}
         onClose={closeModals}
       />
-    </div>
+    </PageShell>
   )
 }

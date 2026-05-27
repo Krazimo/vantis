@@ -7,6 +7,7 @@ import { penalty, fmtInr } from './_data/qpr-tracker.utils'
 import QPRTable from './_components/QPRTable'
 import BatchNoticeModal from './_components/BatchNoticeModal'
 import { StatCard } from '@/features/govern/components/StatCard'
+import { PageShell } from '@/features/govern/components/PageShell'
 
 export default function QPRTracker() {
   const [activeFilter, setActiveFilter] = useState<FilterTab>('ALL')
@@ -36,15 +37,11 @@ export default function QPRTracker() {
   }
 
   return (
-    <div className="px-4 sm:px-6 py-6 max-w-7xl mx-auto">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-2xl sm:text-3xl text-foreground">QPR Compliance Tracker</h1>
-          <p className="text-muted-foreground text-xs mt-1">Quarterly Progress Reports · {QUARTERS.length} quarters tracked</p>
-        </div>
-        <BarChart2 className="w-6 h-6 text-muted-foreground hidden sm:block" />
-      </div>
-
+    <PageShell
+      title="QPR Compliance Tracker"
+      subtitle={`Quarterly Progress Reports · ${QUARTERS.length} quarters tracked`}
+      icon={<BarChart2 className="w-6 h-6 text-muted-foreground hidden sm:block" />}
+    >
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
         <StatCard label="Projects Due This Quarter" value={String(CURRENT_STATS.dueCount)} sub="Q1 2026" />
         <StatCard label="Filed On Time" value={String(CURRENT_STATS.onTimeCount)} sub="Q1 2026" valueColor="text-status-compliant" />
@@ -86,6 +83,6 @@ export default function QPRTracker() {
         onConfirm={() => { setBatchModal(false); setSelected(new Set()) }}
         onOpenModal={() => setBatchModal(true)}
       />
-    </div>
+    </PageShell>
   )
 }

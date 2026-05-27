@@ -1,12 +1,14 @@
+import { PageShell } from '@/features/govern/components/PageShell'
+
 export default function GovernIntelligence() {
   return (
-    <main className="min-h-screen bg-background flex items-center justify-center">
-      <div className="text-center">
-        <p className="text-muted-foreground text-sm tracking-widest uppercase mb-2">Route: /govern/intelligence</p>
-        <h1 className="text-2xl text-foreground">Vantis Intelligence</h1>
-        <p className="text-primary mt-1">K-RERA AI Assistant</p>
-        <p className="text-muted-foreground mt-2">Full-page chatbot interface — Session 4</p>
+    <PageShell title="Vantis Intelligence" subtitle="K-RERA AI Assistant">
+      <div className="flex items-center justify-center py-24">
+        <div className="text-center">
+          <p className="text-muted-foreground text-sm tracking-widest uppercase mb-2">Route: /govern/intelligence</p>
+          <p className="text-primary mt-1">Full-page chatbot interface — Session 4</p>
+        </div>
       </div>
-    </main>
+    </PageShell>
   )
 }

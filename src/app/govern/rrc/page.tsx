@@ -3,20 +3,17 @@
 import { Shield, AlertTriangle } from 'lucide-react'
 import { RRCS } from './_data/rrc.data'
 import RRCCard from './_components/RRCCard'
+import { PageShell } from '@/features/govern/components/PageShell'
 
 export default function RRCTracker() {
   const totalOutstanding = RRCS.filter(r => r.status !== 'RECOVERED').reduce((s, r) => s + r.amount_lakh, 0)
 
   return (
-    <div className="px-4 sm:px-6 py-6 max-w-5xl mx-auto">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-2xl sm:text-3xl text-foreground">RRC Tracker</h1>
-          <p className="text-muted-foreground text-xs mt-1">Revenue Recovery Certificate proceedings</p>
-        </div>
-        <Shield className="w-6 h-6 text-muted-foreground hidden sm:block" />
-      </div>
-
+    <PageShell
+      title="RRC Tracker"
+      subtitle="Revenue Recovery Certificate proceedings"
+      icon={<Shield className="w-6 h-6 text-muted-foreground hidden sm:block" />}
+    >
       <div className="grid grid-cols-3 gap-3 mb-6">
         <div className="bg-card border border-border rounded-sm p-4 text-center">
           <div className="text-3xl font-bold text-foreground">{RRCS.length}</div>
@@ -48,6 +45,6 @@ export default function RRCTracker() {
           </div>
         </div>
       </div>
-    </div>
+    </PageShell>
   )
 }

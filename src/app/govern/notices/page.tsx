@@ -6,6 +6,7 @@ import { PROJECTS, type ViolationValue } from './_data/notices.data'
 import { generateNoticeText } from './_data/notices.utils'
 import NoticeForm from './_components/NoticeForm'
 import NoticePreview from './_components/NoticePreview'
+import { PageShell } from '@/features/govern/components/PageShell'
 
 export default function NoticeGenerator() {
   const [violationType, setViolationType] = useState<ViolationValue | ''>('')
@@ -36,15 +37,11 @@ export default function NoticeGenerator() {
   }
 
   return (
-    <div className="px-4 sm:px-6 py-6 max-w-7xl mx-auto">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-2xl sm:text-3xl text-foreground">AI Notice Generator</h1>
-          <p className="text-muted-foreground text-xs mt-1">Draft regulatory notices · Powered by Vantis Intelligence</p>
-        </div>
-        <FileText className="w-6 h-6 text-muted-foreground hidden sm:block" />
-      </div>
-
+    <PageShell
+      title="AI Notice Generator"
+      subtitle="Draft regulatory notices · Powered by Vantis Intelligence"
+      icon={<FileText className="w-6 h-6 text-muted-foreground hidden sm:block" />}
+    >
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-5">
         <div className="lg:col-span-2">
           <NoticeForm
@@ -69,6 +66,6 @@ export default function NoticeGenerator() {
           />
         </div>
       </div>
-    </div>
+    </PageShell>
   )
 }
