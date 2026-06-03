@@ -25,7 +25,7 @@ export default function Settings() {
       title="Settings"
       subtitle="Account, notifications, data freshness, and demo mode"
     >
-      <div className="max-w-3xl">
+      <div>
         <div className="bg-card border border-border rounded-sm p-5 mb-4">
           <div className="flex items-center gap-2 mb-4">
             <User className="w-4 h-4 text-primary" />
